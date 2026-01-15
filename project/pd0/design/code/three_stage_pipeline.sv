@@ -27,7 +27,7 @@
  */
 
 module three_stage_pipeline #(
-parameter int DWIDTH = 8)(
+parameter int DWIDTH = 32)(
         input logic clk,
         input logic rst,
         input logic [DWIDTH-1:0] op1_i,
