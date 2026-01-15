@@ -99,7 +99,7 @@ parameter int DWIDTH = 8)(
 
     reg_rst #( 
         .DWIDTH(DWIDTH)
-    ) pipeline_stage_2_2 (
+    ) pipeline_stage_2_3 (
         .clk                (clk),
         .rst                (rst),
         .in_i               (subtractor_o),
