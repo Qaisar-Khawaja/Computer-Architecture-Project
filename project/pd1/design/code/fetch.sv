@@ -20,6 +20,8 @@ module fetch #(
 	// inputs
 	input logic clk,
 	input logic rst,
+    //additional input for instruction input:
+    input logic [DWIDTH-1:0] inst_i;
 	// outputs	
 	output logic [AWIDTH - 1:0] pc_o,
     output logic [DWIDTH - 1:0] insn_o
@@ -28,6 +30,16 @@ module fetch #(
      * Process definitions to be filled by
      * student below...
      */
+    always_ff @(posedge clk) begin:
+        if (rst) begin
+            pc_o <= BASEADDR;
+        end
+        else begin
+            pc_o <= pc_o +4;
+
+        end
+    end
+assign insn_o = inst_i;
 
 endmodule : fetch
 				

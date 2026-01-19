@@ -1,0 +1,274 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/scripts
+valu
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 DXx4 work 13 constants_pkg 0 22 :hFA4nNDZ1li[@75L@oXn1
+DXx4 work 11 alu_sv_unit 0 22 53_?0VHF8E^XSKD9ezA:;0
+Z3 !s110 1768791698
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+!i10b 1
+!s100 <g16@cm:Q8P?W<]V1MU7X1
+I_[fMK=Ri^I9nNHNgd2==X2
+!s105 alu_sv_unit
+S1
+R0
+Z5 w1768508372
+Z6 8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/alu.sv
+Z7 F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/alu.sv
+!i122 3
+L0 23 27
+Z8 OV;L;2020.1;71
+31
+Z9 !s108 1768791698.000000
+!s107 /eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design//probes.svh|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/test_pd.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/design_wrapper.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/clockgen.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/pd0.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/three_stage_pipeline.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/reg_rst.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/assign_xor.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/alu.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/constants_pkg.sv|
+Z10 !s90 -work|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/work|-sv|+incdir+/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code|+incdir+/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/|-stats=none|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/constants_pkg.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/alu.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/assign_xor.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/reg_rst.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/three_stage_pipeline.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/pd0.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/clockgen.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/design_wrapper.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/test_pd.sv|
+!i113 1
+Z11 o-work /eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/work -sv
+Z12 !s92 -work /eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/work -sv +incdir+/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code +incdir+/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/
+Z13 tCvgOpt 0
+Xalu_sv_unit
+R1
+R2
+R3
+V53_?0VHF8E^XSKD9ezA:;0
+r1
+!s85 0
+!i10b 1
+!s100 6fzi71OLULO[aBo_jnECE3
+I53_?0VHF8E^XSKD9ezA:;0
+!i103 1
+S1
+R0
+R5
+R6
+R7
+!i122 3
+L0 21 0
+R8
+31
+R9
+Z14 !s107 /eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design//probes.svh|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/test_pd.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/design_wrapper.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/clockgen.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/pd0.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/three_stage_pipeline.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/reg_rst.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/assign_xor.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/alu.sv|/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/constants_pkg.sv|
+R10
+!i113 1
+R11
+R12
+R13
+vassign_xor
+R1
+R3
+!i10b 1
+!s100 gbf;NBLhTCLVKXBJ>1dUa3
+Z15 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I6F31ZiM[5Ykz71go9fXZA3
+R4
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/assign_xor.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/assign_xor.sv
+!i122 3
+L0 15 9
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
+vclockgen
+R1
+R3
+!i10b 1
+!s100 i_g1F:Gie2`UO[bTV1_X33
+R15
+IT:a;fgSz]EV1XdlOI<[o61
+R4
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/clockgen.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/clockgen.sv
+!i122 3
+L0 11 39
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
+Xconstants_pkg
+R1
+R3
+!i10b 1
+!s100 l^C5bQ9g_L6;;bJz^BdQk0
+R15
+I:hFA4nNDZ1li[@75L@oXn1
+V:hFA4nNDZ1li[@75L@oXn1
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/constants_pkg.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/constants_pkg.sv
+!i122 3
+L0 1 0
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
+vdesign_wrapper
+R1
+R3
+!i10b 1
+!s100 9]22?Semn3Bam5hm1JFzD0
+R15
+IEQ0LEGTEdZijZNkjAoRRU1
+R4
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/design_wrapper.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/design_wrapper.sv
+!i122 3
+L0 6 10
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
+vpd0
+R1
+R3
+!i10b 1
+!s100 mS:z2KWcJlP^^o^O[j]oc1
+R15
+IVQS5lJ[8AzKlNk5:dn49d1
+R4
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/pd0.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/pd0.sv
+!i122 3
+L0 15 66
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
+vreg_rst
+R1
+R3
+!i10b 1
+!s100 bdHiZHoYB9e0JMJm]OIO;0
+R15
+Io]53ONg8ZZGbK7>hUUf`30
+R4
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/reg_rst.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/reg_rst.sv
+!i122 3
+L0 17 22
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
+vthree_stage_pipeline
+R1
+R3
+!i10b 1
+!s100 VffgVb^a>1oJD<dWQ3dJ]1
+R15
+IL0dD8>4^]HVX6SFUJ[>:Q0
+R4
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/three_stage_pipeline.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/design/code/three_stage_pipeline.sv
+!i122 3
+L0 29 109
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
+vtop
+R1
+R3
+!i10b 1
+!s100 z54^XRbM3NcOn9Ba;<>Sl3
+R15
+IF0EfKQ_ClYKV[NZeZ70Y42
+R4
+S1
+R0
+R5
+8/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/test_pd.sv
+F/eecs/home/kfaiza8/Computer-Architecture-Project/project/pd0/verif/tests/test_pd.sv
+!i122 3
+L0 8 157
+R8
+r1
+!s85 0
+31
+R9
+R14
+R10
+!i113 1
+R11
+R12
+R13
