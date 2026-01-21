@@ -26,7 +26,7 @@ module memory #(
   input logic clk,
   input logic rst,
   input logic [AWIDTH-1:0] addr_i = BASE_ADDR,
-  input logic [DWIDTH-1:0] data_i,
+  input logic [DWIDTH-1:0] data_i, //32 bits
   input logic read_en_i,
   input logic write_en_i,
   // outputs
@@ -56,5 +56,27 @@ module memory #(
    * student below....
    *
    */
+  always_comb begin
+    if (read_en_i) begin
+    data_o[7:0] = main_memory[address];
+    data_o[15:8] = main_memory[address + 1];
+    data_o[23:16] = main_memory[address + 2];
+    data_o[31:24] = main_memory[address + 3];
+    end
+    
+    else begin
+     data_o = '0;
+    end
+  end
+
+  always_ff @(posedge clk) begin
+    if (write_en_i) begin
+      main_memory[address] <= data_i[7:0];
+      main_memory[address + 1] <= data_i[15:8];
+      main_memory[address + 2] <= data_i[23:16];
+      main_memory[address + 3] <= data_i[31:24];
+
+    end
+  end
 
 endmodule : memory
