@@ -1,7 +1,9 @@
+TB_NAME ?= test_pd
+TOP ?= top
 SRCLIST = $(shell cat $(CL_ROOT)/verif/scripts/design.f)
-SRC = $(addprefix $(CL_ROOT)/design/code/, $(SRCLIST)) $(CL_ROOT)/verif/tests/clockgen.sv $(CL_ROOT)/design/design_wrapper.sv $(CL_ROOT)/verif/tests/test_pd.sv
+
+SRC = $(addprefix $(CL_ROOT)/design/code/, $(SRCLIST)) $(CL_ROOT)/verif/tests/clockgen.sv $(CL_ROOT)/design/design_wrapper.sv $(CL_ROOT)/verif/tests/$(TB_NAME).sv
 VFLAGS = -sv
-TOP = top
 _CFLAGS=
 PROG=
 
@@ -42,11 +44,11 @@ compile:
 		-stats=none $(SRC)
 write_macro_file:
 	rm -f $(CL_ROOT)/verif/scripts/run.macro
-	echo -e "vcd file $(VCD_FILE_STR)\nvcd add -r /top/* \nrun -all" >> $(CL_ROOT)/verif/scripts/run.macro 
+	echo -e "vcd file $(VCD_FILE_STR)\nvcd add -r /$(TOP)/* \nrun -all" >> $(CL_ROOT)/verif/scripts/run.macro 
 
 run: compile write_macro_file
 	echo Vsim Run
-	vsim -suppress 3839 -c -do $(CL_ROOT)/verif/scripts/run.macro $(CL_ROOT)/work.top
+	vsim -suppress 3839 -c -do $(CL_ROOT)/verif/scripts/run.macro $(CL_ROOT)/work.$(TOP)
 
 clean:
 	rm -rf $(SIM_DIR)
