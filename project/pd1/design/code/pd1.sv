@@ -27,7 +27,6 @@ logic [DWIDTH - 1:0] assign_fetch_insn_o;
 
 fetch assign_fetch(
     .insn_o(assign_fetch_insn_o),
-    .inst_i(assign_fetch_inst_i),
     .pc_o(assign_fetch_pc_o),
     .clk(clk),
     .rst(reset)

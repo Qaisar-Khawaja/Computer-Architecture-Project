@@ -21,25 +21,27 @@ module fetch #(
 	input logic clk,
 	input logic rst,
     //additional input for instruction input:
-    input logic [DWIDTH-1:0] inst_i;
 	// outputs	
 	output logic [AWIDTH - 1:0] pc_o,
     output logic [DWIDTH - 1:0] insn_o
 );
+
+logic [AWIDTH-1:0] pc_reg;
     /*
      * Process definitions to be filled by
      * student below...
      */
-    always_ff @(posedge clk) begin:
+    always_ff @(posedge clk) begin
         if (rst) begin
-            pc_o <= BASEADDR;
+            pc_reg <= 'd0;
         end
         else begin
-            pc_o <= pc_o +4;
+            pc_reg <= pc_reg + 'd4;
 
         end
     end
-assign insn_o = inst_i;
+
+assign pc_o = pc_reg;
 
 endmodule : fetch
 				

@@ -63,7 +63,6 @@ module memory #(
     data_o[23:16] = main_memory[address + 2];
     data_o[31:24] = main_memory[address + 3];
     end
-    
     else begin
      data_o = '0;
     end
@@ -75,7 +74,6 @@ module memory #(
       main_memory[address + 1] <= data_i[15:8];
       main_memory[address + 2] <= data_i[23:16];
       main_memory[address + 3] <= data_i[31:24];
-
     end
   end
 
