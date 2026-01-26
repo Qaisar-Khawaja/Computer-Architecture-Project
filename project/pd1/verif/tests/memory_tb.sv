@@ -16,19 +16,16 @@ logic write_en_i;
 
 
 memory #(
-  // parameters
   .AWIDTH   (32),
   .DWIDTH   (32),
   .BASE_ADDR (32'h01000000)
 ) dut (
-  // inputs
   .clk                  (clk),
   .rst                  (rst),
   .addr_i               (addr_i),
-  .data_i               (data_i), //32 bits
+  .data_i               (data_i), 
   .read_en_i            (read_en_i),
   .write_en_i           (write_en_i),
-  // outputs
   .data_o               (data_o)
 );
 
@@ -37,7 +34,6 @@ initial begin
     forever #(CLK_PERIOD/2) clk = ~clk;
 end
 
-// try using test_patterns at the end of this file
 integer offset = 0;
 logic [DWIDTH-1:0] actual_read_data; 
 wire  [DWIDTH-1:0] actual_write_data; 
@@ -63,10 +59,12 @@ initial begin
     rst = 1;
     #(CLK_PERIOD * 2);
 
-    // TEST CASE 1
+    /* TEST CASE 1
+     * Writing to the Memory
+     */
     offset = 4;
     expected_write_data = 32'hDEADBEEF;
-    write(offset, expected_write_data); //offset 4 so will begin writing at 32'h01000004
+    write(offset, expected_write_data); 
     #1;
     if (actual_write_data == expected_write_data) begin
         $display("TEST 1 - Simple Write 1: PASS (EXPECTED: %h | ACTUAL: %h)", expected_write_data, actual_write_data); 
@@ -75,10 +73,12 @@ initial begin
         $display("TEST 1 - Simple Write 1: FAIL (EXPECTED: %h | ACTUAL: %h)", expected_write_data, actual_write_data); 
     end
 
-    // TEST CASE 2
+     /* TEST CASE 2
+      * Writing to the Memory
+      */
     offset = 32;
     expected_write_data = 32'hCAFEBABE;
-    write(offset, expected_write_data); //offset 4 so will begin writing at 32'h01000004
+    write(offset, expected_write_data); 
     #1;
     if (actual_write_data == expected_write_data) begin
         $display("TEST 2 - Simple Write 1: PASS (EXPECTED: %h | ACTUAL: %h)", expected_write_data, actual_write_data); 
@@ -87,65 +87,80 @@ initial begin
         $display("TEST 2 - Simple Write 1: FAIL (EXPECTED: %h | ACTUAL: %h)", expected_write_data, actual_write_data); 
     end
 
-// TEST CASE 3
+    /* TEST CASE 3
+     * Reading from Memory
+     */
     offset = 4;
     read(offset, actual_read_data);
-    // No need for #1 if the task blocks until the clock edge
-    if (actual_read_data == 32'hDEADBEEF) begin // Compare against the known value
+    if (actual_read_data == 32'hDEADBEEF) begin
         $display("TEST 3 - Simple Read 1: PASS (EXPECTED: %h | ACTUAL: %h)", 32'hDEADBEEF, actual_read_data); 
     end
     else begin
         $display("TEST 3 - Simple Read 1: FAIL (EXPECTED: %h | ACTUAL: %h)", 32'hDEADBEEF, actual_read_data); 
     end
 
-// TEST CASE 4
-    // Verify that when read_en_i is 0, data_o is 0 
+    /* TEST CASE 4
+     * Verify that when read_en_i is 0, data_o is 0 
+     */
     offset = 4;
     addr_i = BASE_ADDR + offset;
     read_en_i = 0; 
     #1; 
-    if (data_o == 32'h0) 
+    if (data_o == 32'h0) begin
         $display("TEST 4 -  PASS (Output is 0 when Read Enable is LOW)");
-    else 
+    end 
+    else begin
         $display("TEST 4 - FAIL (Output should be 0, but got %h)", data_o);
-
-    // TEST CASE 5 Combinational Read 
-    // Verify data updates instantly without waiting for a clock edge
+    end
+    /* TEST CASE 5
+     * Verify data updates instantly without waiting for a clock edge
+     */
     offset = 32;
     read_en_i = 1;
     addr_i = BASE_ADDR + offset; 
     #1; 
-    if (data_o == 32'hCAFEBABE)
+    if (data_o == 32'hCAFEBABE) begin
         $display("TEST 5 - Comb. Timing:  PASS (Data changed instantly)");
-    else
+    end
+    else begin
         $display("TEST 5 - Comb. Timing:  FAIL (Data did not update combinationally)");
+    end
 
-    //TEST CASE 6
-    // Write at offset 0, read at offset 1. checks if your main_memory[address + 1, +2, +3] logic works.
+    /* TEST CASE 6
+     * Write at offset 0, read at offset 1. 
+     * Reading 4 bytes starting from offset 1: [Addr 4][Addr 3][Addr 2][Addr 1]
+     */
     offset = 0;
     write(offset, 32'hAABBCCDD); 
-    
-    // Reading from offset 1 should give: [Byte 4][Byte 3][Byte 2][Byte 1]
     read(1, actual_read_data);
-    if (actual_read_data == 32'h00AABBCC)
-        $display("TEST 6 - PASS (Offset 1 returned correct straddled bytes)");
-    else
-        $display("TEST 6 - FAIL (Got %h, expected 00AABBCC)", actual_read_data);
+
+    if (actual_read_data == 32'hEF_AA_BB_CC) begin
+        $display("TEST 6 - PASS (Offset 1 returned correct straddled bytes: %h)", actual_read_data);
+    end
+    else begin
+        $display("TEST 6 - FAIL (Got %h, expected EFAABBCC)", actual_read_data);
+    end
 
 
-    // CASE 7
-    //Ensure memory DOES NOT change if write_en_i is 0
-    offset = 12; // Currently holds 12345678
+    /* TEST CASE 7
+     * Ensure memory does not change if write_en_i is 0
+     */
+    offset = 12;
+    write(offset, 32'h12345678); 
     @(posedge clk);
-    addr_i = BASE_ADDR + offset;
-    data_i = 32'hFFFFFFFF; // Attempt to overwrite
-    write_en_i = 0;        // But disable write
+    addr_i = BASE_ADDR + offset; 
+    data_i = 32'hFFFFFFFF;       
+    write_en_i = 0; 
     @(posedge clk);
-    read(offset, actual_read_data);
-    if (actual_read_data == 32'h12345678)
-        $display("TEST 8 - Write Protection: PASS (Memory did not overwrite)");
-    else
-        $display("TEST 8 - Write Protection: FAIL (Memory was overwritten!)");
+
+    read(offset, actual_read_data); 
+    if (actual_read_data == 32'h12345678) begin 
+        $display("TEST 7 - PASS (Memory did not overwrite)"); 
+    end
+    else begin
+        $display("TEST 7 - FAIL (Memory was overwritten! Got: %h)", actual_read_data);
+    end
+
     #1000;
     $finish;
 end

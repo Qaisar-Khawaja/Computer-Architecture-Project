@@ -43,10 +43,10 @@ module memory #(
     $readmemh(`MEM_PATH, temp_memory);
     // Load data from temp_memory into main_memory
     for (int i = 0; i < `LINE_COUNT; i++) begin
-      main_memory[4*i]     = temp_memory[i][7:0];
-      main_memory[4*i + 1] = temp_memory[i][15:8];
-      main_memory[4*i + 2] = temp_memory[i][23:16];
-      main_memory[4*i + 3] = temp_memory[i][31:24];
+        main_memory[4*i]     = temp_memory[i][7:0];
+        main_memory[4*i + 1] = temp_memory[i][15:8];
+        main_memory[4*i + 2] = temp_memory[i][23:16];
+        main_memory[4*i + 3] = temp_memory[i][31:24];
     end
     $display("IMEMORY: Loaded %0d 32-bit words from %s", `LINE_COUNT, `MEM_PATH);
   end
@@ -58,22 +58,22 @@ module memory #(
    */
   always_comb begin
     if (read_en_i) begin
-    data_o[7:0] = main_memory[address];
-    data_o[15:8] = main_memory[address + 1];
-    data_o[23:16] = main_memory[address + 2];
-    data_o[31:24] = main_memory[address + 3];
+        data_o[7:0] = main_memory[address];
+        data_o[15:8] = main_memory[address + 1];
+        data_o[23:16] = main_memory[address + 2];
+        data_o[31:24] = main_memory[address + 3];
     end
     else begin
-     data_o = '0;
+        data_o = '0;
     end
   end
 
   always_ff @(posedge clk) begin
     if (write_en_i) begin
-      main_memory[address] <= data_i[7:0];
-      main_memory[address + 1] <= data_i[15:8];
-      main_memory[address + 2] <= data_i[23:16];
-      main_memory[address + 3] <= data_i[31:24];
+        main_memory[address] <= data_i[7:0];
+        main_memory[address + 1] <= data_i[15:8];
+        main_memory[address + 2] <= data_i[23:16];
+        main_memory[address + 3] <= data_i[31:24];
     end
   end
 
