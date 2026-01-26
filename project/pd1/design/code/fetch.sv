@@ -33,7 +33,7 @@ logic [AWIDTH-1:0] pc_reg;
      */
     always_ff @(posedge clk) begin
         if (rst) begin
-            pc_reg <= 'd0;
+            pc_reg <= BASEADDR;
         end
         else begin
             pc_reg <= pc_reg + 'd4;

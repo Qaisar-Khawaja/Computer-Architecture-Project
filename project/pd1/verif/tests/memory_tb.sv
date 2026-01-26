@@ -98,6 +98,54 @@ initial begin
         $display("TEST 3 - Simple Read 1: FAIL (EXPECTED: %h | ACTUAL: %h)", 32'hDEADBEEF, actual_read_data); 
     end
 
+// TEST CASE 4
+    // Verify that when read_en_i is 0, data_o is 0 
+    offset = 4;
+    addr_i = BASE_ADDR + offset;
+    read_en_i = 0; 
+    #1; 
+    if (data_o == 32'h0) 
+        $display("TEST 4 -  PASS (Output is 0 when Read Enable is LOW)");
+    else 
+        $display("TEST 4 - FAIL (Output should be 0, but got %h)", data_o);
+
+    // TEST CASE 5 Combinational Read 
+    // Verify data updates instantly without waiting for a clock edge
+    offset = 32;
+    read_en_i = 1;
+    addr_i = BASE_ADDR + offset; 
+    #1; 
+    if (data_o == 32'hCAFEBABE)
+        $display("TEST 5 - Comb. Timing:  PASS (Data changed instantly)");
+    else
+        $display("TEST 5 - Comb. Timing:  FAIL (Data did not update combinationally)");
+
+    //TEST CASE 6
+    // Write at offset 0, read at offset 1. checks if your main_memory[address + 1, +2, +3] logic works.
+    offset = 0;
+    write(offset, 32'hAABBCCDD); 
+    
+    // Reading from offset 1 should give: [Byte 4][Byte 3][Byte 2][Byte 1]
+    read(1, actual_read_data);
+    if (actual_read_data == 32'h00AABBCC)
+        $display("TEST 6 - PASS (Offset 1 returned correct straddled bytes)");
+    else
+        $display("TEST 6 - FAIL (Got %h, expected 00AABBCC)", actual_read_data);
+
+
+    // CASE 7
+    //Ensure memory DOES NOT change if write_en_i is 0
+    offset = 12; // Currently holds 12345678
+    @(posedge clk);
+    addr_i = BASE_ADDR + offset;
+    data_i = 32'hFFFFFFFF; // Attempt to overwrite
+    write_en_i = 0;        // But disable write
+    @(posedge clk);
+    read(offset, actual_read_data);
+    if (actual_read_data == 32'h12345678)
+        $display("TEST 8 - Write Protection: PASS (Memory did not overwrite)");
+    else
+        $display("TEST 8 - Write Protection: FAIL (Memory was overwritten!)");
     #1000;
     $finish;
 end
