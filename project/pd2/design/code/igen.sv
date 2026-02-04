@@ -49,7 +49,7 @@ module igen #(
             end
 
 
-            `Opcode_UType,
+            
             `Opcode_UType_Add_Upper_Imm,
             `Opcode_UType_Load_Upper_Imm: begin
                 /* Grab 20 bits from the instruction 
@@ -83,7 +83,7 @@ module igen #(
                 branch_holder = { insn_i[31], insn_i[7], insn_i[30:25], insn_i[11:8], 1'b0};
                 if (insn_i[31] == 1'b1) begin
                     imm_o = { 19'h7FFFF, branch_holder }; 
-                end
+                end 
                 else begin
                      imm_o = { 19'h00000, branch_holder };
                 end 
