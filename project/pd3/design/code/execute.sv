@@ -14,7 +14,7 @@
  * 1) 32-bit result of ALU res_o
  * 2) 1-bit branch taken signal brtaken_o
  */
-
+`include "constants.svh"
 module alu #(
     parameter int DWIDTH=32,
     parameter int AWIDTH=32
@@ -32,5 +32,32 @@ module alu #(
      * Process definitions to be filled by
      * student below...
      */
+    logic [4:0] shamt;
+    assign shamt = rs2_i[4:0];
+
+    assign opa = (op1_sel_i == `OP1_PC)  ? pc_i       : rs1_data_i;
+    assign opb = (op2_sel_i == `OP2_IMM) ? imm_i
+
+    always_comb begin
+    res_o = 32'b0;
+        case (funct3_i)
+            3'b000: begin // ADD or SUB
+                if (funct7_i[5]) res_o = rs1_i - rs2_i; // `SUB
+                else             res_o = rs1_i + rs2_i; // `ADD
+            end
+            3'b001: res_o = rs1_i << shamt;               // `SLL
+            3'b010: res_o = ($signed(rs1_i) < $signed(rs2_i)) ? 32'b1 : 32'b0; // `SLT
+            3'b011: res_o = (rs1_i < rs2_i) ? 32'b1 : 32'b0; // `SLTU
+            3'b100: res_o = rs1_i ^ rs2_i;               // `XOR
+            3'b101: begin // SRL or SRA
+                if (funct7_i[5]) res_o = $signed(rs1_i) >>> shamt; // `SRA
+                else             res_o = rs1_i >> shamt;           // `SRL
+            end
+            3'b110: res_o = rs1_i | rs2_i;               // `OR
+            3'b111: res_o = rs1_i & rs2_i;               // `AND
+            default: res_o = 32'b0;
+        endcase
+        
+    end
 
 endmodule : alu

@@ -37,5 +37,31 @@
      * Process definitions to be filled by
      * student below...
      */
+    logic [DWIDTH-1:0] registers [31:0];
+
+    //Combinational Read: return 0 if address is 0 or otherwise return value
+    assign rs1data_o = (rs1_i == 5'd0) ? {DWIDTH{1'b0}} : registers[rs1_i];
+    assign rs2data_o = (rs2_i == 5'd0) ? {DWIDTH{1'b0}} : registers[rs2_i];
+
+    //Sequential Write
+    always_ff @(posedge clk) begin
+        if(rst) begin
+            for (int i=0; i<32; i++) begin
+                if (i==2) begin
+                    registers[i] <= 32'h7ffffffc;
+                end
+                else begin
+                    registers[i] <= {DWIDTH{1'b0}};
+                end
+            end
+        end
+
+        else begin
+            if (regwren_i && (rd_i != 5'd0)) begin
+                registers[rd_i] <= datawb_i;
+            end
+        end
+    
+    end
 
 endmodule : register_file

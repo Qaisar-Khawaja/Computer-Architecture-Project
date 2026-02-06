@@ -7,3 +7,137 @@
  *
  * -------- REPLACE THIS FILE WITH THE MEMORY MODULE DEVELOPED IN PD2 -----------
  */
+
+`include "constants.svh"
+
+module control #(
+	parameter int DWIDTH=32
+)(
+	// inputs
+    input logic [DWIDTH-1:0] insn_i,
+    input logic [6:0] opcode_i,
+    input logic [6:0] funct7_i,
+    input logic [2:0] funct3_i,
+
+    // outputs
+    output logic pcsel_o,
+    output logic immsel_o,
+    output logic regwren_o,
+    output logic rs1sel_o,
+    output logic rs2sel_o,
+    output logic memren_o,
+    output logic memwren_o,
+    output logic [1:0] wbsel_o,
+    output logic [3:0] alusel_o
+);
+
+    /*
+     * Process definitions to be filled by
+     * student below...
+     */
+    always_comb begin
+        pcsel_o = `PC_NEXTLINE;
+        immsel_o = 1'b0;
+        regwren_o = 1'b0;
+        rs1sel_o = `OP1_RS1;
+        rs2sel_o = `OP2_RS2;
+        memren_o = 1'b0;
+        memwren_o = 1'b0;
+        wbsel_o =  `WB_ALU;
+        alusel_o = `ADD;
+        
+        
+        case (opcode_i)
+            `Opcode_RType: begin
+                regwren_o = 1'b1;
+                case (funct3_i)
+                    3'h0: alusel_o = (funct7_i == 7'h20) ? `SUB : `ADD;
+                    3'h1: alusel_o = `SLL;
+                    3'h2: alusel_o = `SLT;
+                    3'h3: alusel_o = `SLTU;
+                    3'h4: alusel_o = `XOR;
+                    3'h5: alusel_o = (funct7_i == 7'h20) ? `SRA : `SRL;
+                    3'h6: alusel_o = `OR;
+                    3'h7: alusel_o = `AND;
+                endcase
+            end
+            
+            
+            `Opcode_IType: begin
+                regwren_o = 1'b1;
+                rs2sel_o  = `OP2_IMM;
+                immsel_o  = 1'b1;
+                case (funct3_i)
+                    3'h0: alusel_o = `ADD;
+                    3'h2: alusel_o = `SLT;
+                    3'h3: alusel_o = `SLTU;
+                    3'h4: alusel_o = `XOR;
+                    3'h6: alusel_o = `OR;
+                    3'h7: alusel_o = `AND;
+                    3'h1: alusel_o = `SLL;
+                    3'h5: alusel_o = (funct7_i == 7'h20) ? `SRA : `SRL;
+                endcase
+            end
+
+            `Opcode_IType_Load: begin
+                regwren_o = 1'b1;
+                rs2sel_o  = `OP2_IMM;
+                immsel_o  = 1'b1;
+                memren_o  = 1'b1;
+                wbsel_o   = `WB_MEM;
+                alusel_o  = `ADD;
+            end
+
+            `Opcode_SType: begin
+                rs2sel_o  = `OP2_IMM;
+                immsel_o  = 1'b1;
+                memwren_o = 1'b1;
+                alusel_o  = `ADD;
+            end
+
+            `Opcode_BType: begin
+                immsel_o = 1'b1;
+                case (funct3_i)
+                    3'h0, 3'h1: alusel_o = `SUB;
+                    default: alusel_o = `SLT;
+                endcase
+            end
+
+
+            `Opcode_UType_Load_Upper_Imm: begin
+                regwren_o = 1'b1;
+                rs2sel_o  = `OP2_IMM;
+                immsel_o  = 1'b1;
+                alusel_o  = `ADD; 
+            end
+
+            `Opcode_UType_Add_Upper_Imm: begin
+                regwren_o = 1'b1;
+                rs1sel_o  = `OP1_PC;
+                rs2sel_o  = `OP2_IMM;
+                immsel_o  = 1'b1;
+                alusel_o  = `ADD;
+            end
+
+            `Opcode_JType_Jump_And_Link: begin
+                regwren_o = 1'b1;
+                immsel_o  = 1'b1;
+                pcsel_o   = `PC_JUMP;
+                wbsel_o   = `WB_PC4;
+            end
+
+            `Opcode_IType_Jump_And_LinkReg: begin
+                regwren_o = 1'b1;
+                pcsel_o   = `PC_JUMP;
+                rs2sel_o  = `OP2_IMM;
+                immsel_o  = 1'b1;
+                alusel_o  = `ADD;
+                wbsel_o   = `WB_PC4;
+            end
+
+            default: ; 
+        endcase
+    end
+endmodule
+
+
