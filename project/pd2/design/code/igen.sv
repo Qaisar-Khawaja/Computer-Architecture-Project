@@ -34,7 +34,6 @@ module igen #(
 
         case (opcode_i)
             `Opcode_IType,
-            `Opcode_IType_ecall_ebreak,
             `Opcode_IType_Jump_And_LinkReg,
             `Opcode_IType_Load: begin
                 /* The 31st bit is 1 representing negative value -> assign one 20 times on the left side
