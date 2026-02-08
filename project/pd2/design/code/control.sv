@@ -65,16 +65,21 @@ module control #(
         case (opcode_i)
             `Opcode_RType: begin
                 regwren_o = 1'b1;
+                rs1sel_o = `OP1_RS1;
+                rs2sel_o = `OP2_RS2;
+                immsel_o = 1'b0;
+                wbsel_o =  `WB_ALU;
                 case (funct3_i)
                     3'h0: alusel_o = (funct7_i == 7'h20) ? `SUB : `ADD;
-                    3'h1: alusel_o = `SLL;
-                    3'h2: alusel_o = `SLT;
-                    3'h3: alusel_o = `SLTU;
                     3'h4: alusel_o = `XOR;
-                    3'h5: alusel_o = (funct7_i == 7'h20) ? `SRA : `SRL;
                     3'h6: alusel_o = `OR;
                     3'h7: alusel_o = `AND;
+                    3'h1: alusel_o = `SLL;
+                    3'h5: alusel_o = (funct7_i == 7'h20) ? `SRA : `SRL;
+                    3'h2: alusel_o = `SLT;
+                    3'h3: alusel_o = `SLTU;
                 endcase
+                default:  alusel_o = ADD;
             end
             
             
@@ -82,20 +87,24 @@ module control #(
                 regwren_o = 1'b1;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
+                rs1sel_o = `OP1_RS1;
+                wbsel_o =  `WB_ALU;
                 case (funct3_i)
                     3'h0: alusel_o = `ADD;
-                    3'h2: alusel_o = `SLT;
-                    3'h3: alusel_o = `SLTU;
                     3'h4: alusel_o = `XOR;
                     3'h6: alusel_o = `OR;
                     3'h7: alusel_o = `AND;
                     3'h1: alusel_o = `SLL;
                     3'h5: alusel_o = (funct7_i == 7'h20) ? `SRA : `SRL;
+                    3'h2: alusel_o = `SLT;
+                    3'h3: alusel_o = `SLTU;
                 endcase
+                default:  alusel_o = ADD;
             end
 
             `Opcode_IType_Load: begin
                 regwren_o = 1'b1;
+                rs1sel_o = `OP1_RS1;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
                 memren_o  = 1'b1;
@@ -104,28 +113,34 @@ module control #(
             end
 
             `Opcode_SType: begin
+                regwren_o = 1'b0;
+                rs1sel_o = `OP1_RS1;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
-                memwren_o = 1'b1;
+                memren_o  = 1'b1;
+                wbsel_o   = `WB_ALU;
                 alusel_o  = `ADD;
             end
 
             `Opcode_BType: begin
-                immsel_o = 1'b1;
-                case (funct3_i)
-                    3'h0, 3'h1: alusel_o = `SUB;
-                    3'h4, 3'h5: alusel_o = `SLT;
-                    3'h6, 3'h7: alusel_o = `SLTU;
-                    default: alusel_o = `SUB;
-                endcase
+                regwren_o = 1'b0;
+                rs1sel_o = `OP1_RS1;
+                rs2sel_o  = `OP2_RS2;
+                immsel_o  = 1'b1;
+                pcsel_o  = 1'b0;
+                wbsel_o   = `WB_ALU;
+                alusel_o  = `SUB;
+
             end
 
 
             `Opcode_UType_Load_Upper_Imm: begin
                 regwren_o = 1'b1;
+                rs2sel_o  = `OP1_PC;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
-                alusel_o  = `ADD; 
+                wbsel_o   = `WB_ALU;
+                alusel_o  = `LUI; 
             end
 
             `Opcode_UType_Add_Upper_Imm: begin
@@ -133,24 +148,29 @@ module control #(
                 rs1sel_o  = `OP1_PC;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
-                alusel_o  = `ADD;
+                wbsel_o   = `WB_ALU;
+                alusel_o  = `AUIPC;
             end
 
             `Opcode_JType_Jump_And_Link: begin
                 regwren_o = 1'b1;
+                rs1sel_o  = `OP1_PC;
+                rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
                 pcsel_o   = `PC_JUMP;
                 wbsel_o   = `WB_PC4;
+                alusel_o  = `ADD;
             end
 
             `Opcode_IType_Jump_And_LinkReg: begin
                 regwren_o = 1'b1;
-                pcsel_o   = `PC_JUMP;
+                rs1sel_o  = `OP1_PC;
                 rs2sel_o  = `OP2_IMM;
+                pcsel_o   = `PC_JUMP;
                 immsel_o  = 1'b1;
                 alusel_o  = `ADD;
                 wbsel_o   = `WB_PC4;
-            end
+            end //
 
             default: ; 
         endcase

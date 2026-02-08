@@ -38,6 +38,16 @@ parameter logic [31:0] ZERO = 32'd0;
 `define SRA      4'b0111
 `define SLT      4'b1000
 `define SLTU     4'b1001
+// Load Upper and Add Upper IMM
+`define LUI      4'b1010
+`define AUIPC    4'b1011
+
+// Load Constants
+`define LB  3'b000
+`define LH  3'b001
+`define LW  3'b010
+`define LBU 3'b011
+`define LHU 3'b100
 
 // rs1 selection for operand 1
 `define OP1_RS1         1'b0
@@ -52,3 +62,4 @@ parameter logic [31:0] ZERO = 32'd0;
 `define PC_JUMP         1'b1 
 
 `endif
+                                          
