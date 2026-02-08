@@ -114,7 +114,9 @@ module control #(
                 immsel_o = 1'b1;
                 case (funct3_i)
                     3'h0, 3'h1: alusel_o = `SUB;
-                    default: alusel_o = `SLT;
+                    3'h4, 3'h5: alusel_o = `SLT;
+                    3'h6, 3'h7: alusel_o = `SLTU;
+                    default: alusel_o = `SUB;
                 endcase
             end
 
