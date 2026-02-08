@@ -9,7 +9,6 @@ module igen_tb;
     logic [31:0] imm_out;
     logic [31:0] expected_imm;
 
-    // 1. Instantiate the Unit Under Test (UUT)
     igen #( .DWIDTH(DWIDTH) ) uut (
         .opcode_i(opcode),
         .insn_i(insn),

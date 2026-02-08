@@ -78,8 +78,9 @@ module control #(
                     3'h5: alusel_o = (funct7_i == 7'h20) ? `SRA : `SRL;
                     3'h2: alusel_o = `SLT;
                     3'h3: alusel_o = `SLTU;
+                    default:  alusel_o = `ADD;
                 endcase
-                default:  alusel_o = ADD;
+                
             end
             
             
@@ -98,8 +99,9 @@ module control #(
                     3'h5: alusel_o = (funct7_i == 7'h20) ? `SRA : `SRL;
                     3'h2: alusel_o = `SLT;
                     3'h3: alusel_o = `SLTU;
+                    default:  alusel_o = `ADD;
                 endcase
-                default:  alusel_o = ADD;
+                
             end
 
             `Opcode_IType_Load: begin
@@ -113,12 +115,9 @@ module control #(
             end
 
             `Opcode_SType: begin
-                regwren_o = 1'b0;
-                rs1sel_o = `OP1_RS1;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
-                memren_o  = 1'b1;
-                wbsel_o   = `WB_ALU;
+                memwren_o  = 1'b1;
                 alusel_o  = `ADD;
             end
 
@@ -126,19 +125,28 @@ module control #(
                 regwren_o = 1'b0;
                 rs1sel_o = `OP1_RS1;
                 rs2sel_o  = `OP2_RS2;
+                pcsel_o = `PC_NEXTLINE;
                 immsel_o  = 1'b1;
-                pcsel_o  = 1'b0;
                 wbsel_o   = `WB_ALU;
-                alusel_o  = `SUB;
+                case (funct3_i)
+                    3'h0,
+                    3'h1: alusel_o = `SUB;
+                    3'h4,
+                    3'h5: alusel_o = `SLT;
+                    3'h6,
+                    3'h7: alusel_o = `SLTU;
+                    default: alusel_o = `ADD;
+                endcase
 
             end
 
 
             `Opcode_UType_Load_Upper_Imm: begin
                 regwren_o = 1'b1;
-                rs2sel_o  = `OP1_PC;
+                rs1sel_o  = `OP1_RS1;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
+                //pcsel_o   = `PC_NEXTLINE;
                 wbsel_o   = `WB_ALU;
                 alusel_o  = `LUI; 
             end
@@ -155,7 +163,7 @@ module control #(
             `Opcode_JType_Jump_And_Link: begin
                 regwren_o = 1'b1;
                 rs1sel_o  = `OP1_PC;
-                rs2sel_o  = `OP2_IMM;
+                rs2sel_o  = `OP2_RS2;
                 immsel_o  = 1'b1;
                 pcsel_o   = `PC_JUMP;
                 wbsel_o   = `WB_PC4;
@@ -164,15 +172,13 @@ module control #(
 
             `Opcode_IType_Jump_And_LinkReg: begin
                 regwren_o = 1'b1;
-                rs1sel_o  = `OP1_PC;
+                rs1sel_o  = `OP1_RS1;
                 rs2sel_o  = `OP2_IMM;
                 pcsel_o   = `PC_JUMP;
                 immsel_o  = 1'b1;
                 alusel_o  = `ADD;
                 wbsel_o   = `WB_PC4;
-            end //
-
-            default: ; 
+            end
         endcase
     end
 endmodule

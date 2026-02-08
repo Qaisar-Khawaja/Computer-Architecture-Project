@@ -42,13 +42,6 @@ parameter logic [31:0] ZERO = 32'd0;
 `define LUI      4'b1010
 `define AUIPC    4'b1011
 
-// Load Constants
-`define LB  3'b000
-`define LH  3'b001
-`define LW  3'b010
-`define LBU 3'b011
-`define LHU 3'b100
-
 // rs1 selection for operand 1
 `define OP1_RS1         1'b0
 `define OP1_PC          1'b1
