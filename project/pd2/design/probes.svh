@@ -1,16 +1,15 @@
 // ----  Probes  ----
-//`define PROBE_F_PC // ??
-//`define PROBE_F_INSN // ??
-
-//`define PROBE_D_PC // ??
-//`define PROBE_D_OPCODE // ??
-//`define PROBE_D_RD // ??
-//`define PROBE_D_FUNCT3 // ??
-//`define PROBE_D_RS1 // ??
-//`define PROBE_D_RS2 // ??
-//`define PROBE_D_FUNCT7 // ??
-//`define PROBE_D_IMM // ??
-//`define PROBE_D_SHAMT // ??
+`define PROBE_F_PC    assign_pc
+`define PROBE_F_INSN  assign_insn
+`define PROBE_D_PC     assign_d_pc
+`define PROBE_D_OPCODE assign_d_opcode
+`define PROBE_D_RD     assign_d_rd
+`define PROBE_D_FUNCT3 assign_d_funct3
+`define PROBE_D_RS1    assign_d_rs1
+`define PROBE_D_RS2    assign_d_rs2
+`define PROBE_D_FUNCT7 assign_d_funct7
+`define PROBE_D_IMM    assign_d_imm
+`define PROBE_D_SHAMT  assign_d_shamt
 // ----  Probes  ----
 
 // ----  Top module  ----
