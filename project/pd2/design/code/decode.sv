@@ -73,20 +73,63 @@ module decode #(
                 funct7_r = insn_i[31:25];
             end
 
-            // I-Type
-            `Opcode_IType, `Opcode_IType_Load, `Opcode_IType_Jump_And_LinkReg : begin
+        // I-Type Instructions (ALU: ADDI, SLTI, SLLI, etc.)
+            `Opcode_IType: begin
                 rd_r     = insn_i[11:7];
                 funct3_r = insn_i[14:12];
                 rs1_r    = insn_i[19:15];
+                rs2_r    = 'd0; // I-types don't use rs2
 
+                case(funct3_r)
+                    // Standard Immediate ops (ADDI, SLTI, SLTIU, XORI, ORI, ANDI)
+                    3'h0, 3'h2, 3'h3, 3'h4, 3'h6, 3'h7: begin
+                        imm_r    = {{DWIDTH-12{insn_i[31]}}, insn_i[31:20]};
+                        shamt_r  = 'd0;
+                        funct7_r = 'd0;
+                    end
+
+                    // Shift ops (SLLI, SRLI, SRAI)
+                    3'h1, 3'h5: begin
+                        // Check for valid funct7 if you want to be strict like the first snippet
+                        if(insn_i[31:25] == 7'h0 || insn_i[31:25] == 7'h20) begin
+                            shamt_r  = insn_i[24:20];
+                            imm_r    = {{DWIDTH-12{1'b0}}, insn_i[31:20]};
+                            funct7_r = insn_i[31:25];
+                        end
+                        else begin
+                            shamt_r  = 'd0;
+                            imm_r    = 'd0;
+                            funct7_r = 'd0;
+                        end
+                    end
+
+                    default: begin
+                        imm_r   = 'd0;
+                        shamt_r = 'd0;
+                    end
+                endcase
+            end
+
+            // Load Instructions
+            `Opcode_IType_Load: begin
+                rd_r     = insn_i[11:7];
+                funct3_r = insn_i[14:12];
+                rs1_r    = insn_i[19:15];
+                rs2_r    = 'd0;
+                funct7_r = 'd0;
+                shamt_r  = 'd0;
                 imm_r    = {{DWIDTH-12{insn_i[31]}}, insn_i[31:20]};
-                shamt_r  = '0;
-                funct7_r = '0;
+            end
 
-                if (opcode_w == `Opcode_IType && (funct3_r == 3'h1 || funct3_r == 3'h5)) begin
-                    shamt_r  = insn_i[24:20];
-                    funct7_r = insn_i[31:25];
-                end
+            // Jump and Link Register (JALR)
+            `Opcode_IType_Jump_And_LinkReg: begin
+                rd_r     = insn_i[11:7];
+                funct3_r = insn_i[14:12];
+                rs1_r    = insn_i[19:15];
+                rs2_r    = 'd0;
+                funct7_r = 'd0;
+                shamt_r  = 'd0;
+                imm_r    = {{DWIDTH-12{insn_i[31]}}, insn_i[31:20]};
             end
 
             // S-Type
