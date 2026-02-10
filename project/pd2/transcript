@@ -1,0 +1,73 @@
+# vsim -voptargs="+acc" work.pd2_tb 
+# Start time: 19:10:17 on Feb 09,2026
+# Loading sv_std.std
+# Loading work.pd2_tb
+# Loading work.pd2
+# Loading work.fetch
+# Loading work.memory
+# Loading work.decode_sv_unit
+# Loading work.decode
+# Loading work.control_sv_unit
+# Loading work.control
+# Loading work.igen_sv_unit
+# Loading work.igen
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_f_pc
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_f_insn
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_d_pc
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/d_insn_o
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_d_opcode
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_d_rs1
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_d_rs2
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_d_funct7
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_d_funct3
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/d_shamt
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_i_imm
+run -all
+# IMEMORY: Loaded 127 32-bit words from /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/data/test1.x
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/tests/pd2_tb.sv(33)
+#    Time: 40 ns  Iteration: 0  Instance: /pd2_tb
+# 1
+# Break in Module pd2_tb at /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/tests/pd2_tb.sv line 33
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/assign_d_rd
+restart -f
+run -all
+# IMEMORY: Loaded 127 32-bit words from /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/data/test1.x
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/tests/pd2_tb.sv(33)
+#    Time: 40 ns  Iteration: 0  Instance: /pd2_tb
+# 1
+# Break in Module pd2_tb at /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/tests/pd2_tb.sv line 33
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/pcsel \
+sim:/pd2_tb/dut/immsel \
+sim:/pd2_tb/dut/regwren \
+sim:/pd2_tb/dut/rs1sel \
+sim:/pd2_tb/dut/rs2sel \
+sim:/pd2_tb/dut/memren \
+sim:/pd2_tb/dut/memwren \
+sim:/pd2_tb/dut/wbsel \
+sim:/pd2_tb/dut/alusel
+restart -f
+run -all
+# IMEMORY: Loaded 127 32-bit words from /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/data/test1.x
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/tests/pd2_tb.sv(33)
+#    Time: 40 ns  Iteration: 0  Instance: /pd2_tb
+# 1
+# Break in Module pd2_tb at /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/tests/pd2_tb.sv line 33
+add wave -position insertpoint  \
+sim:/pd2_tb/dut/d_insn_o \
+sim:/pd2_tb/dut/assign_d_opcode \
+sim:/pd2_tb/dut/assign_i_imm
+# End time: 19:47:29 on Feb 09,2026, Elapsed time: 0:37:12
+# Errors: 0, Warnings: 0

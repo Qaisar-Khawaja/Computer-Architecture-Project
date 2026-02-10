@@ -1,0 +1,22 @@
+# vsim -suppress 3839 -c -do "/eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/scripts/run.macro" /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.top 
+# Start time: 20:17:34 on Feb 09,2026
+# Loading sv_std.std
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.top
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.clockgen
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.design_wrapper
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.pd2
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.fetch
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.memory
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.decode_sv_unit
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.decode
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.control_sv_unit
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.control
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.igen_sv_unit
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/work.igen
+# do /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/scripts/run.macro
+# IMEMORY: Loaded 51 32-bit words from /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/data/test3.x
+# Check passed
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd2/verif/tests/pattern_check.h(28)
+#    Time: 112 ps  Iteration: 1  Region: /top/genblk3
+# End time: 20:17:34 on Feb 09,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

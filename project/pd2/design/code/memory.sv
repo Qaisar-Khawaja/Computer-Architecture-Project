@@ -57,16 +57,18 @@ module memory #(
    * student below....
    *
    */
+  // In memory.sv
   always_comb begin
-    if (read_en_i) begin
-        data_o[7:0] = main_memory[address];
-        data_o[15:8] = main_memory[address + 1];
-        data_o[23:16] = main_memory[address + 2];
-        data_o[31:24] = main_memory[address + 3];
-    end
-    else begin
-        data_o = '0;
-    end
+      if (rst) begin
+          data_o = '0; // Or the instruction at address 0 if you want it visible DURING reset
+      end else if (read_en_i) begin
+          data_o[7:0]   = main_memory[address];
+          data_o[15:8]  = main_memory[address + 1];
+          data_o[23:16] = main_memory[address + 2];
+          data_o[31:24] = main_memory[address + 3];
+      end else begin
+          data_o = '0;
+      end
   end
 
   always_ff @(posedge clk) begin

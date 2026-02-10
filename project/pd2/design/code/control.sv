@@ -60,8 +60,7 @@ module control #(
         memwren_o = 1'b0;
         wbsel_o =  `WB_ALU;
         alusel_o = `ADD;
-        
-        
+
         case (opcode_i)
             `Opcode_RType: begin
                 regwren_o = 1'b1;
@@ -80,10 +79,8 @@ module control #(
                     3'h3: alusel_o = `SLTU;
                     default:  alusel_o = `ADD;
                 endcase
-                
             end
-            
-            
+
             `Opcode_IType: begin
                 regwren_o = 1'b1;
                 rs2sel_o  = `OP2_IMM;
@@ -101,7 +98,7 @@ module control #(
                     3'h3: alusel_o = `SLTU;
                     default:  alusel_o = `ADD;
                 endcase
-                
+
             end
 
             `Opcode_IType_Load: begin
@@ -148,7 +145,7 @@ module control #(
                 immsel_o  = 1'b1;
                 //pcsel_o   = `PC_NEXTLINE;
                 wbsel_o   = `WB_ALU;
-                alusel_o  = `LUI; 
+                alusel_o  = `LUI;
             end
 
             `Opcode_UType_Add_Upper_Imm: begin

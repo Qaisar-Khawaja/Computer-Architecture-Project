@@ -21,61 +21,61 @@ module igen_tb;
         $display("--------------------------------------------------------------------------------------------------");
 
         // Test 1: I-Type addi
-        opcode = 7'b0010011; 
+        opcode = 7'b0010011;
         insn   = 32'hFFB10093;
         expected_imm = 32'hFFFFFFFB;
         #10;
         $display("%0t\t I-Type addi\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
         // Test 2: I-Type Max Positive
-        opcode = 7'b0010011; 
-        insn = 32'h7FF00093; 
+        opcode = 7'b0010011;
+        insn = 32'h7FF00093;
         expected_imm = 32'h000007FF;
         #10;
         $display("%0t\t I-Type Max Positive\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        
-        // Test 3: I-Type Max Negative 
-        opcode = 7'b0010011; 
-        insn = 32'h80000093; 
+
+        // Test 3: I-Type Max Negative
+        opcode = 7'b0010011;
+        insn = 32'h80000093;
         expected_imm = 32'hFFFFF800;
         #10;
         $display("%0t\t I-Type Max Negative\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
         // Test 4: I-Type Zero Check
-        opcode = 7'b0010011; 
+        opcode = 7'b0010011;
         insn = 32'h00000013;
         expected_imm = 32'h00000000;
         #10;
         $display("%0t\t I-Type Zero Check\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
-        // Test 5: I-Type Load 
-        opcode = 7'b0000011; 
+        // Test 5: I-Type Load
+        opcode = 7'b0000011;
         insn   = 32'h02812083;
         expected_imm = 32'h00000028;
         #10;
         $display("%0t\t I-Type Load\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
         // Test 6: I-Type All Ones
-        opcode = 7'b0010011; 
-        insn = 32'hFFF00093; 
+        opcode = 7'b0010011;
+        insn = 32'hFFF00093;
         expected_imm = 32'hFFFFFFFF;
         #10;
         $display("%0t\t I-Type All Ones\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
         // Test 7: I-Type JALR with positive offset
-        opcode = 7'b1100111; 
+        opcode = 7'b1100111;
         insn   = 32'h00A100E7;
         expected_imm = 32'h0000000A;
         #10;
         $display("%0t\t I-Type JALR Positive Offset\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        
+
         // Test 8: I-Type JALR with negative offset
-        opcode = 7'b1100111; 
+        opcode = 7'b1100111;
         insn   = 32'hFFC100E7;
         expected_imm = 32'hFFFFFFFC;
         #10;
         $display("%0t\t I-Type JALR Negative Offset\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        
+
         // Test 9: S-Type Max Negative
-        opcode = 7'b0100011; 
+        opcode = 7'b0100011;
         insn = 32'h80000023;
         expected_imm = 32'hFFFFF800;
         #10;
@@ -83,47 +83,47 @@ module igen_tb;
         // Test 10: S-Type
         opcode = 7'b0100011;
         insn   = 32'h00512423;
-        expected_imm = 32'h00000008; 
+        expected_imm = 32'h00000008;
         #10;
         $display("%0t\t S-Type\t\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
         // Test 11: S-Type Max Positive
-        opcode = 7'b0100011; 
+        opcode = 7'b0100011;
         insn = 32'h7E000FA3;
         expected_imm = 32'h000007FF;
         #10;
         $display("%0t\t S-Type Max Positive\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        // Test 12: S-Type Alternating Bits 
+        // Test 12: S-Type Alternating Bits
         opcode = 7'b0100011;
         insn = 32'hAAA00523;
         expected_imm = 32'hFFFFFAAA;
         #10;
         $display("%0t\t S-Type Alternating Bits\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
-        // Test 13: B-Type 
+        // Test 13: B-Type
         opcode = 7'b1100011;
-        insn   = 32'hFE208EE3; 
+        insn   = 32'hFE208EE3;
         expected_imm = 32'hFFFFFFFC;
         #10;
         $display("%0t\t B-Type\t\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
         // Test 14: B-Type Zero Offset
-        opcode = 7'b1100011; 
-        insn = 32'h00000063; 
+        opcode = 7'b1100011;
+        insn = 32'h00000063;
         expected_imm = 32'h00000000;
         #10;
         $display("%0t\t B-Type Zero Offset\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        
+
         // Test 15: B-Type Min Negative(-2)
-        opcode = 7'b1100011; 
+        opcode = 7'b1100011;
         insn = 32'hFE000FE3;
         expected_imm = 32'hFFFFFFFE;
         #10;
         $display("%0t\t B-Type Min Negative\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
-        // Test 16: B-Type Max Negative 
-        opcode = 7'b1100011; 
-        insn = 32'h80000063; 
+        // Test 16: B-Type Max Negative
+        opcode = 7'b1100011;
+        insn = 32'h80000063;
         expected_imm = 32'hFFFFF000;
         #10;
         $display("%0t\t B-Type Max Negative\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
@@ -135,7 +135,7 @@ module igen_tb;
         #10;
         $display("%0t\t B-Type Bit 11\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 
-        // Test 18: B-Type Max Positive 
+        // Test 18: B-Type Max Positive
         opcode = 7'b1100011;
         insn = 32'h7E000F63;
         expected_imm = 32'h000007FE;
@@ -143,7 +143,7 @@ module igen_tb;
         $display("%0t\t B-Type Max Positive\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
         //Test 19: J-Type
         opcode = 7'b1101111;
-        insn   = 32'h001000ef; 
+        insn   = 32'h001000ef;
         expected_imm = 32'h00000800;
         #10;
         $display("%0t\t J-Type\t\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
@@ -167,7 +167,7 @@ module igen_tb;
         expected_imm = 32'h00001000;
         #10;
         $display("%0t\t J-Bit12\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        
+
         // Test 23: smallest Jump (+2) check instruction bit 21 maps to immediate bit 1 (bit 0 is always 0)
         opcode = 7'b1101111;
         insn = 32'h002000ef;
@@ -180,8 +180,8 @@ module igen_tb;
         expected_imm = 32'h12345000;
         #10;
         $display("%0t\t U-Type\t\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        
-        // Test 25: U-Type Maximum 
+
+        // Test 25: U-Type Maximum
         opcode = 7'b0110111;
         insn = 32'hFFFFF0B7;
         expected_imm = 32'hFFFFF000;
@@ -200,7 +200,7 @@ module igen_tb;
         expected_imm = 32'hABCDE000;
         #10;
         $display("%0t\t U-Type Padding_Bits\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
-        
+
         //Test 28: U-Type MSB Only checks that bit 31 of the instruction maps to bit 31 of the output 
         opcode = 7'b0110111;
         insn = 32'h800000B7;
@@ -211,7 +211,7 @@ module igen_tb;
         // Test 29: Default Case (R-Type)
         opcode = 7'b0110011;
         insn   = 32'h00A582B3;
-        expected_imm = 32'h00000000; 
+        expected_imm = 32'h00000000;
         #10;
         $display("%0t\t Default/R-Type\t\t\t %H\t %H\t %H\t %s", $time, insn, expected_imm, imm_out, (imm_out === expected_imm) ? "PASS" : "FAIL !!!");
 

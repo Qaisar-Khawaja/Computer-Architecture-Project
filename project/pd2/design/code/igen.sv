@@ -9,7 +9,7 @@
  * Outputs:
  * 2) 32-bit immediate value imm_o
  */
-
+`include "constants.svh"
 module igen #(
     parameter int DWIDTH=32
     )(

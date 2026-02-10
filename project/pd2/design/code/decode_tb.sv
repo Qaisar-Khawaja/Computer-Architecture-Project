@@ -1,3 +1,7 @@
+// AI was used in this testbench to:
+// 1. come up with more testcases that might have been missed
+// 2. to make it match igen and control testbenches, as it initially had a different format (so for reformatting only)
+
 `timescale 1ns/1ps
 
 module decode_tb();
@@ -32,12 +36,11 @@ module decode_tb();
     // -------------------------------------------------------------------------
     // Helper Tasks
     // -------------------------------------------------------------------------
-    
+
     // Standard Check Task
 // -------------------------------------------------------------------------
     // Helper Tasks (Fixed Formatting)
     // -------------------------------------------------------------------------
-    
     // Standard Check Task
     task check(
         input string name,
@@ -51,12 +54,12 @@ module decode_tb();
     );
         @(posedge clk);
         @(posedge clk);
-        #1; 
+        #1;
         // Use %-8t to reserve 8 chars for Time, and %-24s for Name to match header alignment
-        $display("%-8t %-24s %b    %2d      %2d      %2d      %h       %s", 
+        $display("%-8t %-24s %b    %2d      %2d      %2d      %h       %s",
             $time, name, opcode_o, rd_o, rs1_o, rs2_o, imm_o,
-            (opcode_o === exp_opcode && rd_o === exp_rd && rs1_o === exp_rs1 && 
-             rs2_o === exp_rs2 && funct3_o === exp_funct3 && funct7_o === exp_funct7 && 
+            (opcode_o === exp_opcode && rd_o === exp_rd && rs1_o === exp_rs1 &&
+             rs2_o === exp_rs2 && funct3_o === exp_funct3 && funct7_o === exp_funct7 &&
              imm_o === exp_imm) ? "PASS" : "FAIL"
         );
     endtask
@@ -75,12 +78,12 @@ module decode_tb();
     );
         @(posedge clk);
         @(posedge clk);
-        #1; 
+        #1;
         // Identical formatting to check() for consistency
-        $display("%-8t %-24s %b    %2d      %2d      %2d      %h       %s", 
+        $display("%-8t %-24s %b    %2d      %2d      %2d      %h       %s",
             $time, name, opcode_o, rd_o, rs1_o, rs2_o, imm_o,
-            (opcode_o === exp_opcode && rd_o === exp_rd && rs1_o === exp_rs1 && 
-             funct3_o === exp_funct3 && funct7_o === exp_funct7 && 
+            (opcode_o === exp_opcode && rd_o === exp_rd && rs1_o === exp_rs1 &&
+             funct3_o === exp_funct3 && funct7_o === exp_funct7 &&
              imm_o === exp_imm && shamt_o === exp_shamt) ? "PASS" : "FAIL"
         );
     endtask
@@ -120,7 +123,7 @@ module decode_tb();
         // SLTU x4, x5, x6
         insn_i = {7'b0000000, 5'd6, 5'd5, 3'b011, 5'd4, 7'b0110011};
         check("SLTU x4, x5, x6", 7'b0110011, 5'd4, 5'd5, 5'd6, 3'b011, 7'b0000000, 32'h0);
-        
+
         // SRA x7, x8, x9
         insn_i = {7'b0100000, 5'd9, 5'd8, 3'b101, 5'd7, 7'b0110011};
         check("SRA x7, x8, x9", 7'b0110011, 5'd7, 5'd8, 5'd9, 3'b101, 7'b0100000, 32'h0);
