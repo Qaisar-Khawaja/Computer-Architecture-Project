@@ -17,43 +17,37 @@ module pd2 #(
     input logic reset
 );
 
-    // ============================================
-    // ============== MODULE SIGNALS ==============
-    // ============================================
-
-    // Fetch Signals
+    // Signals to connect between dmemory and fetch
     logic [AWIDTH-1:0] FETCH_PC_O;
     logic [DWIDTH-1:0] FETCH_INSN_O;
-
-    // Memory Signals
     logic [AWIDTH-1:0] MEM_ADDR_I;
     logic [DWIDTH-1:0] MEM_DATA_O;
-    logic              MEM_DATA_VLD_O;
 
-    // Decode Signals
+    // Decode signals
     logic [AWIDTH-1:0]  assign_d_pc, assign_f_pc;
-    logic [DWIDTH-1:0]  assign_d_insn_o, assign_f_insn; // Output of decode
+    logic [DWIDTH-1:0]  assign_d_insn_o, assign_f_insn;
     logic [6:0]         assign_d_opcode;
     logic [4:0]         assign_d_rd, assign_d_rs1, assign_d_rs2, assign_d_shamt;
     logic [6:0]         assign_d_funct7;
     logic [2:0]         assign_d_funct3;
     logic [DWIDTH-1:0]  assign_d_imm;
-    logic [DWIDTH-1:0]  assign_i_imm; // <--- ADD THIS LINE
-    // Control Signals
+    logic [DWIDTH-1:0]  assign_i_imm;
+
+    // Control signals
     logic pcsel, immsel, regwren, rs1sel, rs2sel, memren, memwren;
     logic [1:0] wbsel;
     logic [3:0] alusel;
 
-// ============================================
-    // ============= MODULE INSTANCES =============
-    // ============================================
+    /////////////////////////////////
+    //   INSTANTIATING MODULES     //
+    /////////////////////////////////
 
-    // Connect Memory Output to the Instruction Wire
+    // Connections needed for connection between fetch and memory
+    // Also assigning probes to their respective wires
     assign FETCH_INSN_O = MEM_DATA_O;
+    assign MEM_ADDR_I   = FETCH_PC_O;
     assign assign_f_pc = FETCH_PC_O;
     assign assign_f_insn = FETCH_INSN_O;
-    // Connects Fetch PC to Memory Address
-    assign MEM_ADDR_I   = FETCH_PC_O;
 
     // 1. FETCH MODULE
     fetch #(AWIDTH, DWIDTH) fetch_inst (
@@ -68,7 +62,7 @@ module pd2 #(
         .clk        (clk),
         .rst        (reset),
         .addr_i     (MEM_ADDR_I),
-        .data_i     ('0),        // Use '0 for cleaner zero filling
+        .data_i     ('0),
         .read_en_i  (1'b1),
         .write_en_i (1'b0),
         .data_o     (MEM_DATA_O)
@@ -78,7 +72,7 @@ module pd2 #(
     decode #(DWIDTH, AWIDTH) decode_inst (
         .clk      (clk),
         .rst      (reset),
-        .insn_i   (FETCH_INSN_O), // Receives instruction from Fetch/Mem path
+        .insn_i   (FETCH_INSN_O),
         .pc_i     (FETCH_PC_O),
         .pc_o     (assign_d_pc),
         .insn_o   (assign_d_insn_o),
@@ -115,12 +109,6 @@ module pd2 #(
         .insn_i   (assign_d_insn_o),
         .imm_o    (assign_i_imm)
     );
-
-    // ============================================
-    // ============== TOP LEVEL ASSIGNS ============
-    // ============================================
-
-    // Satisfies TA requirement: Instruction is driven by memory 
 
 endmodule : pd2
 
