@@ -32,6 +32,10 @@
      * Process definitions to be filled by
      * student below...
      */
+    always_comb begin
+        breq_o = (rs1_i == rs2_i);
+        brlt_o = ($signed(rs1_i) < $signed(rs2_i));
+    end
 
 endmodule : branch_control
 

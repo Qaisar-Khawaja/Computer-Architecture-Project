@@ -37,5 +37,21 @@
      * Process definitions to be filled by
      * student below...
      */
+    logic [DWIDTH-1:0] regs [31:0];
+
+    // Sequential write
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin
+            regs[0] <= 0;
+            regs[2] <= 32'h7FFFFFFC; // stack pointer
+        end else begin
+            if (regwren_i && rd_i != 0)
+                regs[rd_i] <= datawb_i;
+        end
+    end
+
+    // Combinational read
+    assign rs1data_o = (rs1_i == 0) ? 0 : regs[rs1_i];
+    assign rs2data_o = (rs2_i == 0) ? 0 : regs[rs2_i];
 
 endmodule : register_file
