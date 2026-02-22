@@ -42,7 +42,7 @@ module fetch #(
         end
     end
 
-assign pc_o = pc_reg;
+    assign pc_o = pc_reg;
 
 endmodule : fetch
 
