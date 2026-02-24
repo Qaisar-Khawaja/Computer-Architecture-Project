@@ -2,7 +2,7 @@
 
 module register_file_tb;
 
-    // DUT inputs
+    // inputs
     logic clk;
     logic rst;
     logic [4:0] rs1_i;
@@ -11,11 +11,10 @@ module register_file_tb;
     logic [31:0] datawb_i;
     logic regwren_i;
 
-    // DUT outputs
+    // outputs
     logic [31:0] rs1data_o;
     logic [31:0] rs2data_o;
 
-    // Instantiate DUT
     register_file dut (
         .clk(clk),
         .rst(rst),
@@ -53,11 +52,11 @@ module register_file_tb;
             #1;
 
             if (rs1data_o !== exp1)
-                $error("%s: rs1 mismatch. Expected %0d, got %0d",
+                $error("%s: rs1 mismatch. Expected %0h, got %0h",
                        msg, exp1, rs1data_o);
 
             if (rs2data_o !== exp2)
-                $error("%s: rs2 mismatch. Expected %0d, got %0d",
+                $error("%s: rs2 mismatch. Expected %0h, got %0h",
                        msg, exp2, rs2data_o);
         end
     endtask
@@ -78,7 +77,8 @@ module register_file_tb;
         rst = 0;
 
         // Check reset values
-        read_regs(0, 2, 0, 32'h7FFFFFFC, "Reset values");
+        // UPDATED: Expected rs2 (reg 2) value changed to match DUT's 32'h01100000 stack pointer
+        read_regs(0, 2, 0, 32'h01100000, "Reset values");
 
         // Write to a normal register
         write_reg(5, 123);
@@ -115,7 +115,7 @@ module register_file_tb;
         // Highest register test (x31)
         write_reg(31, 32'hDEADBEEF);
         read_regs(31, 16, 32'hDEADBEEF, 32'h12345678, "Write/read x31");
-        
+
         // Attempt to write when regwren_i = 0 (should not change register)
         rd_i = 20;
         datawb_i = 32'hCAFEBABE;
@@ -123,7 +123,6 @@ module register_file_tb;
         @(posedge clk);
         #1;
         read_regs(20, 0, 0, 0, "Write disabled (reg20 should remain 0)");
-
 
         $display("\nAll register_file tests completed.");
         $finish;

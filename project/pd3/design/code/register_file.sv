@@ -42,8 +42,9 @@
     // Sequential write
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            regs[0] <= 0;
-            regs[2] <= 32'h7FFFFFFC; // stack pointer
+            regs <= '{default : 0};
+            regs[1] <= 0;
+            regs[2] <= 32'h01100000; // stack pointer
         end else begin
             if (regwren_i && rd_i != 0)
                 regs[rd_i] <= datawb_i;

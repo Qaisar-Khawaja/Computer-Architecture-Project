@@ -1,19 +1,9 @@
-/*
- * Module: control
- *
- * Description: This module sets the control bits (control path) based on the decoded
- * instruction. Note that this is part of the decode stage but housed in a separate
- * module for better readability, debug and design purposes.
- *
- * -------- REPLACE THIS FILE WITH THE MEMORY MODULE DEVELOPED IN PD2 -----------
- */
-
 `include "constants.svh"
 
 module control #(
-	parameter int DWIDTH=32
+    parameter int DWIDTH=32
 )(
-	// inputs
+    // inputs
     input logic [DWIDTH-1:0] insn_i,
     input logic [6:0] opcode_i,
     input logic [6:0] funct7_i,
@@ -31,11 +21,8 @@ module control #(
     output logic [3:0] alusel_o
 );
 
-    /*
-     * Process definitions to be filled by
-     * student below...
-     */
     always_comb begin
+        // Default values to prevent latches
         pcsel_o = `PC_NEXTLINE;
         immsel_o = 1'b0;
         regwren_o = 1'b0;
@@ -45,8 +32,7 @@ module control #(
         memwren_o = 1'b0;
         wbsel_o =  `WB_ALU;
         alusel_o = `ADD;
-        
-        
+
         case (opcode_i)
             `Opcode_RType: begin
                 regwren_o = 1'b1;
@@ -65,10 +51,8 @@ module control #(
                     3'h3: alusel_o = `SLTU;
                     default:  alusel_o = `ADD;
                 endcase
-                
             end
-            
-            
+
             `Opcode_IType: begin
                 regwren_o = 1'b1;
                 rs2sel_o  = `OP2_IMM;
@@ -86,7 +70,6 @@ module control #(
                     3'h3: alusel_o = `SLTU;
                     default:  alusel_o = `ADD;
                 endcase
-                
             end
 
             `Opcode_IType_Load: begin
@@ -108,32 +91,21 @@ module control #(
 
             `Opcode_BType: begin
                 regwren_o = 1'b0;
-                rs1sel_o = `OP1_RS1;
-                rs2sel_o  = `OP2_RS2;
-                pcsel_o = `PC_NEXTLINE;
+                rs1sel_o  = `OP1_PC;
+                rs2sel_o  = `OP2_IMM;
+                pcsel_o   = `PC_NEXTLINE;
                 immsel_o  = 1'b1;
                 wbsel_o   = `WB_ALU;
-                case (funct3_i)
-                    3'h0,
-                    3'h1: alusel_o = `SUB;
-                    3'h4,
-                    3'h5: alusel_o = `SLT;
-                    3'h6,
-                    3'h7: alusel_o = `SLTU;
-                    default: alusel_o = `ADD;
-                endcase
-
+                alusel_o  = `ADD;
             end
-
 
             `Opcode_UType_Load_Upper_Imm: begin
                 regwren_o = 1'b1;
                 rs1sel_o  = `OP1_RS1;
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
-                //pcsel_o   = `PC_NEXTLINE;
                 wbsel_o   = `WB_ALU;
-                alusel_o  = `LUI; 
+                alusel_o  = `LUI;
             end
 
             `Opcode_UType_Add_Upper_Imm: begin
@@ -142,7 +114,7 @@ module control #(
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
                 wbsel_o   = `WB_ALU;
-                alusel_o  = `AUIPC;
+                alusel_o  = `PCADD; // <--- FIXED: Changed from AUIPC
             end
 
             `Opcode_JType_Jump_And_Link: begin
@@ -167,5 +139,3 @@ module control #(
         endcase
     end
 endmodule
-
-

@@ -15,6 +15,9 @@
  * 2) 1-bit branch taken signal brtaken_o
  */
 
+
+`include "constants.svh"
+
 module alu #(
     parameter int DWIDTH=32,
     parameter int AWIDTH=32
@@ -24,75 +27,29 @@ module alu #(
     input logic [DWIDTH-1:0] rs2_i,
     input logic [2:0] funct3_i,
     input logic [6:0] funct7_i,
+    input logic [3:0] alusel_i, // added an ALUSEL input from the control module
     output logic [DWIDTH-1:0] res_o,
     output logic brtaken_o
 );
-
-    /*
-     * Process definitions to be filled by
-     * student below...
-     */
-    logic signed [DWIDTH-1:0] srs1, srs2;
-    assign srs1 = rs1_i;
-    assign srs2 = rs2_i;
-
-    always_comb begin
-        res_o = 0;
-        brtaken_o = 0;
-
-        // -------------------------
-        // ALU Operations
-        // -------------------------
-        unique case (funct3_i)
-
-            // ADD / SUB / ADDI
-            3'b000: begin
-                if (funct7_i == 7'b0100000)
-                    res_o = rs1_i - rs2_i;   // SUB
-                else
-                    res_o = rs1_i + rs2_i;   // ADD / ADDI
-            end
-
-            // SLL / SLLI
-            3'b001: res_o = rs1_i << rs2_i[4:0];
-
-            // SLT / SLTI
-            3'b010: res_o = (srs1 < srs2);
-
-            // SLTU / SLTIU
-            3'b011: res_o = (rs1_i < rs2_i);
-
-            // XOR / XORI
-            3'b100: res_o = rs1_i ^ rs2_i;
-
-            // SRL / SRA / SRLI / SRAI
-            3'b101: begin
-                if (funct7_i == 7'b0100000)
-                    res_o = srs1 >>> rs2_i[4:0]; // SRA
-                else
-                    res_o = rs1_i >> rs2_i[4:0]; // SRL
-            end
-
-            // OR / ORI
-            3'b110: res_o = rs1_i | rs2_i;
-
-            // AND / ANDI
-            3'b111: res_o = rs1_i & rs2_i;
-
-        endcase
-
-        // -------------------------
-        // Branch decision logic
-        // -------------------------
-        case (funct3_i)
-            3'b000: brtaken_o = (rs1_i == rs2_i);               // BEQ
-            3'b001: brtaken_o = (rs1_i != rs2_i);               // BNE
-            3'b100: brtaken_o = (srs1 < srs2);                  // BLT
-            3'b101: brtaken_o = !(srs1 < srs2);                 // BGE
-            3'b110: brtaken_o = (rs1_i < rs2_i);                // BLTU
-            3'b111: brtaken_o = !(rs1_i < rs2_i);               // BGEU
-            default: brtaken_o = 0;
+    always_comb begin: ALU
+        case(alusel_i)
+            `ADD: res_o = rs1_i + rs2_i;
+            `SUB: res_o = rs1_i - rs2_i;
+            `AND: res_o = rs1_i & rs2_i;
+            `OR:  res_o = rs1_i | rs2_i;
+            `XOR: res_o = rs1_i ^ rs2_i;
+            `SLL: res_o = rs1_i << rs2_i;
+            `SRL: res_o = rs1_i >> rs2_i;
+            `SRA: res_o = $signed(rs1_i) >>> rs2_i;
+            `SLT:  res_o = ($signed(rs1_i) < $signed(rs2_i)) ? 1 : 0;
+            `SLTU: res_o = ($unsigned(rs1_i) < $unsigned(rs2_i)) ? 1:0;
+            `PCADD: res_o = pc_i + rs2_i;
+            `LUI: res_o = rs2_i;
+            default: res_o = 'd0;
         endcase
     end
+
+    // branch taken is calculated in top level
+    assign brtaken_o = 1'b0;
 
 endmodule : alu

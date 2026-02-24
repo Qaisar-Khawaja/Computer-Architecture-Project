@@ -1,9 +1,3 @@
-/*
- * Good practice to define constants and refer to them in the
- * design files. An example of some constants are provided to you
- * as a starting point
- *
- */
 `ifndef CONSTANTS_SVH_
 `define CONSTANTS_SVH_
 
@@ -38,9 +32,8 @@ parameter logic [31:0] ZERO = 32'd0;
 `define SRA      4'b0111
 `define SLT      4'b1000
 `define SLTU     4'b1001
-// Load Upper and Add Upper IMM
-`define LUI      4'b1010
-`define AUIPC    4'b1011
+`define PCADD    4'b1010
+`define LUI      4'b1011 // <--- FIXED: Now uniquely 1011
 
 // rs1 selection for operand 1
 `define OP1_RS1         1'b0
@@ -52,6 +45,6 @@ parameter logic [31:0] ZERO = 32'd0;
 
 // PC selection for next instruction address
 `define PC_NEXTLINE     1'b0
-`define PC_JUMP         1'b1 
+`define PC_JUMP         1'b1
 
 `endif

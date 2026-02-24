@@ -10,123 +10,183 @@
 
 module pd3 #(
     parameter int AWIDTH = 32,
-    parameter int DWIDTH = 32)(
-    input logic clk,
-    input logic reset
+    parameter int DWIDTH = 32
+)(
+    input  logic clk,
+    input  logic reset
 );
 
- /*
-  * Instantiate other submodules and
-  * probes. To be filled by student...
-  *
-  */
-  // PC + instruction
-    logic [AWIDTH-1:0] pc;
-    logic [DWIDTH-1:0] insn;
+    // -------------------------
+    // Fetch & Instruction Memory
+    // -------------------------
 
-    // Decode outputs
-    logic [6:0] opcode;
-    logic [4:0] rd, rs1, rs2;
-    logic [6:0] funct7;
-    logic [2:0] funct3;
-    logic [DWIDTH-1:0] imm;
+    logic [AWIDTH-1:0] assign_f_pc;
+    logic [DWIDTH-1:0] assign_f_insn;
 
-    // Register file outputs
-    logic [DWIDTH-1:0] rs1_data, rs2_data;
+    fetch #(AWIDTH, DWIDTH) fetch_inst (
+        .clk    (clk),
+        .rst    (reset),
+        .pc_o   (assign_f_pc),
+        .insn_o (assign_f_insn)
+    );
 
-    // ALU outputs
-    logic [DWIDTH-1:0] alu_result;
-    logic br_taken;
-    logic [DWIDTH-1:0] mem_data;
+    memory #(AWIDTH, DWIDTH) imem (
+        .clk        (clk),
+        .rst        (reset),
+        .addr_i     (assign_f_pc),
+        .data_i     (32'b0),
+        .read_en_i  (1'b1),
+        .write_en_i (1'b0),
+        .data_o     (assign_f_insn)
+    );
 
-    // Control signals
-    logic regwren;
-    logic memren, memwren;
+    // -------------------------
+    // Decode
+    // -------------------------
+
+    logic [AWIDTH-1:0] assign_d_pc;
+    logic [6:0]        assign_d_opcode;
+    logic [4:0]        assign_d_rd, assign_d_rs1, assign_d_rs2, d_shamt;
+    logic [6:0]        assign_d_funct7;
+    logic [2:0]        assign_d_funct3;
+    logic [DWIDTH-1:0] assign_d_imm, assign_i_imm;
+    logic [DWIDTH-1:0] assign_d_insn;
+
+    decode #(DWIDTH, AWIDTH) decode_inst (
+        .clk      (clk),
+        .rst      (reset),
+        .insn_i   (assign_f_insn),
+        .pc_i     (assign_f_pc),
+        .pc_o     (assign_d_pc),
+        .insn_o   (assign_d_insn),
+        .opcode_o (assign_d_opcode),
+        .rd_o     (assign_d_rd),
+        .rs1_o    (assign_d_rs1),
+        .rs2_o    (assign_d_rs2),
+        .funct7_o (assign_d_funct7),
+        .funct3_o (assign_d_funct3),
+        .shamt_o  (d_shamt),
+        .imm_o    (assign_d_imm)
+    );
+
+    assign assign_d_imm = assign_i_imm;
+
+    // -------------------------
+    // Immediate Generator
+    // -------------------------
+
+    igen #(DWIDTH) igen_inst (
+        .opcode_i (assign_d_opcode),
+        .insn_i   (assign_d_insn),
+        .imm_o    (assign_i_imm)
+    );
+
+    // -------------------------
+    // Control
+    // -------------------------
+    logic pcsel, immsel, regwren, rs1sel, rs2sel, memren, memwren;
     logic [1:0] wbsel;
-    logic pcsel;
     logic [3:0] alusel;
 
-fetch assign_fetch (
-    .clk(clk),
-    .rst(reset),
-    .pc_o(pc)
-);
+    control #(DWIDTH) control_inst (
+        .insn_i    (assign_d_insn),
+        .opcode_i  (assign_d_opcode),
+        .funct7_i  (assign_d_funct7),
+        .funct3_i  (assign_d_funct3),
+        .pcsel_o   (pcsel),
+        .immsel_o  (immsel),
+        .regwren_o (regwren),
+        .rs1sel_o  (rs1sel),
+        .rs2sel_o  (rs2sel),
+        .memren_o  (memren),
+        .memwren_o (memwren),
+        .wbsel_o   (wbsel),
+        .alusel_o  (alusel)
+    );
 
+    // -------------------------
+    // Register File
+    // -------------------------
+    logic assign_r_write_enable;
+    logic [4:0] assign_r_write_destination;
+    logic [DWIDTH-1:0] assign_r_write_data;
+    logic [4:0] assign_r_read_rs1;
+    logic [4:0] assign_r_read_rs2;
+    logic [DWIDTH-1:0] assign_r_read_rs1_data;
+    logic [DWIDTH-1:0] assign_r_read_rs2_data;
 
-decode assign_decode (
-    .clk(clk),
-    .rst(reset),
-    .insn_i(mem_data),
-    .pc_i(pc),
+    register_file #(DWIDTH) reg_file_inst (
+        .clk       (clk),
+        .rst       (reset),
+        .rs1_i     (assign_r_read_rs1),
+        .rs2_i     (assign_r_read_rs2),
+        .rd_i      (assign_r_write_destination),
+        .datawb_i  (assign_r_write_data),
+        .regwren_i (assign_r_write_enable),
+        .rs1data_o (assign_r_read_rs1_data),
+        .rs2data_o (assign_r_read_rs2_data)
+    );
 
-    .pc_o(),
-    .insn_o(),
-    .opcode_o(opcode),
-    .rd_o(rd),
-    .rs1_o(rs1),
-    .rs2_o(rs2),
-    .funct7_o(funct7),
-    .funct3_o(funct3),
-    .shamt_o(),
-    .imm_o(imm)
-);
+    assign assign_r_read_rs1          = assign_d_rs1;
+    assign assign_r_read_rs2          = assign_d_rs2;
+    assign assign_r_write_enable      = regwren;
+    assign assign_r_write_destination = assign_d_rd;
+    assign assign_r_write_data        = 1'b0;
 
-control assign_control (
-    .insn_i(mem_data),
-    .opcode_i(opcode),
-    .funct7_i(funct7),
-    .funct3_i(funct3),
+    // -------------------------
+    // Branching
+    // -------------------------
 
-    .pcsel_o(pcsel),
-    .immsel_o(),
-    .regwren_o(regwren),
-    .rs1sel_o(),
-    .rs2sel_o(),
-    .memren_o(memren),
-    .memwren_o(memwren),
-    .wbsel_o(wbsel),
-    .alusel_o(alusel)
-);
+    logic assign_e_br_taken, breq, brlt, is_branch_taken;
+    logic [AWIDTH-1:0] assign_e_pc;
+    logic [DWIDTH-1:0] assign_e_alu_res;
+    logic [DWIDTH-1:0] alu_operand_a, alu_operand_b;
 
+    branch_control #(DWIDTH) branch_ctrl_inst (
+        .opcode_i (assign_d_opcode),
+        .funct3_i (assign_d_funct3),
+        .rs1_i    (assign_r_read_rs1_data),
+        .rs2_i    (assign_r_read_rs2_data),
+        .breq_o   (breq),
+        .brlt_o   (brlt)
+    );
 
-register_file assign_regfile (
-    .clk(clk),
-    .rst(reset),
-    .rs1_i(rs1),
-    .rs2_i(rs2),
-    .rd_i(rd),
-    .datawb_i(alu_result),   // simplified for now
-    .regwren_i(regwren),
+    assign assign_e_pc = assign_d_pc;
 
-    .rs1data_o(rs1_data),
-    .rs2data_o(rs2_data)
-);
+    // logic to evaluate whether branch was taken or not
+    always_comb begin
+        is_branch_taken = 1'b0;
+        // evaluating opcode and funct3 together
+        case ({assign_d_opcode, assign_d_funct3})
+            {7'b110_0011, 3'b000}: is_branch_taken = breq;   // BEQ
+            {7'b110_0011, 3'b001}: is_branch_taken = ~breq;  // BNE
+            {7'b110_0011, 3'b100},                           // BLT
+            {7'b110_0011, 3'b110}: is_branch_taken = brlt;   // BLTU
+            {7'b110_0011, 3'b101},                           // BGE
+            {7'b110_0011, 3'b111}: is_branch_taken = ~brlt;  // BGEU
+            default:               is_branch_taken = 1'b0;
+        endcase
+    end
 
+    assign assign_e_br_taken = is_branch_taken;
 
-alu assign_alu (
-    .pc_i(pc),
-    .rs1_i(rs1_data),
-    .rs2_i(rs2_data),
-    .funct3_i(funct3),
-    .funct7_i(funct7),
+    // -------------------------
+    // Execution
+    // -------------------------
 
-    .res_o(alu_result),
-    .brtaken_o(br_taken)
-);
+    alu #(DWIDTH, AWIDTH) alu_inst (
+        .pc_i      (assign_e_pc),
+        .rs1_i     (alu_operand_a),
+        .rs2_i     (alu_operand_b),
+        .alusel_i  (alusel),
+        .funct3_i  (assign_d_funct3),
+        .funct7_i  (assign_d_funct7),
+        .res_o     (assign_e_alu_res),
+        .brtaken_o (assign_e_br_taken)
+    );
 
-memory assign_memory (
-    .clk(clk),
-    .rst(reset),
-    .addr_i(pc),          // instruction fetch address
-    .data_i(rs2_data),
-    .read_en_i(1'b1),     // always reading instruction
-    .write_en_i(memwren),
-    .data_o(mem_data)
-);
-
-
-
-
-
+    // ALU rs1 and rs2 input muxes
+    assign alu_operand_a = (rs1sel) ? assign_e_pc  : assign_r_read_rs1_data;
+    assign alu_operand_b = (immsel) ? assign_i_imm : assign_r_read_rs2_data;
 
 endmodule : pd3

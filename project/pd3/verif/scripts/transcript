@@ -1,0 +1,26 @@
+# vsim -suppress 3839 -c -do "/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/scripts/run.macro" /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.top 
+# Start time: 20:13:33 on Feb 23,2026
+# Loading sv_std.std
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.top
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.clockgen
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.design_wrapper
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.pd3
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.fetch
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.memory
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.decode_sv_unit
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.decode
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.igen_sv_unit
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.igen
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.control_sv_unit
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.control
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.register_file
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.branch_control
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.execute_sv_unit
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work.alu
+# do /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/scripts/run.macro
+# IMEMORY: Loaded 127 32-bit words from /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/data/test1.x
+# Check passed
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/pattern_check.h(38)
+#    Time: 254 ps  Iteration: 1  Region: /top/genblk3
+# End time: 20:13:33 on Feb 23,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
