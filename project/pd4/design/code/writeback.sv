@@ -32,5 +32,18 @@
      * Process definitions to be filled by
      * student below...
      */
+    always_comb begin
+        case(wbsel_i)
+        `WB_ALU: writeback_data_o = alu_res_i;
+        `WB_MEM: writeback_data_o = memory_data_i;
+        `WB_PC4: writeback_data_o = pc_i + 4;
+        default: writeback_data_o = alu_res_i;
+        endcase
+
+
+    end
+
+    //If branch is taken, the next isntruction is teh target
+    assign next_pc_o = brtaken_i ? alu_res_i : (pc_i + 4);
 
 endmodule : writeback
