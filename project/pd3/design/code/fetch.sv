@@ -22,7 +22,7 @@ module fetch #(
 	input logic clk,
 	input logic rst,
     //additional input for instruction input:
-	// outputs	
+	// outputs
 	output logic [AWIDTH - 1:0] pc_o,
     output logic [DWIDTH - 1:0] insn_o
 );
@@ -45,4 +45,4 @@ logic [AWIDTH-1:0] pc_reg;
 assign pc_o = pc_reg;
 
 endmodule : fetch
-				
+
