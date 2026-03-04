@@ -7,6 +7,7 @@
  * 1) clk
  * 2) reset signal
  */
+`include "constants.svh"
 
 module pd4 #(
     parameter int AWIDTH = 32,
@@ -20,8 +21,35 @@ module pd4 #(
   * probes. To be filled by student...
   *
   */
+    logic [AWIDTH-1:0] assign_d_pc;
+    logic [6:0]        assign_d_opcode;
+    logic [4:0]        assign_d_rd, assign_d_rs1, assign_d_rs2, d_shamt;
+    logic [6:0]        assign_d_funct7;
+    logic [2:0]        assign_d_funct3;
+    logic [DWIDTH-1:0] assign_d_imm, assign_i_imm;
+    logic [DWIDTH-1:0] assign_d_insn;
+    logic pcsel, immsel, regwren, rs1sel, rs2sel, memren, memwren;
+    logic [1:0] wbsel;
+    logic [3:0] alusel;
+    logic [DWIDTH-1:0] assign_wb_data;
+logic [31:0] data_out;
+    logic assign_r_write_enable;
+    logic [4:0] assign_r_write_destination;
+    logic [DWIDTH-1:0] assign_r_write_data;
+    logic [4:0] assign_r_read_rs1;
+    logic [4:0] assign_r_read_rs2;
+    logic [DWIDTH-1:0] assign_r_read_rs1_data;
+    logic [DWIDTH-1:0] assign_r_read_rs2_data;
 
+    logic assign_e_br_taken, breq, brlt, is_branch_taken;
+    logic [AWIDTH-1:0] assign_e_pc;
+    logic [DWIDTH-1:0] assign_e_alu_res;
+    logic [DWIDTH-1:0] alu_operand_a, alu_operand_b;
 
+    logic [AWIDTH-1:0] assign_m_pc, assign_wb_next_pc, assign_f_pc;
+    logic [AWIDTH-1:0] assign_m_address;
+    logic [DWIDTH-1:0] assign_m_size_encoded;
+    logic [DWIDTH-1:0] assign_m_data;
 // program termination logic
 reg is_program = 0;
 always_ff @(posedge clk) begin
@@ -35,42 +63,72 @@ end
     // Fetch & Instruction Memory
     // -------------------------
 
-    logic [AWIDTH-1:0] assign_f_pc;
-    logic [DWIDTH-1:0] assign_f_insn;
-    logic [AWIDTH-1:0] assign_wb_next_pc; //from write back
+assign assign_m_pc = (pcsel) ? assign_wb_next_pc : assign_f_pc;
+logic [DWIDTH-1 : 0] assign_f_insn;
+    logic [DWIDTH-1:0] assign_m_read_data;
 
-    fetch #(AWIDTH, DWIDTH) fetch_inst (
-        .clk    (clk),
-        .rst    (reset),
-        .next_pc_i (assign_wb_next_pc),
-        .pc_o   (assign_f_pc),
-        .insn_o ()
+fetch #(AWIDTH, DWIDTH) fetch_inst (
+        .clk       (clk),
+        .rst       (reset),
+        .pc_o      (assign_f_pc),
+        .insn_o    ()    
     );
 
-    memory #(AWIDTH, DWIDTH) imem (
-        .clk        (clk),
-        .rst        (reset),
-        .addr_i     (assign_f_pc),
-        .data_i     (32'b0),
-        .read_en_i  (1'b1),
-        .write_en_i (1'b0),
-        .data_o     (assign_f_insn),
-        .size_i     (2'b10),
-        .sign_en_i   (!assign_d_funct3[2])
+// -------------------------
+    //  Memory
+    // -------------------------
+// -------------------------
+    //  Memory
+    // -------------------------
+
+
+// -------------------------
+    // Data Memory (Actual)
+    // -------------------------
+
+// -------------------------
+    // Instruction Memory
+    // -------------------------
+// -------------------------
+    // Unified Memory (Instruction & Data)
+    // -------------------------
+memory #(AWIDTH, DWIDTH) main_mem (
+    .clk           (clk),
+    .rst           (reset),
+    
+    // --- Port A: Data Memory (L/S) ---
+    .addr_i        (assign_e_alu_res),       // FIX: Use ALU result for data address
+    .data_i        (assign_r_read_rs2_data), // Store data from rs2
+    .read_en_i     (memren),
+    .write_en_i    (memwren),
+    .size_i        (assign_d_funct3[1:0]),   // funct3 determines byte/hw/word [cite: 21, 23]
+    .sign_en_i     (!assign_d_funct3[2]),    // LBU/LHU vs LB/LH [cite: 17, 19]
+    .data_o        (assign_m_read_data),
+
+    // --- Port B: Instruction Fetch ---
+    .insn_addr_i   (assign_f_pc),            // Use PC for fetching instructions 
+    .insn_o        (assign_f_insn)           // Feeds to Decode stage
+);
+
+
+assign assign_m_address      = assign_e_alu_res;
+    assign assign_m_data         = assign_r_read_rs2_data;
+    assign assign_m_size_encoded = {29'b0, assign_d_funct3}; // Assuming size is tracked by funct3
+    //assign assign_d_imm = assign_i_imm;
+
+    // -------------------------
+    // Immediate Generator
+    // -------------------------
+
+    igen #(DWIDTH) igen_inst (
+        .opcode_i (assign_d_opcode),
+        .insn_i   (assign_d_insn),
+        .imm_o    (assign_i_imm)
     );
 
     // -------------------------
     // Decode
     // -------------------------
-
-    logic [AWIDTH-1:0] assign_d_pc;
-    logic [6:0]        assign_d_opcode;
-    logic [4:0]        assign_d_rd, assign_d_rs1, assign_d_rs2, d_shamt;
-    logic [6:0]        assign_d_funct7;
-    logic [2:0]        assign_d_funct3;
-    logic [DWIDTH-1:0] assign_d_imm, assign_i_imm;
-    logic [DWIDTH-1:0] assign_d_insn;
-
     decode #(DWIDTH, AWIDTH) decode_inst (
         .clk      (clk),
         .rst      (reset),
@@ -85,28 +143,14 @@ end
         .funct7_o (assign_d_funct7),
         .funct3_o (assign_d_funct3),
         .shamt_o  (d_shamt),
-        .imm_o    () //deleted the inside cz wire is derived by one module
+        .imm_o    (assign_d_imm)
     );
 
-    //assign assign_d_imm = assign_i_imm;
-
-    // -------------------------
-    // Immediate Generator
-    // -------------------------
-    logic [DWIDTH-1:0] assign_i_imm;
-    igen #(DWIDTH) igen_inst (
-        .opcode_i (assign_d_opcode),
-        .insn_i   (assign_d_insn),
-        .imm_o    (assign_i_imm)
-    );
+    assign assign_d_imm = assign_i_imm;
 
     // -------------------------
     // Control
     // -------------------------
-    logic pcsel, immsel, regwren, rs1sel, rs2sel, memren, memwren;
-    logic [1:0] wbsel;
-    logic [3:0] alusel;
-    logic [DWIDTH-1:0] assign_wb_data;
 
     control #(DWIDTH) control_inst (
         .insn_i    (assign_d_insn),
@@ -127,13 +171,6 @@ end
     // -------------------------
     // Register File
     // -------------------------
-    logic assign_r_write_enable;
-    logic [4:0] assign_r_write_destination;
-    logic [DWIDTH-1:0] assign_r_write_data;
-    logic [4:0] assign_r_read_rs1;
-    logic [4:0] assign_r_read_rs2;
-    logic [DWIDTH-1:0] assign_r_read_rs1_data;
-    logic [DWIDTH-1:0] assign_r_read_rs2_data;
 
     register_file #(DWIDTH) reg_file_inst (
         .clk       (clk),
@@ -156,11 +193,6 @@ end
     // -------------------------
     // Branching
     // -------------------------
-
-    logic assign_e_br_taken, breq, brlt, is_branch_taken;
-    logic [AWIDTH-1:0] assign_e_pc;
-    logic [DWIDTH-1:0] assign_e_alu_res;
-    logic [DWIDTH-1:0] alu_operand_a, alu_operand_b;
 
     branch_control #(DWIDTH) branch_ctrl_inst (
         .opcode_i (assign_d_opcode),
@@ -202,11 +234,33 @@ end
         .funct3_i  (assign_d_funct3),
         .funct7_i  (assign_d_funct7),
         .res_o     (assign_e_alu_res),
-        .brtaken_o (assign_e_br_taken)
+        .brtaken_o ()
     );
 
     // ALU rs1 and rs2 input muxes
     assign alu_operand_a = (rs1sel) ? assign_e_pc  : assign_r_read_rs1_data;
     assign alu_operand_b = (immsel) ? assign_i_imm : assign_r_read_rs2_data;
 
+// -------------------------
+    // Writeback Stage
+    // -------------------------
+// Instantiate the writeback module
+    writeback #(
+        .DWIDTH(DWIDTH),
+        .AWIDTH(AWIDTH)
+    ) wb_inst (
+        .pc_i             (assign_e_pc),
+        .alu_res_i        (assign_e_alu_res),
+        .memory_data_i    (assign_m_read_data),
+        .wbsel_i          (wbsel),
+        .brtaken_i        (assign_e_br_taken),
+        .writeback_data_o (assign_wb_data),
+        .next_pc_o        (assign_wb_next_pc) 
+    );
+
+    // Map the probes to the writeback signals
+    assign assign_w_pc          = assign_e_pc;
+    assign assign_w_enable      = regwren;
+    assign assign_w_destination = assign_d_rd;
+    assign assign_w_data        = assign_wb_data;
 endmodule : pd4

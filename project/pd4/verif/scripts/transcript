@@ -1,0 +1,25 @@
+# vsim -suppress 3839 -c -do "/eecs/home/icabuent/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro" /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.top 
+# Start time: 04:05:15 on Mar 04,2026
+# Loading sv_std.std
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.top
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.clockgen
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.design_wrapper
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.pd4
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.fetch
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.memory
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.igen
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.decode
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.control
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.register_file
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.branch_control
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.alu
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/work.writeback
+# do /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro
+# IMEMORY: Loaded 154 32-bit words from /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/verif/data/test1.x
+# M stage mismatch: expected PC=01000008, ADDRESS=01000000, SIZE_ENCODED=0, DATA=fd010113, got PC=01000008, ADDRESS=01000000, SIZE_ENCODED=00000000, DATA=00000000
+# ** Fatal: Assertion error.
+#    Time: 16 ps  Scope: top.genblk3.tick_check File: /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h(45)
+#    Time: 16 ps  Iteration: 1  Region: /top/genblk3
+# End time: 04:05:15 on Mar 04,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0

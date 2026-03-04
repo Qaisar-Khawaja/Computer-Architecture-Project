@@ -1,20 +1,8 @@
 /*
- * -------- REPLACE THIS FILE WITH THE MEMORY MODULE DEVELOPED IN PD1 -----------
  * Module: memory
  *
- * Description: Byte-addressable memory implementation. Supports both read and write.
- *
- * Inputs:
- * 1) clk
- * 2) rst signal
- * 3) AWIDTH address addr_i
- * 4) DWIDTH data to write data_i
- * 5) read enable signal read_en_i
- * 6) write enable signal write_en_i
- *
- * Outputs:
- * 1) DWIDTH data output data_o
- * 2) data out valid signal data_vld_o
+ * Description: Byte-addressable dual-ported memory implementation.
+ * Supports simultaneous instruction fetch and data read/write.
  */
 
 module memory #(
@@ -26,21 +14,35 @@ module memory #(
   // inputs
   input logic clk,
   input logic rst,
-  input logic [AWIDTH-1:0] addr_i = BASE_ADDR,
-  input logic [DWIDTH-1:0] data_i, //32 bits
+  
+  // ==========================================
+  // Port A: Data Memory (Loads / Stores)
+  // ==========================================
+  input logic [AWIDTH-1:0] addr_i,
+  input logic [DWIDTH-1:0] data_i, // 32 bits
   input logic read_en_i,
   input logic write_en_i,
-  input logic [1:0] size_i, //Byte, HW, Word
-  input logic sign_en_i, //1: Sigend vs 0: Unsigned
-  // outputs
-  output logic [DWIDTH-1:0] data_o
+  input logic [1:0] size_i,        // 00: Byte, 01: HW, 10: Word
+  input logic sign_en_i,           // 1: Signed, 0: Unsigned
+  output logic [DWIDTH-1:0] data_o,
+
+  // ==========================================
+  // Port B: Instruction Memory (Fetch)
+  // ==========================================
+  input logic [AWIDTH-1:0] insn_addr_i,
+  output logic [DWIDTH-1:0] insn_o
 );
 
   logic [DWIDTH-1:0] temp_memory [0:`MEM_DEPTH];
   // Byte-addressable memory
   logic [7:0] main_memory [0:`MEM_DEPTH];
+  
   logic [AWIDTH-1:0] address;
+  logic [AWIDTH-1:0] insn_address;
+
+  // Address calculation (offsetting by BASE_ADDR)
   assign address = addr_i - BASE_ADDR;
+  assign insn_address = insn_addr_i - BASE_ADDR;
 
   initial begin
     $readmemh(`MEM_PATH, temp_memory);
@@ -54,55 +56,67 @@ module memory #(
     $display("IMEMORY: Loaded %0d 32-bit words from %s", `LINE_COUNT, `MEM_PATH);
   end
 
-  /*
-   * Process definitions to be filled by
-   * student below....
-   *
-   */
-always_comb begin
+  // --------------------------------------------------------
+  // INSTRUCTION FETCH PORT (Continuous Read)
+  // --------------------------------------------------------
+  always_comb begin
+      // Always fetch a full 32-bit word for the instruction
+      insn_o = {main_memory[insn_address+3], 
+                main_memory[insn_address+2], 
+                main_memory[insn_address+1], 
+                main_memory[insn_address]};
+  end
+
+  // --------------------------------------------------------
+  // DATA READ PORT (Combinational)
+  // --------------------------------------------------------
+  always_comb begin
     data_o = '0;
     if (read_en_i) begin
         case (size_i)
-            //Byte
+            // Byte
             2'b00: begin
                 if(sign_en_i) begin
                     data_o = {{24{main_memory[address][7]}}, main_memory[address]};
-                end
-                else begin
+                end else begin
                     data_o = {24'b0, main_memory[address]};
                 end
             end
-            //HW
+            
+            // Half-Word
             2'b01: begin 
                 if(sign_en_i) begin
                     data_o = {{16{main_memory[address+1][7]}}, main_memory[address+1], main_memory[address]};
-                end
-                else begin    
+                end else begin    
                     data_o = {16'b0, main_memory[address+1], main_memory[address]};
                 end
             end
 
-            2'b10: begin // Word
+            // Word
+            2'b10: begin 
                 data_o = {main_memory[address+3], main_memory[address+2], main_memory[address+1], main_memory[address]};
             end
+            
             default: data_o = '0;
         endcase
     end
-end
+  end
 
-
+  // --------------------------------------------------------
+  // DATA WRITE PORT (Sequential)
+  // --------------------------------------------------------
   always_ff @(posedge clk) begin
     if (write_en_i) begin
-        //always wriet the first byte sb, sh, sw
+        // Always write the first byte (sb, sh, sw)
         main_memory[address] <= data_i[7:0];
-        
-        //Second byte if HW or word
+
+        // Second byte if HW or word (sh, sw)
         if (size_i >= 2'b01) begin
             main_memory[address + 1] <= data_i[15:8];
         end
 
-        //wriet remaining bytes only if word
-        if (size_i == 2'b10) begin //word only
+        // Write remaining bytes only if word (sw)
+        if (size_i == 2'b10) begin
             main_memory[address + 2] <= data_i[23:16];
             main_memory[address + 3] <= data_i[31:24];
         end

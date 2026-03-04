@@ -1,0 +1,467 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/scripts
+valu
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+DXx4 work 15 execute_sv_unit 0 22 M32U_`L3=2M==`<zXaMlM0
+Z2 !s110 1771896738
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+!i10b 1
+!s100 m=GY1GlXH6lT=ndZDJXdU3
+Iz3T1bbXk?^YUdQgdjzVL83
+!s105 execute_sv_unit
+S1
+R0
+Z4 w1771895604
+Z5 8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/execute.sv
+Z6 F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/execute.sv
+!i122 3
+L0 21 35
+Z7 OV;L;2020.1;71
+31
+Z8 !s108 1771896738.000000
+!s107 /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/tasks.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/pattern_check.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/pattern_dump.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/trace_dump.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/fields.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/tracegen.v|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design//probes.svh|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/test_pd.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/design_wrapper.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/clockgen.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/pd3.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/register_file.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/execute.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/decode.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/control.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/fetch.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/memory.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/igen.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/branch_control.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/constants.svh|
+Z9 !s90 -work|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work|-suppress|7061|-sv|+incdir+/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code|+incdir+/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/|+incdir+/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests|+define+MEM_PATH="/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/data/test1.x"|+define+TEST_VECTOR="/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/data/test_vector.x"|+define+MEM_DEPTH=1048576|+define+GEN_TRACE=0|+define+TRACE_FILE="test1.trace"|+define+LINE_COUNT=127|+define+PATTERN_FILE="/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/data/test1.pattern"|+define+PATTERN_LINE_COUNT=122|+define+PATTERN_DUMP_FILE="test1.dump"|+define+PATTERN_DUMP=0|+define+PATTERN_CHECK=1|+define+VCD_FILE="test1.vcd"|+define+TIMEOUT=50000|-stats=none|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/constants.svh|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/branch_control.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/igen.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/memory.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/fetch.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/control.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/decode.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/execute.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/register_file.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/pd3.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/clockgen.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/design_wrapper.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/test_pd.sv|
+!i113 1
+Z10 o-suppress 7061 -work /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work -sv
+Z11 !s92 -suppress 7061 -work /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/work -sv +incdir+/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code +incdir+/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/ +incdir+/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests +define+MEM_PATH=\"/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/data/test1.x\" +define+TEST_VECTOR=\"/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/data/test_vector.x\" +define+MEM_DEPTH=1048576 +define+GEN_TRACE=0 +define+TRACE_FILE=\"test1.trace\" +define+LINE_COUNT=127 +define+PATTERN_FILE=\"/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/data/test1.pattern\" +define+PATTERN_LINE_COUNT=122 +define+PATTERN_DUMP_FILE=\"test1.dump\" +define+PATTERN_DUMP=0 +define+PATTERN_CHECK=1 +define+VCD_FILE=\"test1.vcd\" +define+TIMEOUT=50000
+Z12 tCvgOpt 0
+vbranch_control
+R1
+R2
+!i10b 1
+!s100 7>J^ZBTVA6lfDnzfCgf672
+Z13 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IJ6P^MLQ>[ANX3M2C<59If3
+R3
+S1
+R0
+w1771743275
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/branch_control.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/branch_control.sv
+!i122 3
+L0 18 23
+R7
+r1
+!s85 0
+31
+R8
+Z14 !s107 /eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/tasks.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/pattern_check.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/pattern_dump.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/trace_dump.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/fields.h|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/tracegen.v|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design//probes.svh|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/test_pd.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/design_wrapper.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/clockgen.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/pd3.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/register_file.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/execute.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/decode.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/control.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/fetch.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/memory.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/igen.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/branch_control.sv|/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/constants.svh|
+R9
+!i113 1
+R10
+R11
+R12
+vclockgen
+R1
+R2
+!i10b 1
+!s100 XGla>YnT?aHlG7Lg@<j9J1
+R13
+Im^1`P_XK7Z<Y70Wke;o:d1
+R3
+S1
+R0
+Z15 w1770603499
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/clockgen.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/clockgen.sv
+!i122 3
+L0 11 39
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xconstants_svh_unit
+R1
+R2
+Ve]^kk_`]Q[Jk6jfJCi[X41
+r1
+!s85 0
+!i10b 1
+!s100 gPmdhMMlU7J8TVDjag>hI2
+Ie]^kk_`]Q[Jk6jfJCi[X41
+!i103 1
+S1
+R0
+w1771794874
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/constants.svh
+Z16 F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/constants.svh
+!i122 3
+Z17 L0 4 0
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vcontrol
+R1
+DXx4 work 15 control_sv_unit 0 22 zTWR0Tc@fZMglXK^1BeOi0
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 bOlzQ>MWnT^RW?8[>__:B1
+InWe_;a]WNiN@SO]3]olkW1
+!s105 control_sv_unit
+S1
+R0
+Z18 w1771891731
+Z19 8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/control.sv
+Z20 F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/control.sv
+!i122 3
+L0 3 139
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xcontrol_sv_unit
+R1
+R2
+VzTWR0Tc@fZMglXK^1BeOi0
+r1
+!s85 0
+!i10b 1
+!s100 YT=kIQHLc5?<eOBemAD3N3
+IzTWR0Tc@fZMglXK^1BeOi0
+!i103 1
+S1
+R0
+R18
+R19
+R20
+R16
+!i122 3
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vdecode
+R1
+DXx4 work 14 decode_sv_unit 0 22 h11CME@CBc[Daf29YAER@0
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 Y1W5==Uk[<9P@BU7@Alnk3
+Il4`F`l39YCBK>f91kVz6:2
+!s105 decode_sv_unit
+S1
+R0
+Z21 w1771888059
+Z22 8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/decode.sv
+Z23 F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/decode.sv
+!i122 3
+L0 26 36
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xdecode_sv_unit
+R1
+R2
+Vh11CME@CBc[Daf29YAER@0
+r1
+!s85 0
+!i10b 1
+!s100 o2Yaez[EPSSzl6G_2Q96]2
+Ih11CME@CBc[Daf29YAER@0
+!i103 1
+S1
+R0
+R21
+R22
+R23
+R16
+!i122 3
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vdesign_wrapper
+R1
+R2
+!i10b 1
+!s100 58IkI`:ZOK`ko1oG>H^Y63
+R13
+IQSQYJWJ?PAAHWVeNXe@Jj0
+R3
+S1
+R0
+Z24 w1771753473
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/design_wrapper.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/design_wrapper.sv
+!i122 3
+L0 6 10
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xexecute_sv_unit
+R1
+R2
+VM32U_`L3=2M==`<zXaMlM0
+r1
+!s85 0
+!i10b 1
+!s100 :fk;jaaPL_ELbB8Yj@[lX1
+IM32U_`L3=2M==`<zXaMlM0
+!i103 1
+S1
+R0
+R4
+R5
+R6
+R16
+!i122 3
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vfetch
+R1
+R2
+!i10b 1
+!s100 R5Q;DzbE3JB0OK6cWPd[J1
+R13
+I]]9Iza4D6VQIfj9RI:H8;0
+R3
+S1
+R0
+R24
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/fetch.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/fetch.sv
+!i122 3
+L0 16 32
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vigen
+R1
+DXx4 work 12 igen_sv_unit 0 22 75Wahi@OMVebSi`f^zU0K2
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 [JeZ`MB:aJP?;KACQ4Fjf2
+IQNmNQ8ICbo6YjXXJ]QNhd3
+!s105 igen_sv_unit
+S1
+R0
+Z25 w1771887014
+Z26 8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/igen.sv
+Z27 F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/igen.sv
+!i122 3
+L0 9 93
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xigen_sv_unit
+R1
+R2
+V75Wahi@OMVebSi`f^zU0K2
+r1
+!s85 0
+!i10b 1
+!s100 mlF[j70UBS0N[d65fahT_2
+I75Wahi@OMVebSi`f^zU0K2
+!i103 1
+S1
+R0
+R25
+R26
+R27
+R16
+!i122 3
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vmemory
+R1
+R2
+!i10b 1
+!s100 @7^mz;i;`6QV09:onBa7V1
+R13
+ImfCK0Uz;cZ;gbI:ffM0Gb1
+R3
+S1
+R0
+R24
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/memory.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/memory.sv
+!i122 3
+L0 20 62
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vpd3
+R1
+R2
+!i10b 1
+!s100 OSAT9[[9:>TD_G>eVTEz52
+R13
+I[0=MF>ZhmURX4lSK7<_@<1
+R3
+S1
+R0
+w1771893181
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/pd3.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/pd3.sv
+!i122 3
+L0 11 182
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vregister_file
+R1
+R2
+!i10b 1
+!s100 a:4K`mzI37B8biLc6UDim3
+R13
+IUz4b6h`?j1iDeKk4G>K4;1
+R3
+S1
+R0
+w1771896464
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/register_file.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/design/code/register_file.sv
+!i122 3
+L0 20 39
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vtop
+R1
+R2
+!i10b 1
+!s100 >YeW[`j;m_VX?^>95G_WJ1
+R13
+ImoH7`SQDJVS1UKfmYz:?W1
+R3
+S1
+R0
+R15
+8/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/test_pd.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/test_pd.sv
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/tracegen.v
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/fields.h
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/trace_dump.h
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/pattern_dump.h
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/pattern_check.h
+F/eecs/home/icabuent/Computer-Architecture-Project/project/pd3/verif/tests/tasks.h
+!i122 3
+L0 4 330
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12

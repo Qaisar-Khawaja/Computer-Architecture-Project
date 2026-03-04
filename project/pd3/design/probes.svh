@@ -19,6 +19,11 @@
 `define PROBE_R_READ_RS1_DATA     assign_r_read_rs1_data
 `define PROBE_R_READ_RS2_DATA     assign_r_read_rs2_data
 
+`define PROBE_M_PC                assign_m_pc
+`define PROBE_M_ADDRESS           assign_m_address
+`define PROBE_M_SIZE_ENCODED      assign_m_size_encoded
+`define PROBE_M_DATA              assign_m_data
+
 `define PROBE_E_PC                assign_e_pc
 `define PROBE_E_ALU_RES           assign_e_alu_res
 `define PROBE_E_BR_TAKEN          assign_e_br_taken

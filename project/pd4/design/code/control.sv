@@ -7,6 +7,7 @@
  *
  * -------- REPLACE THIS FILE WITH THE CONTROL MODULE DEVELOPED IN PD2 -----------
  */
+`include "constants.svh"
 
 module control #(
     parameter int DWIDTH=32

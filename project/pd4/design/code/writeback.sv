@@ -15,6 +15,8 @@
  * 2) AWIDTH wide next computed PC next_pc_o
  */
 
+`include "constants.svh"
+
  module writeback #(
      parameter int DWIDTH=32,
      parameter int AWIDTH=32

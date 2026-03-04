@@ -25,7 +25,6 @@ module fetch #(
 	// outputs	
 	output logic [AWIDTH - 1:0] pc_o,
     //Feebcack fromt WB stage/ALU stage
-    input logic [AWIDTH-1:0] next_pc_i,
     output logic [DWIDTH - 1:0] insn_o
 );
 
@@ -39,7 +38,7 @@ logic [AWIDTH-1:0] pc_reg;
             pc_reg <= BASEADDR;
         end
         else begin
-            pc_reg <= next_pc_i; //WB stage tells whetehr to keep it +4 or target
+            pc_reg <= pc_reg + 'd4;//WB stage tells whetehr to keep it +4 or target
 
         end
     end
