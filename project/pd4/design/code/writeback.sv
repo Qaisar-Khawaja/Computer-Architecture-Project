@@ -14,7 +14,7 @@
  * 1) DWIDTH wide write back data write_data_o
  * 2) AWIDTH wide next computed PC next_pc_o
  */
-
+`include "constants.svh"
  module writeback #(
      parameter int DWIDTH=32,
      parameter int AWIDTH=32
@@ -32,5 +32,25 @@
      * Process definitions to be filled by
      * student below...
      */
+     always_comb begin
+
+    // Default assignments
+    writeback_data_o = '0;
+    next_pc_o = pc_i + 4;
+
+    // Writeback data selection
+    case (wbsel_i)
+        `WB_ALU: writeback_data_o = alu_res_i;
+        `WB_MEM: writeback_data_o = memory_data_i;
+        `WB_PC4: writeback_data_o = pc_i + 4;
+        default: writeback_data_o = '0;
+    endcase
+
+    // PC update
+    if (brtaken_i) begin
+        next_pc_o = alu_res_i;
+    end
+
+end
 
 endmodule : writeback
