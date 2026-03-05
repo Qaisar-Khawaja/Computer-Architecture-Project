@@ -1,0 +1,578 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/scripts
+valu
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+DXx4 work 15 execute_sv_unit 0 22 hWORHJKi`Fo4aEBF;mG?=1
+Z2 !s110 1772744868
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+!i10b 1
+!s100 e7KAM2il7kb`WB8YPXlnE3
+IcnRYBMZJ8B>0RZV]1A;Zo0
+!s105 execute_sv_unit
+S1
+R0
+Z4 w1772729162
+Z5 8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/execute.sv
+Z6 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/execute.sv
+!i122 90
+L0 12 35
+Z7 OV;L;2020.1;71
+31
+Z8 !s108 1772744868.000000
+!s107 /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/tasks.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_dump.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/trace_dump.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/fields.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/tracegen.v|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design//probes.svh|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/test_pd.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/design_wrapper.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/clockgen.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/pd4.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/execute.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/writeback.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/register_file.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/igen.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/decode.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/branch_control.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/control.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/fetch.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/memory.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/constants.svh|
+Z9 !s90 -work|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work|-suppress|7061|-sv|+incdir+/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code|+incdir+/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/|+incdir+/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests|+define+MEM_PATH="/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/data/test1.x"|+define+TEST_VECTOR="/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/data/test_vector.x"|+define+MEM_DEPTH=1048576|+define+GEN_TRACE=0|+define+TRACE_FILE="test1.trace"|+define+LINE_COUNT=154|+define+PATTERN_FILE="/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/data/test1.pattern"|+define+PATTERN_LINE_COUNT=1371|+define+PATTERN_DUMP_FILE="test1.dump"|+define+PATTERN_DUMP=0|+define+PATTERN_CHECK=1|+define+VCD_FILE="test1.vcd"|+define+TIMEOUT=50000|-stats=none|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/constants.svh|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/memory.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/fetch.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/control.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/branch_control.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/decode.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/igen.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/register_file.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/writeback.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/execute.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/pd4.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/clockgen.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/design_wrapper.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/test_pd.sv|
+!i113 1
+Z10 o-suppress 7061 -work /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work -sv
+Z11 !s92 -suppress 7061 -work /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work -sv +incdir+/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code +incdir+/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/ +incdir+/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests +define+MEM_PATH=\"/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/data/test1.x\" +define+TEST_VECTOR=\"/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/data/test_vector.x\" +define+MEM_DEPTH=1048576 +define+GEN_TRACE=0 +define+TRACE_FILE=\"test1.trace\" +define+LINE_COUNT=154 +define+PATTERN_FILE=\"/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/data/test1.pattern\" +define+PATTERN_LINE_COUNT=1371 +define+PATTERN_DUMP_FILE=\"test1.dump\" +define+PATTERN_DUMP=0 +define+PATTERN_CHECK=1 +define+VCD_FILE=\"test1.vcd\" +define+TIMEOUT=50000
+Z12 tCvgOpt 0
+vbranch_control
+R1
+R2
+!i10b 1
+!s100 <V@Ah_H45SAeeb7326Y4m1
+Z13 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I3N[;m9OEVG=F>nLUo_4ab3
+R3
+S1
+R0
+R4
+8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/branch_control.sv
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/branch_control.sv
+!i122 90
+L0 9 23
+R7
+r1
+!s85 0
+31
+R8
+Z14 !s107 /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/tasks.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_dump.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/trace_dump.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/fields.h|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/tracegen.v|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design//probes.svh|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/test_pd.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/design_wrapper.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/clockgen.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/pd4.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/execute.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/writeback.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/register_file.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/igen.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/decode.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/branch_control.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/control.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/fetch.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/memory.sv|/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/constants.svh|
+R9
+!i113 1
+R10
+R11
+R12
+vclockgen
+R1
+R2
+!i10b 1
+!s100 XGla>YnT?aHlG7Lg@<j9J1
+R13
+I8RXi2EK7Q3:o`bgkVU[Y:1
+R3
+S1
+R0
+Z15 w1772728982
+8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/clockgen.sv
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/clockgen.sv
+!i122 90
+L0 11 39
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xconstants_svh_unit
+R1
+R2
+V;1^<U=aM`1Vj5;<BHc]N?2
+r1
+!s85 0
+!i10b 1
+!s100 OdaTROe[m^HnGjSL_T5zS3
+I;1^<U=aM`1Vj5;<BHc]N?2
+!i103 1
+S1
+R0
+R4
+8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/constants.svh
+Z16 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/constants.svh
+!i122 90
+Z17 L0 10 0
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vcontrol
+R1
+DXx4 work 15 control_sv_unit 0 22 dll>IdEQlUeQH;^f6ee;P1
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 W04[GCik2Z8[YzRiKGLJJ2
+I0D7L9]g4D7fRBCX3TDB>Q0
+!s105 control_sv_unit
+S1
+R0
+R4
+Z18 8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/control.sv
+Z19 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/control.sv
+!i122 90
+L0 12 139
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xcontrol_sv_unit
+R1
+R2
+Vdll>IdEQlUeQH;^f6ee;P1
+r1
+!s85 0
+!i10b 1
+!s100 kf;O74^>A?bVV]DC7Pnle1
+Idll>IdEQlUeQH;^f6ee;P1
+!i103 1
+S1
+R0
+R4
+R18
+R19
+R16
+!i122 90
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vdecode
+R1
+DXx4 work 14 decode_sv_unit 0 22 fGdE?c;P[mDBU6mZQdDdD0
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 VGI<84:E@@3Nn]9E[i1W]0
+Io1m;i9gb9<h<EoV11oWzX0
+!s105 decode_sv_unit
+S1
+R0
+R4
+Z20 8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/decode.sv
+Z21 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/decode.sv
+!i122 90
+L0 11 36
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xdecode_sv_unit
+R1
+R2
+VfGdE?c;P[mDBU6mZQdDdD0
+r1
+!s85 0
+!i10b 1
+!s100 eQ0Wj]o2X]XPYo=z3k=R`2
+IfGdE?c;P[mDBU6mZQdDdD0
+!i103 1
+S1
+R0
+R4
+R20
+R21
+R16
+!i122 90
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vdesign_wrapper
+R1
+R2
+!i10b 1
+!s100 5cQDkom59MIRY^N[Yd`Nl1
+R13
+I179<9Sd`Q5T9gZUeXOHzT0
+R3
+S1
+R0
+R15
+8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/design_wrapper.sv
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/design_wrapper.sv
+!i122 90
+L0 6 10
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xexecute_sv_unit
+R1
+R2
+VhWORHJKi`Fo4aEBF;mG?=1
+r1
+!s85 0
+!i10b 1
+!s100 >K]cPJH8CUD6dD]zKKfA]2
+IhWORHJKi`Fo4aEBF;mG?=1
+!i103 1
+S1
+R0
+R4
+R5
+R6
+R16
+!i122 90
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vfetch
+R1
+R2
+!i10b 1
+!s100 i_F1kNGHA2KkOnXl`R<gN1
+R13
+ITC^Qc`Z@WezkljS`J50=;0
+R3
+S1
+R0
+w1772737591
+8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/fetch.sv
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/fetch.sv
+!i122 90
+L0 16 32
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vigen
+R1
+DXx4 work 12 igen_sv_unit 0 22 034CIKSO6KGkl3ff5F@I>2
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 5^748M6c30P6iP]>Oc3dz2
+IdTFdCDQN8@:KgKe8]COT`1
+!s105 igen_sv_unit
+S1
+R0
+Z22 w1772737612
+Z23 8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/igen.sv
+Z24 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/igen.sv
+!i122 90
+L0 9 57
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xigen_sv_unit
+R1
+R2
+V034CIKSO6KGkl3ff5F@I>2
+r1
+!s85 0
+!i10b 1
+!s100 ]_ZgGV_@BOXSaAOA9LMF60
+I034CIKSO6KGkl3ff5F@I>2
+!i103 1
+S1
+R0
+R22
+R23
+R24
+R16
+!i122 90
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vmemory
+R1
+DXx4 work 14 memory_sv_unit 0 22 dfiim9SLiO;koCjf9Z_D32
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 lJI5[`kKX]K_6nHBUn;192
+IeJ0iOUI;<n6CgQ0]H6H3g1
+!s105 memory_sv_unit
+S1
+R0
+Z25 w1772737627
+Z26 8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/memory.sv
+Z27 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/memory.sv
+!i122 90
+L0 193 100
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xmemory_sv_unit
+R1
+R2
+Vdfiim9SLiO;koCjf9Z_D32
+r1
+!s85 0
+!i10b 1
+!s100 ]k0_2i6E16idl5azf_bRj3
+Idfiim9SLiO;koCjf9Z_D32
+!i103 1
+S1
+R0
+R25
+R26
+R27
+R16
+!i122 90
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vpd4
+R1
+DXx4 work 11 pd4_sv_unit 0 22 4YnPCThemcBkdme9BI7LA3
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 lU=emNU<z88bTl<?E8`3b2
+IfHckI^Z9DaJ7Uk1l8=ikg1
+!s105 pd4_sv_unit
+S1
+R0
+Z28 w1772744759
+Z29 8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/pd4.sv
+Z30 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/pd4.sv
+!i122 90
+L0 22 333
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xpd4_sv_unit
+R1
+R2
+V4YnPCThemcBkdme9BI7LA3
+r1
+!s85 0
+!i10b 1
+!s100 Lo6dN?ciVI4??=B3<<?Vd2
+I4YnPCThemcBkdme9BI7LA3
+!i103 1
+S1
+R0
+R28
+R29
+R30
+R16
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design//probes.svh
+!i122 90
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vregister_file
+R1
+R2
+!i10b 1
+!s100 g^`=CBc`GLH9H:LV3`gg^3
+R13
+IJF=Gh?:Z:h=25c43W;Yg`2
+R3
+S1
+R0
+R4
+8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/register_file.sv
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/register_file.sv
+!i122 90
+L0 10 41
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vtop
+R1
+R2
+!i10b 1
+!s100 =JP0=i7TK?8Kj?EgAkQ8c0
+R13
+IM54K1o8c<YTldne>f^^7h2
+R3
+S1
+R0
+R15
+8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/test_pd.sv
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/test_pd.sv
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/tracegen.v
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/fields.h
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/trace_dump.h
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_dump.h
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h
+F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/tasks.h
+!i122 90
+L0 4 471
+R7
+r1
+!s85 0
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+vwriteback
+R1
+DXx4 work 17 writeback_sv_unit 0 22 =;AYgSzgTocemhMi^CiFh0
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 BVn;AljUXTE=o1Cdd>VO31
+ILgz_GN:E4lVaSUQ3fhG]k1
+!s105 writeback_sv_unit
+S1
+R0
+R4
+Z31 8/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/writeback.sv
+Z32 F/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/writeback.sv
+!i122 90
+L0 18 39
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12
+Xwriteback_sv_unit
+R1
+R2
+V=;AYgSzgTocemhMi^CiFh0
+r1
+!s85 0
+!i10b 1
+!s100 aU5F>SBgkHgWXP=@AG:Om3
+I=;AYgSzgTocemhMi^CiFh0
+!i103 1
+S1
+R0
+R4
+R31
+R32
+R16
+!i122 90
+R17
+R7
+31
+R8
+R14
+R9
+!i113 1
+R10
+R11
+R12

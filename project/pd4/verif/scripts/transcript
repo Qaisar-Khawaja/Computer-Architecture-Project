@@ -1,0 +1,40 @@
+# vsim -suppress 3839 -c -do "/eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro" /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.top 
+# Start time: 16:07:48 on Mar 05,2026
+# Loading sv_std.std
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.top
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.clockgen
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.design_wrapper
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.pd4_sv_unit
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.pd4
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.fetch
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.decode_sv_unit
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.decode
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.igen_sv_unit
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.igen
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.control_sv_unit
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.control
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.branch_control
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.execute_sv_unit
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.alu
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.memory_sv_unit
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.memory
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.register_file
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.writeback_sv_unit
+# Loading /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/work.writeback
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'wbsel_o'. The port definition is at: /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/control.sv(29).
+#    Time: 0 ps  Iteration: 0  Instance: /top/dut/core/control_0 File: /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/pd4.sv Line: 100
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (1) for port 'alusel_o'. The port definition is at: /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/control.sv(30).
+#    Time: 0 ps  Iteration: 0  Instance: /top/dut/core/control_0 File: /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/design/code/pd4.sv Line: 100
+# do /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro
+# MEMORY: Successfully mapped 154 words into byte-array from /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/data/test1.x
+# D stage mismatch: expected PC=01000000, OPCODE=13, RD=02, RS1=02, RS2=10, FUNCT3=0, FUNCT7=7e, IMM=ffffffd0, got PC=00000000, OPCODE=00, RD=00, RS1=00, RS2=00, FUNCT3=0, FUNCT7=00, IMM=00000000 
+# R stage mismatch: expected READ_RS1=02, READ_RS2=10, READ_RS1_DATA=01100000, READ_RS2_DATA=00000000, got READ_RS1=00000000, READ_RS2=00000000, READ_RS1_DATA=00000000, READ_RS2_DATA=00000000
+# E stage mismatch: expected PC=01000000, ALU_RES=010fffd0, BR_TAKEN=0, got PC=00000000, ALU_RES=00000000, BR_TAKEN=0
+# M stage mismatch: expected PC=01000000, ADDRESS=010fffd0, SIZE_ENCODED=0, DATA=00000000, got PC=00000000, ADDRESS=00000000, SIZE_ENCODED=0, DATA=00000000
+# W stage mismatch: expected PC=01000000, ENABLE=1, DESTINATION=02, DATA=010fffd0, got PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000
+# ** Fatal: Assertion error.
+#    Time: 12 ps  Scope: top.genblk3.tick_check File: /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/kfaiza8/4201P/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h(45)
+#    Time: 12 ps  Iteration: 1  Region: /top/genblk3
+# End time: 16:07:48 on Mar 05,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 2
