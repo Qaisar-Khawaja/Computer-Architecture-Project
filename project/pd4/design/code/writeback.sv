@@ -48,4 +48,4 @@
     //If branch is taken, the next isntruction is teh target
     assign next_pc_o = brtaken_i ? alu_res_i : (pc_i + 4);
 
-endmodule : writeback
+endmodule

@@ -29,10 +29,10 @@
 `define PROBE_M_DATA              assign_m_data
 
 // Uncomment and assign these!
-`define PROBE_W_PC                assign_f_pc
-`define PROBE_W_ENABLE            assign_r_write_enable
-`define PROBE_W_DESTINATION       assign_r_write_destination
-`define PROBE_W_DATA              assign_wb_data
+`define PROBE_W_PC                assign_w_pc
+`define PROBE_W_ENABLE            assign_w_write_enable
+`define PROBE_W_DESTINATION       assign_w_write_destination
+`define PROBE_W_DATA              assign_w_data
 
 // ----  Probes  ----
 

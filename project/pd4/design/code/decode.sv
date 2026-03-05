@@ -39,7 +39,7 @@ module decode #(
     assign rs2_o    = insn_i[24:20];
     assign funct7_o = insn_i[31:25];
     assign shamt_o  = insn_i[24:20];
-    assign imm_o    = {{DWIDTH-12{insn_i[31]}}, insn_i[31:20]};;
+    assign imm_o    = {{DWIDTH-12{insn_i[31]}}, insn_i[31:20]};
 
 
 endmodule : decode

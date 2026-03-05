@@ -1,135 +1,169 @@
 /*
  * Module: pd4
  *
- * Description: Top level module that will contain sub-module instantiations.
+ * Description:
+ * Top level module for a single-cycle RISC-V processor.
+ * Implements Fetch, Decode, Execute, Memory, and Writeback.
  *
- * Inputs:
- * 1) clk
- * 2) reset signal
+ * Notes:
+ * - Instruction fetch is via memory Port B (combinational).
+ * - Data memory accesses are via memory Port A.
+ * - PC updates once per cycle from writeback's next_pc_o.
+ * - Register file writes occur on posedge clk.
  */
+
 `include "constants.svh"
 
 module pd4 #(
     parameter int AWIDTH = 32,
-    parameter int DWIDTH = 32)(
-    input logic clk,
-    input logic reset
+    parameter int DWIDTH = 32
+)(
+    input  logic clk,
+    input  logic reset
 );
 
- /*
-  * Instantiate other submodules and
-  * probes. To be filled by student...
-  *
-  */
+    // =========================================================
+    // Fetch stage probes
+    // =========================================================
+    logic [AWIDTH-1:0] assign_f_pc;
+    logic [DWIDTH-1:0] assign_f_insn;
+
+    // =========================================================
+    // Decode stage probes
+    // =========================================================
     logic [AWIDTH-1:0] assign_d_pc;
+    logic [DWIDTH-1:0] assign_d_insn;
     logic [6:0]        assign_d_opcode;
-    logic [4:0]        assign_d_rd, assign_d_rs1, assign_d_rs2, d_shamt;
+    logic [4:0]        assign_d_rd, assign_d_rs1, assign_d_rs2, assign_d_shamt;
     logic [6:0]        assign_d_funct7;
     logic [2:0]        assign_d_funct3;
-    logic [DWIDTH-1:0] assign_d_imm, assign_i_imm;
-    logic [DWIDTH-1:0] assign_d_insn;
-    logic pcsel, immsel, regwren, rs1sel, rs2sel, memren, memwren;
-    logic [1:0] wbsel;
-    logic [3:0] alusel;
-    logic [DWIDTH-1:0] assign_wb_data;
-logic [31:0] data_out;
-    logic assign_r_write_enable;
-    logic [4:0] assign_r_write_destination;
+    logic [DWIDTH-1:0] assign_d_imm;
+
+    // Immediate generator output
+    logic [DWIDTH-1:0] igen_imm;
+
+    // =========================================================
+    // Register file probes / signals
+    // =========================================================
+    logic              assign_r_write_enable;
+    logic [4:0]        assign_r_write_destination;
     logic [DWIDTH-1:0] assign_r_write_data;
-    logic [4:0] assign_r_read_rs1;
-    logic [4:0] assign_r_read_rs2;
+
+    logic [4:0]        assign_r_read_rs1;
+    logic [4:0]        assign_r_read_rs2;
     logic [DWIDTH-1:0] assign_r_read_rs1_data;
     logic [DWIDTH-1:0] assign_r_read_rs2_data;
 
-    logic assign_e_br_taken, breq, brlt, is_branch_taken;
+    // =========================================================
+    // Control signals
+    // =========================================================
+    logic              pcsel;       // not strictly needed in this single-cycle top
+    logic              immsel;
+    logic              regwren;
+    logic              rs1sel;
+    logic              rs2sel;
+    logic              memren;
+    logic              memwren;
+    logic [1:0]        wbsel;
+    logic [3:0]        alusel;
+
+    // =========================================================
+    // Execute stage probes / signals
+    // =========================================================
     logic [AWIDTH-1:0] assign_e_pc;
     logic [DWIDTH-1:0] assign_e_alu_res;
-    logic [DWIDTH-1:0] alu_operand_a, alu_operand_b;
+    logic              assign_e_br_taken;
 
-    logic [AWIDTH-1:0] assign_m_pc, assign_wb_next_pc, assign_f_pc;
+    logic [DWIDTH-1:0] op1;
+    logic [DWIDTH-1:0] op2;
+
+    // Branch compare outputs
+    logic breq, brlt;
+
+    // =========================================================
+    // Memory stage probes / signals
+    // =========================================================
+    logic [AWIDTH-1:0] assign_m_pc;
     logic [AWIDTH-1:0] assign_m_address;
-    logic [DWIDTH-1:0] assign_m_size_encoded;
+    logic [1:0]        assign_m_size_encoded;
     logic [DWIDTH-1:0] assign_m_data;
-// program termination logic
-reg is_program = 0;
-always_ff @(posedge clk) begin
-    if (data_out == 32'h00000073) $finish;  // directly terminate if see ecall
-    if (data_out == 32'h00008067) is_program = 1;  // if see ret instruction, it is simple program test
-    // [TODO] Change register_file_0.registers[2] to the appropriate x2 register based on your module instantiations...
-    if (is_program && (reg_file_inst.regs[2] == 32'h01000000 + `MEM_DEPTH)) $finish;
-end
 
-    // -------------------------
-    // Fetch & Instruction Memory
-    // -------------------------
+    logic [DWIDTH-1:0] mem_read_data;
+    logic              mem_sign_en;
 
-assign assign_m_pc = (pcsel) ? assign_wb_next_pc : assign_f_pc;
-logic [DWIDTH-1 : 0] assign_f_insn;
-    logic [DWIDTH-1:0] assign_m_read_data;
+    // =========================================================
+    // Writeback stage probes / signals
+    // =========================================================
 
-fetch #(AWIDTH, DWIDTH) fetch_inst (
+    logic [DWIDTH-1:0] alu_res_for_pc;
+    logic [AWIDTH-1:0] assign_w_pc;
+    logic              assign_w_write_enable;
+    logic [4:0]        assign_w_write_destination;
+    logic [DWIDTH-1:0] assign_w_data;
+
+    logic [AWIDTH-1:0] next_pc;
+
+    // =========================================================
+    // Fetch: PC register
+    // =========================================================
+    fetch #(DWIDTH, AWIDTH) u_fetch (
         .clk       (clk),
         .rst       (reset),
+        .next_pc_i (next_pc),
         .pc_o      (assign_f_pc),
-        .insn_o    ()    
+        .insn_o    ()               // instruction comes from memory Port B
     );
 
-// -------------------------
-    //  Memory
-    // -------------------------
-// -------------------------
-    //  Memory
-    // -------------------------
+// =========================================================
+    // Memory stage
+    // =========================================================
+    logic [1:0] actual_mem_size; // Add this new signal
 
+    assign assign_m_pc           = assign_e_pc;
+    assign assign_m_address      = assign_e_alu_res;
 
-// -------------------------
-    // Data Memory (Actual)
-    // -------------------------
+    // This goes to the testbench probe, so it stays exactly as funct3
+    assign assign_m_size_encoded = assign_d_funct3[1:0];
 
-// -------------------------
-    // Instruction Memory
-    // -------------------------
-// -------------------------
-    // Unified Memory (Instruction & Data)
-    // -------------------------
-memory #(AWIDTH, DWIDTH) main_mem (
-    .clk           (clk),
-    .rst           (reset),
+    // Force memory to read a full word (2'b10) if not explicitly loading/storing
+    assign actual_mem_size = (memren | memwren) ? assign_d_funct3[1:0] : 2'b10;
+
+    // Signed vs unsigned only matters for loads
+    assign mem_sign_en = (assign_d_opcode == `Opcode_IType_Load) ? ~assign_d_funct3[2] : 1'b0;
+
+// IMPORTANT FOR PROBES:
+    // The testbench expects M_DATA to continuously show the memory read output,
+    // even during store instructions.
     
-    // --- Port A: Data Memory (L/S) ---
-    .addr_i        (assign_e_alu_res),       // FIX: Use ALU result for data address
-    .data_i        (assign_r_read_rs2_data), // Store data from rs2
-    .read_en_i     (memren),
-    .write_en_i    (memwren),
-    .size_i        (assign_d_funct3[1:0]),   // funct3 determines byte/hw/word [cite: 21, 23]
-    .sign_en_i     (!assign_d_funct3[2]),    // LBU/LHU vs LB/LH [cite: 17, 19]
-    .data_o        (assign_m_read_data),
-
-    // --- Port B: Instruction Fetch ---
-    .insn_addr_i   (assign_f_pc),            // Use PC for fetching instructions 
-    .insn_o        (assign_f_insn)           // Feeds to Decode stage
-);
-
-
-assign assign_m_address      = assign_e_alu_res;
-    assign assign_m_data         = assign_r_read_rs2_data;
-    assign assign_m_size_encoded = {29'b0, assign_d_funct3}; // Assuming size is tracked by funct3
-    //assign assign_d_imm = assign_i_imm;
-
-    // -------------------------
-    // Immediate Generator
-    // -------------------------
-
-    igen #(DWIDTH) igen_inst (
-        .opcode_i (assign_d_opcode),
-        .insn_i   (assign_d_insn),
-        .imm_o    (assign_i_imm)
+    // Change this line:
+    // assign assign_m_data = memwren ? assign_r_read_rs2_data : ($isunknown(mem_read_data) ? 32'h00000000 : mem_read_data);
+    
+    // To this:
+    assign assign_m_data = mem_read_data;
+    // =========================================================
+    // Unified Memory: Port B drives instruction fetch continuously
+    // =========================================================
+    // Data port inputs computed below; instruction port uses current PC
+    memory #(AWIDTH, DWIDTH) u_mem (
+        .clk         (clk),
+        .rst         (reset),
+        // Port A: data memory
+        .addr_i      (assign_m_address),
+        .data_i      (assign_r_read_rs2_data),
+        .read_en_i   (1'b1),             // Hardcoded back to 1'b1 so M stage outputs continuously 
+        .write_en_i  (memwren),
+        .size_i      (actual_mem_size),
+        .sign_en_i   (mem_sign_en),
+        .data_o      (mem_read_data),
+        // Port B: instruction memory
+        .insn_addr_i (assign_f_pc),
+        .insn_o      (assign_f_insn)
     );
 
-    // -------------------------
-    // Decode
-    // -------------------------
-    decode #(DWIDTH, AWIDTH) decode_inst (
+    // =========================================================
+    // Decode stage
+    // =========================================================
+    decode #(DWIDTH, AWIDTH) u_decode (
         .clk      (clk),
         .rst      (reset),
         .insn_i   (assign_f_insn),
@@ -142,17 +176,23 @@ assign assign_m_address      = assign_e_alu_res;
         .rs2_o    (assign_d_rs2),
         .funct7_o (assign_d_funct7),
         .funct3_o (assign_d_funct3),
-        .shamt_o  (d_shamt),
-        .imm_o    (assign_d_imm)
+        .shamt_o  (assign_d_shamt),
+        .imm_o    ()                 // not used; use igen for correct formats
     );
 
-    assign assign_d_imm = assign_i_imm;
+    // Immediate Generator
+    igen #(DWIDTH) u_igen (
+        .opcode_i (assign_d_opcode),
+        .insn_i   (assign_d_insn),
+        .imm_o    (igen_imm)
+    );
 
-    // -------------------------
+    assign assign_d_imm = igen_imm;
+
+    // =========================================================
     // Control
-    // -------------------------
-
-    control #(DWIDTH) control_inst (
+    // =========================================================
+    control #(DWIDTH) u_control (
         .insn_i    (assign_d_insn),
         .opcode_i  (assign_d_opcode),
         .funct7_i  (assign_d_funct7),
@@ -168,11 +208,16 @@ assign assign_m_address      = assign_e_alu_res;
         .alusel_o  (alusel)
     );
 
-    // -------------------------
+    // =========================================================
     // Register File
-    // -------------------------
+    // =========================================================
+    assign assign_r_read_rs1          = assign_d_rs1;
+    assign assign_r_read_rs2          = assign_d_rs2;
+    assign assign_r_write_enable      = assign_w_write_enable;
+    assign assign_r_write_destination = assign_w_write_destination;
+    assign assign_r_write_data        = assign_w_data;
 
-    register_file #(DWIDTH) reg_file_inst (
+    register_file #(DWIDTH) u_rf (
         .clk       (clk),
         .rst       (reset),
         .rs1_i     (assign_r_read_rs1),
@@ -184,83 +229,83 @@ assign assign_m_address      = assign_e_alu_res;
         .rs2data_o (assign_r_read_rs2_data)
     );
 
-    assign assign_r_read_rs1          = assign_d_rs1;
-    assign assign_r_read_rs2          = assign_d_rs2;
-    assign assign_r_write_enable      = regwren;
-    assign assign_r_write_destination = assign_d_rd;
-    assign assign_r_write_data        = assign_wb_data; //wriet back
+// =========================================================
+    // Branch comparator
+    // =========================================================
 
-    // -------------------------
-    // Branching
-    // -------------------------
-
-    branch_control #(DWIDTH) branch_ctrl_inst (
+    branch_control #(DWIDTH) u_branch_control (
         .opcode_i (assign_d_opcode),
         .funct3_i (assign_d_funct3),
         .rs1_i    (assign_r_read_rs1_data),
         .rs2_i    (assign_r_read_rs2_data),
         .breq_o   (breq),
-        .brlt_o   (brlt)
+        .brlt_o   (brlt),
+        .brltu_o  (brltu) // <-- CONNECT THE NEW WIRE
     );
 
-    assign assign_e_pc = assign_d_pc;
-
-    // logic to evaluate whether branch was taken or not
+    // Decide branch taken for B-type instructions
+// Decide branch taken for B-type instructions
     always_comb begin
-        is_branch_taken = 1'b0;
-        // evaluating opcode and funct3 together
-        case ({assign_d_opcode, assign_d_funct3})
-            {7'b110_0011, 3'b000}: is_branch_taken = breq;   // BEQ
-            {7'b110_0011, 3'b001}: is_branch_taken = ~breq;  // BNE
-            {7'b110_0011, 3'b100},                           // BLT
-            {7'b110_0011, 3'b110}: is_branch_taken = brlt;   // BLTU
-            {7'b110_0011, 3'b101},                           // BGE
-            {7'b110_0011, 3'b111}: is_branch_taken = ~brlt;  // BGEU
-            default:               is_branch_taken = 1'b0;
-        endcase
+        assign_e_br_taken = 1'b0;
+
+        if (assign_d_opcode == `Opcode_BType) begin
+            unique case (assign_d_funct3)
+                3'b000: assign_e_br_taken = breq;      // BEQ
+                3'b001: assign_e_br_taken = ~breq;     // BNE
+                3'b100: assign_e_br_taken = brlt;      // BLT
+                3'b101: assign_e_br_taken = ~brlt;     // BGE
+                3'b110: assign_e_br_taken = brltu;     // BLTU 
+                3'b111: assign_e_br_taken = ~brltu;    // BGEU
+                default: assign_e_br_taken = 1'b0;
+            endcase
+        end
+        // REMOVED the else-if block for Jumps!
     end
 
-    assign assign_e_br_taken = is_branch_taken;
+    // =========================================================
+    // Execute stage
+    // =========================================================
+    assign assign_e_pc = assign_d_pc;
 
-    // -------------------------
-    // Execution
-    // -------------------------
+    // Operand muxes
+    assign op1 = (rs1sel == `OP1_PC)  ? assign_e_pc : assign_r_read_rs1_data;
+    assign op2 = (rs2sel == `OP2_IMM) ? assign_d_imm : assign_r_read_rs2_data;
 
-    alu #(DWIDTH, AWIDTH) alu_inst (
+    alu #(DWIDTH, AWIDTH) u_alu (
         .pc_i      (assign_e_pc),
-        .rs1_i     (alu_operand_a),
-        .rs2_i     (alu_operand_b),
-        .alusel_i  (alusel),
+        .rs1_i     (op1),
+        .rs2_i     (op2),
         .funct3_i  (assign_d_funct3),
         .funct7_i  (assign_d_funct7),
+        .alusel_i  (alusel),
         .res_o     (assign_e_alu_res),
-        .brtaken_o ()
+        .brtaken_o () // not used
     );
 
-    // ALU rs1 and rs2 input muxes
-    assign alu_operand_a = (rs1sel) ? assign_e_pc  : assign_r_read_rs1_data;
-    assign alu_operand_b = (immsel) ? assign_i_imm : assign_r_read_rs2_data;
+    // =========================================================
+    // Writeback stage
+    // =========================================================
 
-// -------------------------
-    // Writeback Stage
-    // -------------------------
-// Instantiate the writeback module
-    writeback #(
-        .DWIDTH(DWIDTH),
-        .AWIDTH(AWIDTH)
-    ) wb_inst (
+    // JALR target must have bit0 cleared per RV32I spec
+    always_comb begin
+        alu_res_for_pc = assign_e_alu_res;
+        if (assign_d_opcode == `Opcode_IType_Jump_And_LinkReg) begin
+            alu_res_for_pc = {assign_e_alu_res[DWIDTH-1:1], 1'b0};
+        end
+    end
+
+    assign assign_w_pc                = assign_e_pc;
+    assign assign_w_write_enable      = regwren;
+    assign assign_w_write_destination = assign_d_rd;
+
+writeback #(DWIDTH, AWIDTH) u_wb (
         .pc_i             (assign_e_pc),
-        .alu_res_i        (assign_e_alu_res),
-        .memory_data_i    (assign_m_read_data),
+        .alu_res_i        (alu_res_for_pc),
+        .memory_data_i    (mem_read_data),
         .wbsel_i          (wbsel),
-        .brtaken_i        (assign_e_br_taken),
-        .writeback_data_o (assign_wb_data),
-        .next_pc_o        (assign_wb_next_pc) 
+        .brtaken_i        (assign_e_br_taken | pcsel), // <--- CHANGE THIS LINE (Add | pcsel)
+        .writeback_data_o (assign_w_data),
+        .next_pc_o        (next_pc)
     );
 
-    // Map the probes to the writeback signals
-    assign assign_w_pc          = assign_e_pc;
-    assign assign_w_enable      = regwren;
-    assign assign_w_destination = assign_d_rd;
-    assign assign_w_data        = assign_wb_data;
 endmodule : pd4

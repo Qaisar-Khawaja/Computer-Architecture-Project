@@ -127,14 +127,14 @@ module control #(
             end
 
             `Opcode_JType_Jump_And_Link: begin
-                regwren_o = 1'b1;
-                rs1sel_o  = `OP1_PC;
-                rs2sel_o  = `OP2_RS2;
-                immsel_o  = 1'b1;
-                pcsel_o   = `PC_JUMP;
-                wbsel_o   = `WB_PC4;
-                alusel_o  = `ADD;
-            end
+                    regwren_o = 1'b1;
+                    rs1sel_o  = `OP1_PC;
+                    rs2sel_o  = `OP2_IMM; // <--- FIXED: Route the immediate to the ALU
+                    immsel_o  = 1'b1;
+                    pcsel_o   = `PC_JUMP;
+                    wbsel_o   = `WB_PC4;
+                    alusel_o  = `ADD;
+                end
 
             `Opcode_IType_Jump_And_LinkReg: begin
                 regwren_o = 1'b1;
