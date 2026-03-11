@@ -10,10 +10,6 @@
 /*
  * Define constants as required...
  */
-`define MEM_DEPTH 1024
-`define LINE_COUNT 256
-`define MEM_PATH "mem.hex"
-
 `define Opcode_RType                        7'b0110011
 `define Opcode_IType                        7'b0010011
 `define Opcode_IType_Load                   7'b0000011

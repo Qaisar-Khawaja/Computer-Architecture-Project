@@ -22,9 +22,6 @@ module fetch #(
     input  logic rst,
     input logic brtaken_i,
     input logic [AWIDTH-1:0] branch_target_i,
-
-    // Next PC feedback from write-back stage
-    //input  logic [AWIDTH-1:0] next_pc_i,
     // outputs
     output logic [AWIDTH-1:0] pc_o,
     output logic [DWIDTH-1:0] insn_o    // kept for port compatibility
@@ -47,8 +44,6 @@ module fetch #(
 
     assign pc_o   = pc_reg;
     assign insn_o = '0;   // actual instruction driven by memory module Port B
-     //If branch is taken, the next isntruction is teh target
-    //assign next_pc_o = brtaken_i ? alu_res_i : (pc_i + 4);
 
 
 endmodule : fetch
