@@ -1,6 +1,7 @@
 // ----  Probes  ----
 `define PROBE_F_PC    assign_f_pc
 `define PROBE_F_INSN  assign_f_insn
+
 `define PROBE_D_PC     assign_d_pc
 `define PROBE_D_OPCODE assign_d_opcode
 `define PROBE_D_RD     assign_d_rd
@@ -28,7 +29,6 @@
 `define PROBE_M_SIZE_ENCODED      assign_m_size_encoded
 `define PROBE_M_DATA              assign_m_data
 
-// Uncomment and assign these!
 `define PROBE_W_PC                assign_w_pc
 `define PROBE_W_ENABLE            assign_w_write_enable
 `define PROBE_W_DESTINATION       assign_w_write_destination

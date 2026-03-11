@@ -6,8 +6,7 @@
  * -------- REPLACE THIS FILE WITH THE RF MODULE DEVELOPED IN PD4 -----------
  *
  */
-
- module register_file #(
+module register_file #(
      parameter int DWIDTH=32
  )(
      // inputs
@@ -28,21 +27,25 @@
      * student below...
      */
     logic [DWIDTH-1:0] regs [31:0];
+    integer i;
 
     // Sequential write
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            regs <= '{default : 0};
-            regs[1] <= 0;
+            for (i = 0; i < 32; i = i + 1)
+                regs[i] <= 0;
+
             regs[2] <= 32'h01100000; // stack pointer
-        end else begin
+        end
+        else begin
             if (regwren_i && rd_i != 0)
                 regs[rd_i] <= datawb_i;
         end
     end
 
     // Combinational read
-    assign rs1data_o = (rs1_i == 0) ? 0 : regs[rs1_i];
-    assign rs2data_o = (rs2_i == 0) ? 0 : regs[rs2_i];
+    //Changed to match teh redudancy issue pointed by TA
+    assign rs1data_o = regs[rs1_i];
+    assign rs2data_o = regs[rs2_i];
 
 endmodule : register_file

@@ -25,9 +25,7 @@
      input logic [DWIDTH-1:0] alu_res_i,
      input logic [DWIDTH-1:0] memory_data_i,
      input logic [1:0] wbsel_i,
-     input logic brtaken_i,
-     output logic [DWIDTH-1:0] writeback_data_o,
-     output logic [AWIDTH-1:0] next_pc_o
+     output logic [DWIDTH-1:0] writeback_data_o
  );
 
     /*
@@ -44,8 +42,4 @@
 
 
     end
-
-    //If branch is taken, the next isntruction is teh target
-    assign next_pc_o = brtaken_i ? alu_res_i : (pc_i + 4);
-
 endmodule

@@ -28,12 +28,12 @@ module alu #(
             `AND: res_o = rs1_i & rs2_i;
             `OR:  res_o = rs1_i | rs2_i;
             `XOR: res_o = rs1_i ^ rs2_i;
-            `SLL: res_o = rs1_i << rs2_i;
-            `SRL: res_o = rs1_i >> rs2_i;
-            `SRA: res_o = $signed(rs1_i) >>> rs2_i;
+            `SLL: res_o = rs1_i << rs2_i[4:0]; //fixed
+            `SRL: res_o = rs1_i >> rs2_i[4:0]; //fixed
+            `SRA: res_o = $signed(rs1_i) >>> rs2_i[4:0];//fixed
             `SLT:  res_o = ($signed(rs1_i) < $signed(rs2_i)) ? 1 : 0;
             `SLTU: res_o = ($unsigned(rs1_i) < $unsigned(rs2_i)) ? 1:0;
-            `PCADD: res_o = pc_i + rs2_i;
+            //`PCADD: res_o = pc_i + rs2_i;
             `LUI: res_o = rs2_i;
             default: res_o = 'd0;
         endcase

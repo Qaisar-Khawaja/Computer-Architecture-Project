@@ -123,13 +123,13 @@ module control #(
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
                 wbsel_o   = `WB_ALU;
-                alusel_o  = `PCADD; // <--- FIXED: Changed from AUIPC
+                alusel_o  = `ADD; // Changed back to ADD
             end
 
             `Opcode_JType_Jump_And_Link: begin
                     regwren_o = 1'b1;
                     rs1sel_o  = `OP1_PC;
-                    rs2sel_o  = `OP2_IMM; // <--- FIXED: Route the immediate to the ALU
+                    rs2sel_o  = `OP2_IMM; // <--- FIXED: Route the immediate to the ALU(correct order)
                     immsel_o  = 1'b1;
                     pcsel_o   = `PC_JUMP;
                     wbsel_o   = `WB_PC4;
