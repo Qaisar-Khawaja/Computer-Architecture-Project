@@ -1,22 +1,22 @@
-# vsim -suppress 3839 -c -do "/eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro" /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.top 
-# Start time: 19:52:03 on Mar 11,2026
+# vsim -suppress 3839 -c -do "/eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro" /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.top 
+# Start time: 15:39:12 on Mar 13,2026
 # Loading sv_std.std
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.top
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.clockgen
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.design_wrapper
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.pd4
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.fetch
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.memory
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.decode
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.igen
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.control
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.register_file
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.branch_control
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.alu
-# Loading /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/work.writeback
-# do /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.top
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.clockgen
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.design_wrapper
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.pd4
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.fetch
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.memory
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.decode
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.igen
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.control
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.register_file
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.branch_control
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.alu
+# Loading /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/work.writeback
+# do /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/verif/scripts/run.macro
 # Check passed
-# ** Note: $finish    : /eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h(48)
+# ** Note: $finish    : /eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/verif/tests/pattern_check.h(48)
 #    Time: 2752 ps  Iteration: 1  Region: /top/genblk3
-# End time: 19:52:03 on Mar 11,2026, Elapsed time: 0:00:00
+# End time: 15:39:12 on Mar 13,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

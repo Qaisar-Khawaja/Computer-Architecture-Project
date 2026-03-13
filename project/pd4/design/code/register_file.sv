@@ -10,41 +10,46 @@ module register_file #(
      parameter int DWIDTH=32
  )(
      // inputs
-     input logic clk,
-     input logic rst,
-     input logic [4:0] rs1_i,
-     input logic [4:0] rs2_i,
-     input logic [4:0] rd_i,
-     input logic [DWIDTH-1:0] datawb_i,
-     input logic regwren_i,
+     input logic                clk,
+     input logic                rst,
+     input logic [4:0]          rs1_i,
+     input logic [4:0]          rs2_i,
+     input logic [4:0]          rd_i,
+     input logic [DWIDTH-1:0]   datawb_i,
+     input logic                regwren_i,
+     
      // outputs
      output logic [DWIDTH-1:0] rs1data_o,
      output logic [DWIDTH-1:0] rs2data_o
  );
 
-    /*
-     * Process definitions to be filled by
-     * student below...
+     /*
+     * Register File (32 entries).
+     * Entry x0 is hardwired to zero.
+     * Entry x2 is initialized to the stack pointer.
      */
     logic [DWIDTH-1:0] regs [31:0];
+    
     integer i;
 
     // Sequential write
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            for (i = 0; i < 32; i = i + 1)
+            for (i = 0; i < 32; i = i + 1) begin
                 regs[i] <= 0;
+            end
 
-            regs[2] <= 32'h01100000; // stack pointer
+            // stack pointer
+            regs[2] <= 32'h01100000;
         end
         else begin
-            if (regwren_i && rd_i != 0)
+            if (regwren_i && rd_i != 0) begin
                 regs[rd_i] <= datawb_i;
+            end
         end
     end
 
     // Combinational read
-    //Changed to match teh redudancy issue pointed by TA
     assign rs1data_o = regs[rs1_i];
     assign rs2data_o = regs[rs2_i];
 

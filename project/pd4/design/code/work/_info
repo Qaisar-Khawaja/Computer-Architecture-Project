@@ -1,311 +1,285 @@
 m255
 K4
 z2
-!s11f vlog 2020.1 2020.02, Feb 28 2020
 13
 !s112 1.1
 !i10d 8192
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/cs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/design/code
+Z0 d/cs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/design/code
 valu
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1773273432
+Z2 !s110 1773430700
 !i10b 1
-!s100 njU^H:jo;z4D7aCL]EH:^0
+!s100 i8^f]Wn7JPJTa:EY=n4Wg1
 Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
-Ize>IghoSQC8>BPhJGYmn41
+IVP?@i7R2f7_Mh34oKOo0S3
 Z4 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-Z5 w1773273110
+w1773427601
 8execute.sv
 Fexecute.sv
-!i122 0
-L0 11 35
-Z6 OV;L;2020.1;71
+!i122 6
+L0 11 38
+Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z7 !s108 1773273432.000000
+Z6 !s108 1773430700.000000
 !s107 constants.svh|writeback.sv|tb_writeback.sv|tb_pd4.sv|register_file.sv|pd4.sv|memory.sv|igen.sv|fetch.sv|execute.sv|decode.sv|control.sv|branch_control.sv|
-Z8 !s90 +define+MEM_DEPTH=1048576|+define+LINE_COUNT=500|+define+MEM_PATH="/eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/verif/data/test1.x"|branch_control.sv|control.sv|decode.sv|execute.sv|fetch.sv|igen.sv|memory.sv|pd4.sv|register_file.sv|tb_pd4.sv|tb_writeback.sv|writeback.sv|
+Z7 !s90 +define+MEM_DEPTH=1048576|+define+LINE_COUNT=500|+define+MEM_PATH="/eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/verif/data/test1.x"|branch_control.sv|control.sv|decode.sv|execute.sv|fetch.sv|igen.sv|memory.sv|pd4.sv|register_file.sv|tb_pd4.sv|tb_writeback.sv|writeback.sv|
 !i113 1
-Z9 !s92 +define+MEM_DEPTH=1048576 +define+LINE_COUNT=500 +define+MEM_PATH=\"/eecs/home/kfaiza8/Documents/Computer-Architecture-Project/project/pd4/verif/data/test1.x\"
-Z10 tCvgOpt 0
+Z8 !s92 +define+MEM_DEPTH=1048576 +define+LINE_COUNT=500 +define+MEM_PATH=\"/eecs/home/kfaiza8/EECS4201_Project/Computer-Architecture-Project/project/pd4/verif/data/test1.x\"
+Z9 tCvgOpt 0
 vbranch_control
 R1
 R2
 !i10b 1
-!s100 XDHh2`J6TInCV=@MVzU[X3
+!s100 FA?GbH:g=NQOPKQM9FMb32
 R3
-ILD;01@:2kVEb]fAY=?;g^1
+I11kPU_A]CG>^9RB5cU@>:2
 R4
 S1
 R0
-R5
+w1773426388
 8branch_control.sv
 Fbranch_control.sv
-!i122 0
-L0 9 17
-R6
+!i122 6
+L0 9 22
+R5
 r1
 !s85 0
 31
+R6
+Z10 !s107 constants.svh|writeback.sv|tb_writeback.sv|tb_pd4.sv|register_file.sv|pd4.sv|memory.sv|igen.sv|fetch.sv|execute.sv|decode.sv|control.sv|branch_control.sv|
 R7
-Z11 !s107 constants.svh|writeback.sv|tb_writeback.sv|tb_pd4.sv|register_file.sv|pd4.sv|memory.sv|igen.sv|fetch.sv|execute.sv|decode.sv|control.sv|branch_control.sv|
-R8
 !i113 1
+R8
 R9
-R10
 vcontrol
 R1
 R2
 !i10b 1
-!s100 bVf^7nDC]>aGWS[k56=d]2
+!s100 5zU5HOc>e5>hDbP=zU9id1
 R3
-IJiCifGbl0IBj9PCBkocnd1
+IzaHHAY[_DF@HEYD9Db^N30
 R4
 S1
 R0
-R5
+w1773428879
 8control.sv
 Fcontrol.sv
-!i122 0
-L0 12 139
-R6
+!i122 6
+L0 12 141
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vdecode
 R1
 R2
 !i10b 1
-!s100 W4IJ`o`B4`m[5`9eb;JMc2
+!s100 d7G>TdzmSTYIT_lCFTebk3
 R3
-IiDAmMEFBz0Q8MD[lfA`8F1
+IHc7=W5hWmP3?amP7nnoI<0
 R4
 S1
 R0
-R5
+w1773426832
 8decode.sv
 Fdecode.sv
-!i122 0
-L0 10 36
-R6
+!i122 6
+L0 10 38
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vfetch
 R1
 R2
 !i10b 1
-!s100 UBP_ff7f4h]nfeQdYioGU1
+!s100 P1@oEe7;QK`COdOS7>8mX0
 R3
-InVU<J@Jc@^C5]G^[J3Y^J0
+I4>c:GzWQ0bY`@ePZ_KT0M2
 R4
 S1
 R0
-R5
+w1773429595
 8fetch.sv
 Ffetch.sv
-!i122 0
-L0 15 35
-R6
+!i122 6
+L0 16 45
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vigen
 R1
 R2
 !i10b 1
-!s100 [JeZ`MB:aJP?;KACQ4Fjf2
+!s100 63lDE;VANH8Vn]FO78zk_1
 R3
-Ib9]G`Q9WN@fT0R6jTOn<Z0
+I7SB4G?aJcE_D[keQI<WjA2
 R4
 S1
 R0
-R5
+w1773427246
 8igen.sv
 Figen.sv
-!i122 0
-L0 9 93
-R6
-r1
-!s85 0
-31
-R7
-R11
-R8
-!i113 1
-R9
-R10
-vmemory
-R1
-R2
-!i10b 1
-!s100 9:n2jM5>FAjUoUiD]>e9j2
-R3
-I<mF@H0SLoY=`j9YMC<m1M2
-R4
-S1
-R0
+!i122 6
+L0 9 92
 R5
-8memory.sv
-Fmemory.sv
-!i122 0
-L0 21 150
-R6
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vpd4
 R1
 R2
 !i10b 1
-!s100 AHD2<7cEG[lTKYio0E5OH2
+!s100 :zeJBUF[X[0>0k5nQkLWN2
 R3
-I5z6@P1ICPoI_6_QcIO[hW0
+IMbX[g2^=LTC4X_oBiHA3?3
 R4
 S1
 R0
-R5
+w1773429762
 8pd4.sv
 Fpd4.sv
-!i122 0
-L0 12 282
-R6
+!i122 6
+L0 12 232
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vregister_file
 R1
 R2
 !i10b 1
-!s100 9ok[>5O1f2Ja6QkFjXZ`G2
+!s100 LK<@UR5P:R_T4A16[2oBo0
 R3
-ISPJUkh:UA_2cb?[Ih57BR3
+IXg@[37FlU>O8DXgEX0UbB1
 R4
 S1
 R0
-R5
+w1773428124
 8register_file.sv
 Fregister_file.sv
-!i122 0
-L0 9 43
-R6
+!i122 6
+L0 9 48
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vtb_pd4
 R1
 R2
 !i10b 1
-!s100 bJ_2>k@J7Y?]VJP?8d5f=2
+!s100 :iXOX@4RD7oDSCN7JV5>91
 R3
-ILFZDo=m1QeJUe3Da_;7>o0
+Io?0dEQ8enZFUGb7WP^<cQ0
 R4
 S1
 R0
-R5
+w1773429381
 8tb_pd4.sv
 Ftb_pd4.sv
-!i122 0
-L0 3 95
-R6
+!i122 6
+L0 3 99
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vwrite_back_tb
 R1
 R2
 !i10b 1
-!s100 7K8cK4_6LgWiJLiL;YETH1
+!s100 H2?i2cY2Cb<9edEBP<THl2
 R3
-IBK`5OLC:Nl03ah;d49L5_3
+I98OlP;MzI3z=E2S]j5m^S1
 R4
 S1
 R0
-R5
+w1773429162
 8tb_writeback.sv
 Ftb_writeback.sv
-!i122 0
-L0 4 91
-R6
+!i122 6
+L0 4 138
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9
 vwriteback
 R1
 R2
 !i10b 1
-!s100 Z2]V]jeaVQ0>Z7<BHDnB^1
+!s100 ni_d5nj5;cG^@H@JD1JB`2
 R3
-Ia2Ma90W6JRoZ0YMD5oBJS3
+IYXzDe1`md=Z7M>l2g4XhK0
 R4
 S1
 R0
-R5
+w1773428746
 8writeback.sv
 Fwriteback.sv
-!i122 0
-L0 20 26
-R6
+!i122 6
+L0 20 35
+R5
 r1
 !s85 0
 31
-R7
-R11
-R8
-!i113 1
-R9
+R6
 R10
+R7
+!i113 1
+R8
+R9

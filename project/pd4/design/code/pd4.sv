@@ -17,15 +17,11 @@ module pd4 #(
     input  logic reset
 );
 
-    // =========================================================
     // Fetch stage probes
-    // =========================================================
     logic [AWIDTH-1:0] assign_f_pc;
     logic [DWIDTH-1:0] assign_f_insn;
 
-    // =========================================================
     // Decode stage probes
-    // =========================================================
     logic [AWIDTH-1:0] assign_d_pc;
     logic [DWIDTH-1:0] assign_d_insn;
     logic [6:0]        assign_d_opcode;
@@ -37,21 +33,16 @@ module pd4 #(
     // Immediate generator output
     logic [DWIDTH-1:0] igen_imm;
 
-    // =========================================================
-    // Register file probes / signals
-    // =========================================================
+    // Register file probes
     logic              assign_r_write_enable;
     logic [4:0]        assign_r_write_destination;
     logic [DWIDTH-1:0] assign_r_write_data;
-
     logic [4:0]        assign_r_read_rs1;
     logic [4:0]        assign_r_read_rs2;
     logic [DWIDTH-1:0] assign_r_read_rs1_data;
     logic [DWIDTH-1:0] assign_r_read_rs2_data;
 
-    // =========================================================
     // Control signals
-    // =========================================================
     logic              pcsel;
     logic              immsel;
     logic              regwren;
@@ -62,96 +53,70 @@ module pd4 #(
     logic [1:0]        wbsel;
     logic [3:0]        alusel;
 
-    // =========================================================
-    // Execute stage probes / signals
-    // =========================================================
+    // Execute stage probes
     logic [AWIDTH-1:0] assign_e_pc;
     logic [DWIDTH-1:0] assign_e_alu_res;
     logic              assign_e_br_taken;
-
     logic [DWIDTH-1:0] op1;
     logic [DWIDTH-1:0] op2;
+    logic              breq, brlt, brltu;
 
-    // Branch compare outputs
-    logic breq, brlt, brltu;
-
-    // =========================================================
-    // Memory stage probes / signals
-    // =========================================================
+    // Memory stage probes
     logic [AWIDTH-1:0] assign_m_pc;
     logic [AWIDTH-1:0] assign_m_address;
     logic [1:0]        assign_m_size_encoded;
     logic [DWIDTH-1:0] assign_m_data;
-
     logic [DWIDTH-1:0] mem_read_data;
     logic              mem_sign_en;
 
-    // =========================================================
-    // Writeback stage probes / signals
-    // =========================================================
+    // Writeback stage probes
     logic [DWIDTH-1:0] alu_res_for_pc;
     logic [AWIDTH-1:0] assign_w_pc;
     logic              assign_w_write_enable;
     logic [4:0]        assign_w_write_destination;
     logic [DWIDTH-1:0] assign_w_data;
-
     logic [AWIDTH-1:0] branch_target_if;
-    logic br_or_jump_taken;
+    logic              br_or_jump_taken;
+    
     assign br_or_jump_taken = assign_e_br_taken | pcsel;
     assign branch_target_if = assign_e_alu_res;
 
-    // =========================================================
-    // Fetch: PC register
-    // =========================================================
+
+    // Fetch
     fetch #(DWIDTH, AWIDTH) u_fetch (
-        .clk       (clk),
-        .rst       (reset),
-        .brtaken_i  (br_or_jump_taken),
+        .clk            (clk),
+        .rst            (reset),
+        .brtaken_i      (br_or_jump_taken),
         .branch_target_i(branch_target_if),
-        .pc_o      (assign_f_pc),
-        .insn_o    ()
+        .pc_o           (assign_f_pc),
+        .insn_o         ()
     );
 
-    // =========================================================
-    // Memory stage
-    // =========================================================
     logic [1:0] actual_mem_size;
 
     assign assign_m_pc           = assign_e_pc;
     assign assign_m_address      = assign_e_alu_res;
     assign assign_m_size_encoded = assign_d_funct3[1:0];
+    assign actual_mem_size       = (memren | memwren) ? assign_d_funct3[1:0] : 2'b10;
+    assign mem_sign_en           = (assign_d_opcode == `Opcode_IType_Load) ? ~assign_d_funct3[2] : 1'b0;
+    assign assign_m_data         = mem_read_data;
 
-    assign actual_mem_size = (memren | memwren) ? assign_d_funct3[1:0] : 2'b10;
-
-    assign mem_sign_en = (assign_d_opcode == `Opcode_IType_Load) ? ~assign_d_funct3[2] : 1'b0;
-
-    // Testbench expects M_DATA to always show memory read output
-    assign assign_m_data = mem_read_data;
-
-    // =========================================================
-    // Unified Memory
-    // =========================================================
+    // Memory
     memory #(AWIDTH, DWIDTH) u_mem (
         .clk         (clk),
         .rst         (reset),
-
-        // Data port
         .addr_i      (assign_m_address),
         .data_i      (assign_r_read_rs2_data),
-        .read_en_i   (1'b1),              // ALWAYS READ (fix)
+        .read_en_i   (1'b1),
         .write_en_i  (memwren),
         .size_i      (actual_mem_size),
         .sign_en_i   (mem_sign_en),
         .data_o      (mem_read_data),
-
-        // Instruction port
         .insn_addr_i (assign_f_pc),
         .insn_o      (assign_f_insn)
     );
 
-    // =========================================================
-    // Decode stage
-    // =========================================================
+    // Decode
     decode #(DWIDTH, AWIDTH) u_decode (
         .clk      (clk),
         .rst      (reset),
@@ -177,9 +142,6 @@ module pd4 #(
 
     assign assign_d_imm = igen_imm;
 
-    // =========================================================
-    // Control
-    // =========================================================
     control #(DWIDTH) u_control (
         .insn_i    (assign_d_insn),
         .opcode_i  (assign_d_opcode),
@@ -196,9 +158,7 @@ module pd4 #(
         .alusel_o  (alusel)
     );
 
-    // =========================================================
     // Register File
-    // =========================================================
     assign assign_r_read_rs1          = assign_d_rs1;
     assign assign_r_read_rs2          = assign_d_rs2;
     assign assign_r_write_enable      = assign_w_write_enable;
@@ -217,9 +177,7 @@ module pd4 #(
         .rs2data_o (assign_r_read_rs2_data)
     );
 
-    // =========================================================
-    // Branch comparator
-    // =========================================================
+    // Branch
     branch_control #(DWIDTH) u_branch_control (
         .opcode_i (assign_d_opcode),
         .funct3_i (assign_d_funct3),
@@ -232,7 +190,6 @@ module pd4 #(
 
     always_comb begin
         assign_e_br_taken = 1'b0;
-
         if (assign_d_opcode == `Opcode_BType) begin
             unique case (assign_d_funct3)
                 3'b000: assign_e_br_taken = breq;
@@ -246,11 +203,8 @@ module pd4 #(
         end
     end
 
-    // =========================================================
-    // Execute stage
-    // =========================================================
+    // Execute
     assign assign_e_pc = assign_d_pc;
-
     assign op1 = (rs1sel == `OP1_PC)  ? assign_e_pc   : assign_r_read_rs1_data;
     assign op2 = (rs2sel == `OP2_IMM) ? assign_d_imm  : assign_r_read_rs2_data;
 
@@ -265,9 +219,7 @@ module pd4 #(
         .brtaken_o ()
     );
 
-    // =========================================================
-    // Writeback stage
-    // =========================================================
+    // Writeback
     always_comb begin
         alu_res_for_pc = assign_e_alu_res;
         if (assign_d_opcode == `Opcode_IType_Jump_And_LinkReg) begin
@@ -284,9 +236,7 @@ module pd4 #(
         .alu_res_i        (alu_res_for_pc),
         .memory_data_i    (mem_read_data),
         .wbsel_i          (wbsel),
-        //.brtaken_i        (assign_e_br_taken | pcsel),
         .writeback_data_o (assign_w_data)
-        //.next_pc_o        (next_pc)
     );
 
 

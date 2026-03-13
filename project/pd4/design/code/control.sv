@@ -10,45 +10,48 @@
 `include "constants.svh"
 
 module control #(
-    parameter int DWIDTH=32
+    parameter int DWIDTH = 32
 )(
     // inputs
-    input logic [DWIDTH-1:0] insn_i,
-    input logic [6:0] opcode_i,
-    input logic [6:0] funct7_i,
-    input logic [2:0] funct3_i,
+    input logic [DWIDTH-1:0]    insn_i,
+    input logic [6:0]           opcode_i,
+    input logic [6:0]           funct7_i,
+    input logic [2:0]           funct3_i,
 
     // outputs
-    output logic pcsel_o,
-    output logic immsel_o,
-    output logic regwren_o,
-    output logic rs1sel_o,
-    output logic rs2sel_o,
-    output logic memren_o,
-    output logic memwren_o,
-    output logic [1:0] wbsel_o,
-    output logic [3:0] alusel_o
+    output logic                pcsel_o,
+    output logic                immsel_o,
+    output logic                regwren_o,
+    output logic                rs1sel_o,
+    output logic                rs2sel_o,
+    output logic                memren_o,
+    output logic                memwren_o,
+    output logic [1:0]          wbsel_o,
+    output logic [3:0]          alusel_o
 );
-
+    /*
+     * Control logic for the RISC-V processor.
+     * Decodes instructions and generates control signals for the datapath.
+     * Default values are assigned first to prevent unwanted latches.
+     */
     always_comb begin
-        // Default values to prevent latches
-        pcsel_o = `PC_NEXTLINE;
-        immsel_o = 1'b0;
-        regwren_o = 1'b0;
-        rs1sel_o = `OP1_RS1;
-        rs2sel_o = `OP2_RS2;
-        memren_o = 1'b0;
-        memwren_o = 1'b0;
-        wbsel_o =  `WB_ALU;
-        alusel_o = `ADD;
+        pcsel_o     = `PC_NEXTLINE;
+        immsel_o    = 1'b0;
+        regwren_o   = 1'b0;
+        rs1sel_o    = `OP1_RS1;
+        rs2sel_o    = `OP2_RS2;
+        memren_o    = 1'b0;     //Disable memory reads
+        memwren_o   = 1'b0;     //Disable memory writes
+        wbsel_o     = `WB_ALU;
+        alusel_o    = `ADD;
 
         case (opcode_i)
             `Opcode_RType: begin
-                regwren_o = 1'b1;
-                rs1sel_o = `OP1_RS1;
-                rs2sel_o = `OP2_RS2;
-                immsel_o = 1'b0;
-                wbsel_o =  `WB_ALU;
+                regwren_o   = 1'b1;
+                rs1sel_o    = `OP1_RS1;
+                rs2sel_o    = `OP2_RS2;
+                immsel_o    = 1'b0;
+                wbsel_o     = `WB_ALU;
                 case (funct3_i)
                     3'h0: alusel_o = (funct7_i == 7'h20) ? `SUB : `ADD;
                     3'h4: alusel_o = `XOR;
@@ -63,11 +66,11 @@ module control #(
             end
 
             `Opcode_IType: begin
-                regwren_o = 1'b1;
-                rs2sel_o  = `OP2_IMM;
-                immsel_o  = 1'b1;
-                rs1sel_o = `OP1_RS1;
-                wbsel_o =  `WB_ALU;
+                regwren_o   = 1'b1;
+                rs2sel_o    = `OP2_IMM;
+                immsel_o    = 1'b1;
+                rs1sel_o    = `OP1_RS1;
+                wbsel_o     = `WB_ALU;
                 case (funct3_i)
                     3'h0: alusel_o = `ADD;
                     3'h4: alusel_o = `XOR;
@@ -82,20 +85,20 @@ module control #(
             end
 
             `Opcode_IType_Load: begin
-                regwren_o = 1'b1;
-                rs1sel_o = `OP1_RS1;
-                rs2sel_o  = `OP2_IMM;
-                immsel_o  = 1'b1;
-                memren_o  = 1'b1;
-                wbsel_o   = `WB_MEM;
-                alusel_o  = `ADD;
+                regwren_o   = 1'b1;
+                rs1sel_o    = `OP1_RS1;
+                rs2sel_o    = `OP2_IMM;
+                immsel_o    = 1'b1;
+                memren_o    = 1'b1;
+                wbsel_o     = `WB_MEM;
+                alusel_o    = `ADD;
             end
 
             `Opcode_SType: begin
-                rs2sel_o  = `OP2_IMM;
-                immsel_o  = 1'b1;
-                memwren_o  = 1'b1;
-                alusel_o  = `ADD;
+                rs2sel_o    = `OP2_IMM;
+                immsel_o    = 1'b1;
+                memwren_o   = 1'b1;
+                alusel_o    = `ADD;
             end
 
             `Opcode_BType: begin
@@ -123,14 +126,13 @@ module control #(
                 rs2sel_o  = `OP2_IMM;
                 immsel_o  = 1'b1;
                 wbsel_o   = `WB_ALU;
-                alusel_o  = `ADD; // Changed back to ADD
+                alusel_o  = `ADD;
             end
 
             `Opcode_JType_Jump_And_Link: begin
                     regwren_o = 1'b1;
                     rs1sel_o  = `OP1_PC;
-                    rs2sel_o  = `OP2_IMM; // <--- FIXED: Route the immediate to the ALU(correct order)
-                    immsel_o  = 1'b1;
+                    rs2sel_o  = `OP2_IMM;
                     pcsel_o   = `PC_JUMP;
                     wbsel_o   = `WB_PC4;
                     alusel_o  = `ADD;
