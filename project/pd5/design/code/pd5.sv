@@ -40,7 +40,7 @@ module pd5 #(
         .stall_i         (stall),
         .branch_target_i (br_target),
         .pc_o            (if_pc),
-        .insn_o          (if_insn)
+        .insn_o          ()
     );
 
     // --- IF/ID PIPELINE REGISTER ---
@@ -233,7 +233,7 @@ module pd5 #(
         .sign_en_i   (1'b1),
         .data_o      (data_from_mem),
         .insn_addr_i (if_pc),
-        .insn_o      ()
+        .insn_o      (if_insn)
     );
 
     // --- MEM/WB PIPELINE REGISTER ---
