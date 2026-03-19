@@ -53,14 +53,14 @@ parameter logic [31:0] ZERO = 32'd0;
 `define PC_NEXTLINE     1'b0
 `define PC_JUMP         1'b1
 
-`define LBYTE           3'h0;
-`define LHALF           3'h1;
-`define LWORD           3'h2;
-`define LBU             3'h4;
-`define LHU             3'h5;
+`define LBYTE           3'h0
+`define LHALF           3'h1
+`define LWORD           3'h2
+`define LBU             3'h4
+`define LHU             3'h5
 
-`define SBYTE           3'h0;
-`define SHALF           3'h1;
-`define SWORD           3'h2;
+`define SBYTE           3'h0
+`define SHALF           3'h1
+`define SWORD           3'h2
 
 `endif

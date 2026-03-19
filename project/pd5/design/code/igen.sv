@@ -27,7 +27,7 @@ module igen #(
     logic [12:0] branch_holder;
     logic [20:0] jump_holder;
 
-    always_comb begin
+    always @* begin
         case (opcode_i)
             `Opcode_IType,
             `Opcode_IType_Jump_And_LinkReg,

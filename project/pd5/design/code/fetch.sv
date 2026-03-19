@@ -23,6 +23,7 @@ module fetch #(
     input  logic                clk,
     input  logic                rst,
     input  logic                brtaken_i,
+    input  logic                stall_i,
     input logic [AWIDTH-1:0]    branch_target_i,
     
     // outputs
@@ -43,7 +44,8 @@ module fetch #(
         if (rst) begin
             pc_reg <= BASEADDR;
         end
-        else begin
+        //Update PC if no stall occurs
+        else if (!stall_i) begin
             pc_reg <= next_pc;
         end
     end
@@ -54,7 +56,7 @@ module fetch #(
      * The actual instruction is driven by the memory module Port B
      */
 
-    assign insn_o = '0;
+    //assign insn_o = '0;
 
 
 endmodule : fetch

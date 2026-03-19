@@ -21,6 +21,7 @@
      input logic [DWIDTH-1:0] alu_res_i,
      input logic [DWIDTH-1:0] memory_data_i,
      input logic brtaken_i,
+     input  logic [1:0]          wbsel_i,
      output logic [DWIDTH-1:0] writeback_data_o
  );
 
@@ -28,7 +29,16 @@
      * Process definitions to be filled by
      * student below...
      */
-     
 
+    always_comb begin
+        case (wbsel_i)
+            2'b00: writeback_data_o = alu_res_i;       // Select ALU result
+            2'b01: writeback_data_o = memory_data_i;  // Select Memory data
+            2'b10: writeback_data_o = pc_i + 4;       // Select PC+4 (for Link registers)
+            // Use the brtaken_i input here:
+            2'b11: writeback_data_o = { {DWIDTH-1{1'b0}}, brtaken_i }; // Store 0 or 1
+            default: writeback_data_o = alu_res_i;
+        endcase
+    end
 
 endmodule : writeback
