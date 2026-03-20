@@ -39,8 +39,8 @@ module pd5 #(
         .brtaken_i       (brtaken),
         .stall_i         (stall),
         .branch_target_i (br_target),
-        .pc_o            (if_pc),
-        .insn_o          ()
+        .pc_o            (if_pc)
+        //.insn_o          (if_insn)
     );
 
     // --- IF/ID PIPELINE REGISTER ---
@@ -193,7 +193,7 @@ module pd5 #(
         .brtaken_o (brtaken)
     );
 
-    assign br_target = alu_res;
+    assign br_target = ex_pc + ex_imm;
 
     // --- EX/MEM PIPELINE REGISTER ---
     logic [DWIDTH-1:0] mem_alu_res, mem_rs2_data;

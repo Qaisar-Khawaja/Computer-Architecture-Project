@@ -95,6 +95,8 @@ module control #(
             end
 
             `Opcode_SType: begin
+                regwren_o   = 1'b0;
+                memwren_o   = 1'b1;
                 rs2sel_o    = `OP2_IMM;
                 immsel_o    = 1'b1;
                 memwren_o   = 1'b1;

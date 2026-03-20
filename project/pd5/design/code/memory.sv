@@ -74,7 +74,12 @@ module memory #(
     // MEMORY INITIALIZATION
     initial begin : init_block
         // 1. Clear memory
-        for (int i = 0; i < `MEM_DEPTH; i++) main_memory[i] = 8'h00;
+        for (int i = 0; i < `MEM_DEPTH; i += 4) begin
+            main_memory[i + 0] = 8'h13; // 0x00000013 (NOP)
+            main_memory[i + 1] = 8'h00;
+            main_memory[i + 2] = 8'h00;
+            main_memory[i + 3] = 8'h00;
+        end
 
         // 2. Load program
         $readmemh(`MEM_PATH, temp_memory);

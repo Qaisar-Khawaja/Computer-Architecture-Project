@@ -56,7 +56,7 @@ module fetch #(
      * The actual instruction is driven by the memory module Port B
      */
 
-    //assign insn_o = '0;
+    assign insn_o = '0;
 
 
 endmodule : fetch
