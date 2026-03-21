@@ -46,9 +46,12 @@ module register_file #(
     end
 
    // Combinational read with Internal Forwarding
-    assign rs1data_o = (rs1_i == 5'b0) ? 32'b0 : 
-                       ((rs1_i == rd_i) && regwren_i) ? datawb_i : regs[rs1_i];
+    // assign rs1data_o = (rs1_i == 5'b0) ? 32'b0 : 
+    //                    ((rs1_i == rd_i) && regwren_i) ? datawb_i : regs[rs1_i];
 
-    assign rs2data_o = (rs2_i == 5'b0) ? 32'b0 : 
-                       ((rs2_i == rd_i) && regwren_i) ? datawb_i : regs[rs2_i];
+    // assign rs2data_o = (rs2_i == 5'b0) ? 32'b0 : 
+    //                    ((rs2_i == rd_i) && regwren_i) ? datawb_i : regs[rs2_i];
+    // Combinational read (no internal forwarding - handled by EX stage muxes)
+    assign rs1data_o = regs[rs1_i];
+    assign rs2data_o = regs[rs2_i];
 endmodule : register_file

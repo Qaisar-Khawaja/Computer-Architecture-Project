@@ -72,4 +72,8 @@ module decode #(
         end
     end
 
+    //     // If WB is writing to the same register ID is reading, forward it immediately
+    // assign id_rs1_data = (wb_regwren && (wb_rd == id_rs1_addr) && (wb_rd != 0)) ? wb_data : regfile_rs1_out;
+    // assign id_rs2_data = (wb_regwren && (wb_rd == id_rs2_addr) && (wb_rd != 0)) ? wb_data : regfile_rs2_out;
+
 endmodule

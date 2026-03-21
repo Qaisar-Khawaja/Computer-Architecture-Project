@@ -1,0 +1,29 @@
+# vsim -suppress 3839 -c -do "/eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/verif/scripts/run.macro" /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.top 
+# Start time: 15:08:57 on Mar 21,2026
+# Loading sv_std.std
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.top
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.clockgen
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.design_wrapper
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.pd5_sv_unit
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.pd5
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.fetch
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.control_sv_unit
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.control
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.decode_sv_unit
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.decode
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.igen_sv_unit
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.igen
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.register_file
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.execute_sv_unit
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.alu
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.memory_sv_unit
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.memory
+# Loading /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/work.writeback
+# do /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/verif/scripts/run.macro
+# M stage mismatch: expected PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=010fffdc, got PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=00000078
+# ** Fatal: Assertion error.
+#    Time: 62 ps  Scope: top.genblk3.tick_check File: /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/kfaiza8/PD5/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h(45)
+#    Time: 62 ps  Iteration: 1  Region: /top/genblk3
+# End time: 15:08:58 on Mar 21,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
