@@ -46,7 +46,7 @@ module memory #(
      * main_memory is the actual byte-addressable storage.
      */
     logic [DWIDTH-1:0] temp_memory [0:`LINE_COUNT-1];
-    logic [7:0]        main_memory [0:`MEM_DEPTH-1]= '{default: 8'h00};
+    logic [7:0] main_memory [0:`MEM_DEPTH-1];
 
     // ADDRESS WRAPPING
     function logic [AWIDTH-1:0] wrap_addr(logic [AWIDTH-1:0] a);
@@ -73,16 +73,21 @@ module memory #(
 
     // MEMORY INITIALIZATION
     initial begin : init_block
-        // Clear memory
-        for (int i = 0; i < `MEM_DEPTH; i++) begin
-            main_memory[i] = 8'h00;
+        // 1. Clear memory
+        for (int i = 0; i < `MEM_DEPTH; i += 4) begin
+            main_memory[i + 0] = 8'h13; // 0x00000013 (NOP)
+            main_memory[i + 1] = 8'h00;
+            main_memory[i + 2] = 8'h00;
+            main_memory[i + 3] = 8'h00;
         end
 
-        // Load program into temp_memory
+        // 2. Load program
         $readmemh(`MEM_PATH, temp_memory);
 
-        // Map words into byte-addressable memory (little-endian)
+        // 3. Map into byte-memory
         for (int i = 0; i < `LINE_COUNT; i++) begin
+            // We don't need to offset 'i' here because wrap_addr 
+            // will handle the 01000000 -> 0 conversion.
             main_memory[4*i + 0] = temp_memory[i][7:0];
             main_memory[4*i + 1] = temp_memory[i][15:8];
             main_memory[4*i + 2] = temp_memory[i][23:16];
@@ -113,7 +118,7 @@ module memory #(
     // DATA READ DECODE
     logic [15:0] half;
 
-    always_comb begin
+    always @* begin
         data_o = '0;
         if (read_en_i) begin
             case (size_i)
@@ -156,5 +161,4 @@ module memory #(
     end
 
 endmodule : memory
-
 
