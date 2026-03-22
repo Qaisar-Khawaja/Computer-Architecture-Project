@@ -21,12 +21,12 @@ module top;
     $fatal (1, "[PD5] Probe signals not defined ");
 `endif
 
-  `ifdef VCD
-  initial begin
-    $dumpfile(`VCD_FILE);
-    $dumpvars;
-  end
-  `endif
+`ifdef VCD
+initial begin
+  $dumpfile(`VCD_FILE);
+  $dumpvars(0, dut.core.u_rf);
+end
+`endif
 
   `include "tracegen.v"
 endmodule

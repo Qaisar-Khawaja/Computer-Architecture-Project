@@ -1,0 +1,78 @@
+# vsim -suppress 3839 -c -do "/eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/scripts/run.macro" /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.top 
+# Start time: 21:02:24 on Mar 21,2026
+# Loading sv_std.std
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.top
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.clockgen
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.design_wrapper
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.pd5
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.fetch
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.memory
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.decode
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.igen
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.control
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.register_file
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.alu
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.branch_control
+# Loading /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/work.writeback
+# do /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/scripts/run.macro
+# W stage MATCH: expected PC=xxxxxxxx, ENABLE=x, DESTINATION=xx, DATA=xxxxxxxx, got PC=xxxxxxxx, ENABLE=x, DESTINATION=xx, DATA=xxxxxxxx 
+# 
+# W stage MATCH: expected PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000, got PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000 
+# 
+# W stage MATCH: expected PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000, got PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000 
+# 
+# W stage MATCH: expected PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000, got PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000 
+# 
+# W stage MATCH: expected PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000, got PC=00000000, ENABLE=0, DESTINATION=00, DATA=00000000 
+# 
+# W stage MATCH: expected PC=01000000, ENABLE=1, DESTINATION=02, DATA=010fffd0, got PC=01000000, ENABLE=1, DESTINATION=02, DATA=010fffd0 
+# 
+# W stage MATCH: expected PC=01000004, ENABLE=0, DESTINATION=0c, DATA=010ffffc, got PC=01000004, ENABLE=0, DESTINATION=0c, DATA=010ffffc 
+# 
+# W stage MATCH: expected PC=01000008, ENABLE=1, DESTINATION=0f, DATA=01000000, got PC=01000008, ENABLE=1, DESTINATION=0f, DATA=01000000 
+# 
+# W stage MATCH: expected PC=0100000c, ENABLE=1, DESTINATION=11, DATA=0000000c, got PC=0100000c, ENABLE=1, DESTINATION=11, DATA=0000000c 
+# 
+# W stage MATCH: expected PC=01000010, ENABLE=1, DESTINATION=0e, DATA=01000248, got PC=01000010, ENABLE=1, DESTINATION=0e, DATA=01000248 
+# 
+# W stage MATCH: expected PC=01000014, ENABLE=1, DESTINATION=10, DATA=00000009, got PC=01000014, ENABLE=1, DESTINATION=10, DATA=00000009 
+# 
+# W stage MATCH: expected PC=01000018, ENABLE=1, DESTINATION=0e, DATA=01000248, got PC=01000018, ENABLE=1, DESTINATION=0e, DATA=01000248 
+# 
+# W stage MATCH: expected PC=0100001c, ENABLE=1, DESTINATION=0a, DATA=00000004, got PC=0100001c, ENABLE=1, DESTINATION=0a, DATA=00000004 
+# 
+# W stage MATCH: expected PC=01000020, ENABLE=1, DESTINATION=0e, DATA=01000248, got PC=01000020, ENABLE=1, DESTINATION=0e, DATA=01000248 
+# 
+# W stage MATCH: expected PC=01000024, ENABLE=1, DESTINATION=0b, DATA=00000063, got PC=01000024, ENABLE=1, DESTINATION=0b, DATA=00000063 
+# 
+# W stage MATCH: expected PC=01000028, ENABLE=1, DESTINATION=0e, DATA=01000248, got PC=01000028, ENABLE=1, DESTINATION=0e, DATA=01000248 
+# 
+# W stage MATCH: expected PC=0100002c, ENABLE=1, DESTINATION=0c, DATA=00000078, got PC=0100002c, ENABLE=1, DESTINATION=0c, DATA=00000078 
+# 
+# W stage MATCH: expected PC=01000030, ENABLE=1, DESTINATION=0e, DATA=01000248, got PC=01000030, ENABLE=1, DESTINATION=0e, DATA=01000248 
+# 
+# W stage MATCH: expected PC=01000034, ENABLE=1, DESTINATION=0d, DATA=00000001, got PC=01000034, ENABLE=1, DESTINATION=0d, DATA=00000001 
+# 
+# W stage MATCH: expected PC=01000038, ENABLE=1, DESTINATION=0e, DATA=01000248, got PC=01000038, ENABLE=1, DESTINATION=0e, DATA=01000248 
+# 
+# W stage MATCH: expected PC=0100003c, ENABLE=1, DESTINATION=0e, DATA=00000003, got PC=0100003c, ENABLE=1, DESTINATION=0e, DATA=00000003 
+# 
+# W stage MATCH: expected PC=01000040, ENABLE=1, DESTINATION=0f, DATA=01000248, got PC=01000040, ENABLE=1, DESTINATION=0f, DATA=01000248 
+# 
+# W stage MATCH: expected PC=01000044, ENABLE=1, DESTINATION=0f, DATA=0000000a, got PC=01000044, ENABLE=1, DESTINATION=0f, DATA=0000000a 
+# 
+# W stage MATCH: expected PC=01000048, ENABLE=0, DESTINATION=00, DATA=010fffd0, got PC=01000048, ENABLE=0, DESTINATION=00, DATA=010fffd0 
+# 
+# W stage MATCH: expected PC=0100004c, ENABLE=0, DESTINATION=04, DATA=010fffd4, got PC=0100004c, ENABLE=0, DESTINATION=04, DATA=010fffd4 
+# 
+# W stage MATCH: expected PC=01000050, ENABLE=0, DESTINATION=08, DATA=010fffd8, got PC=01000050, ENABLE=0, DESTINATION=08, DATA=010fffd8 
+# 
+# M stage mismatch: expected PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=010fffdc, got PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=00000078
+# W stage MATCH: expected PC=01000054, ENABLE=0, DESTINATION=0c, DATA=010fffdc, got PC=01000054, ENABLE=0, DESTINATION=0c, DATA=010fffdc 
+# 
+# ** Fatal: Assertion error.
+#    Time: 62 ps  Scope: top.genblk3.tick_check File: /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h(45)
+#    Time: 62 ps  Iteration: 1  Region: /top/genblk3
+# End time: 21:02:24 on Mar 21,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0

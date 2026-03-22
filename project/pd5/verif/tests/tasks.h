@@ -196,6 +196,9 @@ task check_W;
         dut.core.`PROBE_W_PC, dut.core.`PROBE_W_ENABLE, dut.core.`PROBE_W_DESTINATION, dut.core.`PROBE_W_DATA);
       res = 0;
     end else begin
+     $display("W stage MATCH: expected PC=%x, ENABLE=%x, DESTINATION=%x, DATA=%x, got PC=%x, ENABLE=%x, DESTINATION=%x, DATA=%x \n", 
+        pc, enable, destination, data,
+        dut.core.`PROBE_W_PC, dut.core.`PROBE_W_ENABLE, dut.core.`PROBE_W_DESTINATION, dut.core.`PROBE_W_DATA);
       res = 1;
     end
   end

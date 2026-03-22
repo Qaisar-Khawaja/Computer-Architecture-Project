@@ -1,0 +1,122 @@
+# vsim -voptargs="+acc" work.top 
+# Start time: 20:31:19 on Mar 21,2026
+# Loading sv_std.std
+# Loading work.top
+# Loading work.clockgen
+# Loading work.design_wrapper
+# Loading work.pd5
+# Loading work.fetch
+# Loading work.memory
+# Loading work.decode
+# Loading work.igen
+# Loading work.control
+# Loading work.register_file
+# Loading work.alu
+# Loading work.branch_control
+# Loading work.writeback
+add wave -position insertpoint  \
+sim:/top/dut/clk
+# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
+# Cannot lock WLF file: "vsim.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: unknown  Hostname: ea03  ProcessID: 727014
+#           Attempting to use alternate WLF file "./wlftpKplTk".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftpKplTk
+run -all
+# M stage mismatch: expected PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=010fffdc, got PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=00000078
+# ** Fatal: Assertion error.
+#    Time: 62 ps  Scope: top.genblk3.tick_check File: /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h(45)
+#    Time: 62 ps  Iteration: 1  Region: /top/genblk3
+# 1
+# Break in NamedBeginStat tick_check at /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h line 45
+add wave -position insertpoint  \
+sim:/top/dut/core/assign_d_shamt \
+sim:/top/dut/core/assign_d_rs2 \
+sim:/top/dut/core/assign_d_rs1 \
+sim:/top/dut/core/assign_d_rd \
+sim:/top/dut/core/assign_d_pc \
+sim:/top/dut/core/assign_d_opcode \
+sim:/top/dut/core/assign_d_insn \
+sim:/top/dut/core/assign_d_imm \
+sim:/top/dut/core/assign_d_funct7 \
+sim:/top/dut/core/assign_d_funct3
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# M stage mismatch: expected PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=010fffdc, got PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=00000078
+# ** Fatal: Assertion error.
+#    Time: 62 ps  Scope: top.genblk3.tick_check File: /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h(45)
+#    Time: 62 ps  Iteration: 1  Region: /top/genblk3
+# 1
+# Break in NamedBeginStat tick_check at /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h line 45
+add wave -position insertpoint  \
+sim:/top/dut/core/u_rf/regs
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# M stage mismatch: expected PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=010fffdc, got PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=00000078
+# ** Fatal: Assertion error.
+#    Time: 62 ps  Scope: top.genblk3.tick_check File: /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h(45)
+#    Time: 62 ps  Iteration: 1  Region: /top/genblk3
+# 1
+# Break in NamedBeginStat tick_check at /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h line 45
+radix hex
+# hexadecimal
+add wave -position insertpoint  \
+sim:/top/dut/core/u_wb/writeback_data_o
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+run -all
+# M stage mismatch: expected PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=010fffdc, got PC=01000058, ADDRESS=010fffe0, SIZE_ENCODED=2, DATA=00000078
+# ** Fatal: Assertion error.
+#    Time: 62 ps  Scope: top.genblk3.tick_check File: /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h Line: 45
+# ** Note: $finish    : /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h(45)
+#    Time: 62 ps  Iteration: 1  Region: /top/genblk3
+# 1
+# Break in NamedBeginStat tick_check at /eecs/home/icabuent/Computer-Architecture-Project/project/pd5/verif/tests/pattern_check.h line 45
+# WARNING: No extended dataflow license exists
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# WARNING: No extended dataflow license exists
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
