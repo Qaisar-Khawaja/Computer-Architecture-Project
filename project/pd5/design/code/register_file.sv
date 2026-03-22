@@ -47,12 +47,7 @@ module register_file #(
 
     // Combinational read with same-cycle WB bypass.
     // This lets decode observe the value being written in WB on the same cycle.
-    assign rs1data_o =
-        (rs1_i == 0) ? '0 :
-        ((regwren_i && (rd_i != 0) && (rd_i == rs1_i)) ? datawb_i : regs[rs1_i]);
-
-    assign rs2data_o =
-        (rs2_i == 0) ? '0 :
-        ((regwren_i && (rd_i != 0) && (rd_i == rs2_i)) ? datawb_i : regs[rs2_i]);
+    assign rs1data_o = (rs1_i == 5'b0) ? '0 : regs[rs1_i];
+    assign rs2data_o = (rs2_i == 5'b0) ? '0 : regs[rs2_i];
 
 endmodule : register_file

@@ -466,11 +466,11 @@ module pd5 #(
         if (reset) begin
             if_id_valid <= 1'b0;
             if_id_pc    <= '0;
-            if_id_insn  <= `NOP;
+            if_id_insn  <= '0;
 
             id_ex_valid    <= 1'b0;
             id_ex_pc       <= '0;
-            id_ex_insn     <= `NOP;
+            id_ex_insn     <= '0;
             id_ex_opcode   <= '0;
             id_ex_rd       <= '0;
             id_ex_rs1      <= '0;
@@ -541,11 +541,11 @@ module pd5 #(
             if (ex_redirect_taken) begin
                 if_id_valid <= 1'b0;
                 if_id_pc    <= '0;
-                if_id_insn  <= `NOP;
+                if_id_insn  <= '0;
 
                 id_ex_valid    <= 1'b0;
                 id_ex_pc       <= '0;
-                id_ex_insn     <= `NOP;
+                id_ex_insn     <= '0;
                 id_ex_opcode   <= '0;
                 id_ex_rd       <= '0;
                 id_ex_rs1      <= '0;
@@ -574,7 +574,7 @@ module pd5 #(
                 // Bubble ID/EX
                 id_ex_valid    <= 1'b0;
                 id_ex_pc       <= '0;
-                id_ex_insn     <= `NOP;
+                id_ex_insn     <= '0;
                 id_ex_opcode   <= '0;
                 id_ex_rd       <= '0;
                 id_ex_rs1      <= '0;
